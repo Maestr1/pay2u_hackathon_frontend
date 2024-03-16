@@ -1,13 +1,12 @@
 import './App.css';
+import MainPage from './components/MainPage/MainPage.tsx';
 
 function App() {
 
   return (
-    <>
-      <div>
-        PAY2U
+      <div className='page'>
+        <MainPage/>
       </div>
-    </>
   );
 }
 
