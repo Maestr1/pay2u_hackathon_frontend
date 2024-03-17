@@ -1,7 +1,6 @@
 import React from 'react';
 import './AllProducts.scss'
 import CardListHeader from '../CardListHeader/CardListHeader.tsx';
-import MainCardList from '../MainCardList/MainCardList.tsx';
 import SmallCardList from '../SmallCardList/SmallCardList.tsx';
 
 function AllProducts(props) {

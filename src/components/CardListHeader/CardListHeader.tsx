@@ -12,7 +12,7 @@ function CardListHeader(props: CardListHeaderProps): JSX.Element {
   return (
     <div className='card-list-header'>
       <h2>{props.title}</h2>
-      <Link to={`${props.link}`}>Все</Link>
+      <Link className='link' to={`${props.link}`}>Все</Link>
     </div>
   );
 }
