@@ -1,9 +1,10 @@
 import React from 'react';
+import './UserCardList.scss'
 
 function UserCardList(props): JSX.Element {
   return (
-    <div>
-      user card list
+    <div className='user-card-list'>
+
     </div>
   );
 }

@@ -5,9 +5,15 @@
   text-align: center;
 }
 
+.body {
+  margin: 0;
+}
+
 .page {
+  box-sizing: border-box;
   max-width: 425px;
   margin: 0 auto;
+  padding-inline: 16px;
 }
 
 /*# sourceMappingURL=App.css.map */

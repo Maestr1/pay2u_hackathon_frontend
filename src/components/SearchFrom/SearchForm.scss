@@ -1,6 +1,29 @@
 .search-form {
+  padding-block: 8px;
+
   & input {
+    box-sizing: border-box;
+    padding-block: 6px;
+    padding-right: 10px;
+    padding-left: 36px;
+    width: 100%;
     border: none;
-    background-color: grey;
+    border-radius: 10px;
+    background: url("../../images/icons/search_icon.svg") no-repeat 12px 10px, var(--black-5);
+    font-family: InterVariable, sans-serif;
+    font-size: 16px;
+    line-height: 150%;
+    caret-color: var(--primary-color-90);
+
+    &::placeholder {
+      color: var(--black-50);
+    }
+
+    &:focus-visible {
+      outline-color: transparent;
+      &::placeholder {
+        color: transparent;
+      }
+    }
   }
 }
