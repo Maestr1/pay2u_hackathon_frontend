@@ -12,7 +12,7 @@
   background: url("../../images/icons/search_icon.svg") no-repeat 12px 10px, var(--black-5);
   font-family: InterVariable, sans-serif;
   font-size: 16px;
-  line-height: 150%;
+  line-height: 1.5;
   caret-color: var(--primary-color-90);
 }
 .search-form input::placeholder {

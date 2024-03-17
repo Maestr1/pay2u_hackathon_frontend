@@ -1,7 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import SearchFrom from '../SearchFrom/SearchFrom.tsx';
 import UserCardList from '../UserCardList/UserCardList.tsx';
 import MainCardList from '../MainCardList/MainCardList.tsx';
+import UserProducts from '../UserProducts/UserProducts.tsx';
+import PopularProducts from '../PopularProducts/PopularProducts.tsx';
+import AllProducts from '../AllProducts/AllProducts.tsx';
 
 function MainPage() {
 
@@ -9,14 +13,9 @@ function MainPage() {
     <div>
       main page
       <SearchFrom/>
-      <section>
-        <h2>Мои подписки</h2>
-        <UserCardList/>
-      </section>
-      <section>
-        <h2>Популярное</h2>
-        <MainCardList/>
-      </section>
+      <UserProducts/>
+      <PopularProducts/>
+      <AllProducts/>
     </div>
   );
 }
