@@ -1,17 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import SearchFrom from '../SearchFrom/SearchFrom.tsx';
-import UserCardList from '../UserCardList/UserCardList.tsx';
-import MainCardList from '../MainCardList/MainCardList.tsx';
 import UserProducts from '../UserProducts/UserProducts.tsx';
 import PopularProducts from '../PopularProducts/PopularProducts.tsx';
 import AllProducts from '../AllProducts/AllProducts.tsx';
 
-function MainPage() {
+function MainPage(): JSX.Element {
 
   return (
     <div>
-      main page
       <SearchFrom/>
       <UserProducts/>
       <PopularProducts/>

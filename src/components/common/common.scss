@@ -8,12 +8,17 @@
   --primary-color-80: #1D4ED8;
   --primary-color-70: #2563EB;
   --primary-color-40: #93C5FD;
+  --black-100: #000000;
   --black-90: #1A1A1A;
-  --black-70: #4C4C4C;
   --black-80: #333333;
+  --black-70: #4C4C4C;
   --black-50: #808080;
   --black-40: #999999;
   --black-20: #CCCCCC;
   --black-5: #F2F2F2;
   --white: #FFFFFF;
+}
+
+.link {
+  text-decoration: none;
 }
