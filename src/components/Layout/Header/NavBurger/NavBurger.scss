@@ -1,4 +1,5 @@
 .nav-burger {
+  transform: translateY(-100%);
   max-width: 425px;
   margin: 0 auto;
   box-sizing: border-box;
@@ -12,6 +13,7 @@
   width: 100%;
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
+  transition: transform .4s ease-in-out;
 
   & ul {
     box-sizing: border-box;
@@ -50,6 +52,10 @@
         color: var(--black-90);
       }
     }
+  }
+
+  &_active {
+    transform: translateY(0);
   }
 }
 

@@ -7,12 +7,15 @@ import walletIcon from '../../../../images/icons/wallet.svg';
 import calendarIcon from '../../../../images/icons/calendar.svg';
 import faqIcon from '../../../../images/icons/faq.svg';
 import Overlay from '../../../Overlay/Overlay.tsx';
-import BurgerButton from '../BurgerButton/BurgerButton.tsx';
 
-function NavBurger(props): JSX.Element {
+interface NavBurgerProps {
+  isMenuOpen: boolean;
+}
+
+function NavBurger(props: NavBurgerProps): JSX.Element {
   return (
     <>
-      <nav className="nav-burger">
+      <nav className={ `nav-burger nav-burger_${ props.isMenuOpen ? 'active' : '' }` }>
         <ul>
           <li>
             <Link className="link" to="/"><img src={ homeIcon } alt=""/>Главная</Link>
@@ -31,7 +34,7 @@ function NavBurger(props): JSX.Element {
           </li>
         </ul>
       </nav>
-      <Overlay isMenuOpen={ true }/>
+      <Overlay isMenuOpen={ props.isMenuOpen }/>
     </>
   );
 }

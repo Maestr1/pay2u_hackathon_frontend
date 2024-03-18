@@ -1,7 +1,8 @@
 import './BurgerButton.scss';
+import { MouseEventHandler } from 'react';
 
 interface BurgerButtonProps {
-  onClick: object;
+  onClick: MouseEventHandler<HTMLButtonElement>;
   isMenuOpen: boolean;
 }
 
