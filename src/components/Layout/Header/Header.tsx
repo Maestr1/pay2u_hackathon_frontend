@@ -14,7 +14,7 @@ function Header(props) {
   return (
     <header className='header'>
       <BurgerButton onClick={handleClick} isMenuOpen={navIsOpen}/>
-      <NavBurger/>
+      <NavBurger isMenuOpen={navIsOpen}/>
     </header>
   );
 }

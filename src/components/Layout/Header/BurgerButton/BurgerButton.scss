@@ -10,7 +10,7 @@
 
 .burger-btn [class*='burger-btn__bar-'] {
   margin-bottom: 3px;
-  width: 18px;
+  width: 24px;
   height: 2px;
   display: block;
   border-radius: 2px;
@@ -29,7 +29,7 @@
 
 .burger-btn_active .burger-btn__bar-top {
   transform: rotate(45deg);
-  transform-origin: -8% -10%;
+  transform-origin: 20% -10%;
 }
 
 .burger-btn_active .burger-btn__bar-mid {
@@ -38,6 +38,6 @@
 
 .burger-btn_active .burger-btn__bar-bot {
   transform: rotate(-45deg);
-  transform-origin: 0 130%;
+  transform-origin: 19% 85%;
 }
 
