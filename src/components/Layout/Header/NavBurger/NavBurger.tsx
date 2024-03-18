@@ -12,27 +12,26 @@ import BurgerButton from '../BurgerButton/BurgerButton.tsx';
 function NavBurger(props): JSX.Element {
   return (
     <>
-    <nav className="nav-burger">
-      <BurgerButton/>
-      <ul>
-        <li>
-          <Link className="link" to="/"><img src={ homeIcon } alt=""/>Главная</Link>
-        </li>
-        <li>
-          <Link className="link" to="/"><img src={ subscribesLogo } alt=""/>Мои подписки</Link>
-        </li>
-        <li>
-          <Link className="link" to="/"><img src={ walletIcon } alt=""/>История платежей</Link>
-        </li>
-        <li>
-          <Link className="link" to="/"> <img src={ calendarIcon } alt=""/>Календарь</Link>
-        </li>
-        <li>
-          <Link className="link" to="/"><img src={ faqIcon } alt=""/>FAQ</Link>
-        </li>
-      </ul>
-    </nav>
-    <Overlay isMenuOpen={true}/>
+      <nav className="nav-burger">
+        <ul>
+          <li>
+            <Link className="link" to="/"><img src={ homeIcon } alt=""/>Главная</Link>
+          </li>
+          <li>
+            <Link className="link" to="/"><img src={ subscribesLogo } alt=""/>Мои подписки</Link>
+          </li>
+          <li>
+            <Link className="link" to="/"><img src={ walletIcon } alt=""/>История платежей</Link>
+          </li>
+          <li>
+            <Link className="link" to="/"> <img src={ calendarIcon } alt=""/>Календарь</Link>
+          </li>
+          <li>
+            <Link className="link" to="/"><img src={ faqIcon } alt=""/>FAQ</Link>
+          </li>
+        </ul>
+      </nav>
+      <Overlay isMenuOpen={ true }/>
     </>
   );
 }
