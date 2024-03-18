@@ -1,12 +1,12 @@
 import './BurgerButton.scss';
-import { MouseEventHandler } from 'react';
+import { MouseEventHandler, ReactElement } from 'react';
 
 interface BurgerButtonProps {
   onClick: MouseEventHandler<HTMLButtonElement>;
   isMenuOpen: boolean;
 }
 
-function BurgerButton({ onClick, isMenuOpen }: BurgerButtonProps) {
+function BurgerButton({ onClick, isMenuOpen }: BurgerButtonProps): ReactElement {
 
   return (
     <>

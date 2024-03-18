@@ -1,6 +1,6 @@
-import React from 'react';
+import { ReactElement } from 'react';
 
-function MainCardList(props): JSX.Element {
+function MainCardList(): ReactElement {
   return (
     <div>
       main card list

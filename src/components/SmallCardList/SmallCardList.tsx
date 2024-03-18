@@ -1,6 +1,6 @@
-import React from 'react';
+import { ReactElement } from 'react';
 
-function SmallCardList(props): JSX.Element {
+function SmallCardList(): ReactElement {
   return (
     <div>SmallCardList</div>
   );

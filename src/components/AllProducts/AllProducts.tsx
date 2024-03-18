@@ -1,12 +1,12 @@
-import React from 'react';
-import './AllProducts.scss'
+import { ReactElement } from 'react';
+import './AllProducts.scss';
 import CardListHeader from '../CardListHeader/CardListHeader.tsx';
 import SmallCardList from '../SmallCardList/SmallCardList.tsx';
 
-function AllProducts(props) {
+function AllProducts(): ReactElement {
   return (
     <section>
-      <CardListHeader title='Все сервисы' link='/'/>
+      <CardListHeader title="Все сервисы" link="/"/>
       <SmallCardList/>
     </section>
   );

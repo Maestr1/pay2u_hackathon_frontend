@@ -1,10 +1,10 @@
-import React from 'react';
-import './SearchForm.scss'
+import { ReactElement } from 'react';
+import './SearchForm.scss';
 
-function SearchFrom(props): JSX.Element {
+function SearchFrom(): ReactElement {
   return (
-    <form className='search-form'>
-      <input type="text" placeholder='Кино, музыка и другие сервисы'/>
+    <form className="search-form">
+      <input type="text" placeholder="Кино, музыка и другие сервисы"/>
     </form>
   );
 }
