@@ -1,9 +1,9 @@
-import React from 'react';
+import { ReactElement } from 'react';
 import './PopularProducts.scss'
 import CardListHeader from '../CardListHeader/CardListHeader.tsx';
 import MainCardList from '../MainCardList/MainCardList.tsx';
 
-function PopularProducts(props): JSX.Element {
+function PopularProducts(): ReactElement {
   return (
     <section>
       <CardListHeader title='Популярное' link='/'/>

@@ -1,8 +1,8 @@
-import React from 'react';
 import Header from './Header/Header.tsx';
 import { Outlet } from 'react-router-dom';
+import { ReactElement } from 'react';
 
-function Layout(props) {
+function Layout(): ReactElement {
   return (
     <>
       <Header/>

@@ -1,7 +1,7 @@
-import React from 'react';
+import { ReactElement } from 'react';
 import './UserCardList.scss'
 
-function UserCardList(props): JSX.Element {
+function UserCardList(): ReactElement {
   return (
     <div className='user-card-list'>
       user card list

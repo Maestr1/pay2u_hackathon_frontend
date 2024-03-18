@@ -1,6 +1,6 @@
-import React from 'react';
+import { ReactElement } from 'react';
 
-function ErrorPage(props) {
+function ErrorPage(): ReactElement {
   return (
     <div></div>
   );

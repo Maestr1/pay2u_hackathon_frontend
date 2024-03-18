@@ -3,8 +3,9 @@ import MainPage from './components/MainPage/MainPage.tsx';
 import { Route, Routes } from 'react-router-dom';
 import Layout from './components/Layout/Layout.tsx';
 import ErrorPage from './components/ErrorPage/ErrorPage.tsx';
+import { ReactElement } from 'react';
 
-function App() {
+function App(): ReactElement {
 
   return (
     <Routes>

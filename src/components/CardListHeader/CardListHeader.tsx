@@ -1,6 +1,6 @@
-import React from 'react';
+import { ReactElement } from 'react';
 import { Link } from 'react-router-dom';
-import './CardListHeader.scss'
+import './CardListHeader.scss';
 
 
 interface CardListHeaderProps {
@@ -8,11 +8,11 @@ interface CardListHeaderProps {
   link: string;
 }
 
-function CardListHeader(props: CardListHeaderProps): JSX.Element {
+function CardListHeader(props: CardListHeaderProps): ReactElement {
   return (
-    <div className='card-list-header'>
-      <h2>{props.title}</h2>
-      <Link className='link' to={`${props.link}`}>Все</Link>
+    <div className="card-list-header">
+      <h2>{ props.title }</h2>
+      <Link className="link" to={ `${ props.link }` }>Все</Link>
     </div>
   );
 }
