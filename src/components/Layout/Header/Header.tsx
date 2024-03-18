@@ -1,20 +1,18 @@
-import { ReactElement, useState } from 'react';
+import { ReactElement } from 'react';
 import './Header.scss';
-import NavBurger from './NavBurger/NavBurger.tsx';
 import BurgerButton from './BurgerButton/BurgerButton.tsx';
 
-function Header(): ReactElement {
 
-  const [navIsOpen, setNavIsOpen] = useState(false);
+interface HeaderProps {
+  handleClick: () => void,
+  isMenuOpen: boolean
+}
 
-  function handleClick() {
-    setNavIsOpen(!navIsOpen);
-  }
+function Header(props: HeaderProps): ReactElement {
 
   return (
     <header className="header">
-      <BurgerButton onClick={ handleClick } isMenuOpen={ navIsOpen }/>
-      <NavBurger isMenuOpen={ navIsOpen }/>
+      <BurgerButton onClick={ props.handleClick } isMenuOpen={ props.isMenuOpen }/>
     </header>
   );
 }

@@ -1,5 +1,9 @@
 .header {
+  z-index: 20;
+  margin-right: -5px;
+  margin-left: -5px;
+  padding-block: 8px;
   display: flex;
   justify-content: flex-end;
-  padding-block: 14px;
+
 }
