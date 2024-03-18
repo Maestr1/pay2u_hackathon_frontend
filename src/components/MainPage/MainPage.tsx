@@ -3,16 +3,23 @@ import SearchFrom from '../SearchFrom/SearchFrom.tsx';
 import UserProducts from '../UserProducts/UserProducts.tsx';
 import PopularProducts from '../PopularProducts/PopularProducts.tsx';
 import AllProducts from '../AllProducts/AllProducts.tsx';
+import NavBurger from '../Layout/Header/NavBurger/NavBurger.tsx';
 
-function MainPage(): ReactElement {
+
+interface MainPageProps {
+  isMenuOpen: boolean
+}
+
+function MainPage(props: MainPageProps): ReactElement {
 
   return (
-    <div>
+    <main>
+      <NavBurger isMenuOpen={ props.isMenuOpen }/>
       <SearchFrom/>
       <UserProducts/>
       <PopularProducts/>
       <AllProducts/>
-    </div>
+    </main>
   );
 }
 

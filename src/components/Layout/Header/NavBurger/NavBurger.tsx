@@ -30,7 +30,7 @@ function NavBurger(props: NavBurgerProps): ReactElement {
             <Link className="link" to="/"> <img src={ calendarIcon } alt=""/>Календарь</Link>
           </li>
           <li>
-            <Link className="link" to="/"><img src={ faqIcon } alt=""/>FAQ</Link>
+            <Link className="link" to="/"><img src={ faqIcon } alt=""/>Частые вопросы</Link>
           </li>
         </ul>
       </nav>
