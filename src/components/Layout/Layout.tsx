@@ -1,17 +1,22 @@
 import Header from './Header/Header.tsx';
 import { Outlet } from 'react-router-dom';
-import { ReactElement } from 'react';
+import { ReactElement, useState } from 'react';
 
-interface LayoutProps {
-  handleClick: () => void,
-  isMenuOpen: boolean
-}
 
-function Layout(props: LayoutProps): ReactElement {
+function Layout(): ReactElement {
+
+
+  const [navIsOpen, setNavIsOpen] = useState(false);
+
+  function handleClick() {
+    setNavIsOpen(!navIsOpen);
+  }
   return (
     <>
-      <Header handleClick={ props.handleClick } isMenuOpen={ props.isMenuOpen }/>
+      <Header handleClick={ handleClick } isMenuOpen={ navIsOpen }/>
+      <main>
         <Outlet/>
+      </main>
     </>
   );
 }

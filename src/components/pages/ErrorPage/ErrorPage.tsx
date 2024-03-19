@@ -2,7 +2,11 @@ import { ReactElement } from 'react';
 
 function ErrorPage(): ReactElement {
   return (
-    <div></div>
+    <div>
+      Error!
+      404
+      Page not found
+    </div>
   );
 }
 

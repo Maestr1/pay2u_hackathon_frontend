@@ -1,0 +1,16 @@
+.slider-container {
+  overflow-x: auto;
+  white-space: nowrap;
+  scroll-snap-type: x mandatory;
+}
+
+.slider {
+  display: flex;
+}
+
+.card {
+  flex: 0 0 auto; /* Flex grow, flex shrink, and flex basis */
+  width: 300px; /* Fixed width for each card */
+  margin-right: 16px; /* Space between cards */
+  scroll-snap-align: start; /* Align to the start edge of the snap container */
+}

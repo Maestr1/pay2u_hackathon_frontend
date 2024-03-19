@@ -25,11 +25,11 @@ export const mainData:IAvailableSubscriptions = {
       subscriptionType: 'month',
       cost: 100,
       iconBig: '../images/card_images/ivi_big.png',
-      iconSquare: '../images/card_images/ivi_square.png'
+      iconSquare: './src/images/card_images/ivi_square.png'
     },
     {
       id: '2',
-      name: 'Подписка на 1 месяц',
+      name: 'Подписка на 3 месяца',
       category: 'Базовая',
       startDate: '01.01.2022',
       endDate: '01.02.2022',
@@ -40,7 +40,7 @@ export const mainData:IAvailableSubscriptions = {
     },
     {
       id: '3',
-      name: 'Подписка на 1 месяц',
+      name: 'Подписка на 6 месяцов',
       category: 'Базовая',
       startDate: '01.01.2022',
       endDate: '01.02.2022',
