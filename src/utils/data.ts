@@ -1,4 +1,4 @@
-export interface Subscription {
+export interface ISubscription {
   id: string,
   name: string,
   category: string,
@@ -10,11 +10,11 @@ export interface Subscription {
   iconSquare: string
 }
 
-export interface IMainData {
-  availableSubscriptions: Subscription[],
+export interface IAvailableSubscriptions {
+  availableSubscriptions: ISubscription[],
 }
 
-export const mainData:IMainData = {
+export const mainData:IAvailableSubscriptions = {
   availableSubscriptions: [
     {
       id: '1',

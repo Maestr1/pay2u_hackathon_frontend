@@ -1,13 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { offline } from '@redux-offline/redux-offline';
-import offlineConfig from '@redux-offline/redux-offline/lib/defaults';
+
+import { reducer as availableSubscriptionsReducer } from './availableSubscriptionsSlice.ts'
 
 export const store = configureStore({
-  reducer: {},
+  reducer: {
+    availableSubscriptionsReducer,
+  },
   middleware: (getDefaultMiddleware) => {
     return getDefaultMiddleware();
   },
   enhancers: (getDefaultEnhancers) => {
-    return getDefaultEnhancers().concat(offline(offlineConfig));
+    return getDefaultEnhancers()
   }
 });
