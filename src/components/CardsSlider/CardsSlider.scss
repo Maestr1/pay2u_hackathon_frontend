@@ -1,16 +1,30 @@
-.slider-container {
+.slider {
   overflow-x: auto;
   white-space: nowrap;
-  scroll-snap-type: x mandatory;
+  scroll-snap-type: x proximity;
+
+  &__container {
+    display: flex;
+    width: 100%;
+    gap: 8px;
+
+    &_type_square {
+      width: 100%;
+    }
+  }
+
+  &__card {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+
+    & img {
+      height: 108px;
+      border-radius: 12px;
+      object-fit: cover;
+    }
+  }
 }
 
-.slider {
-  display: flex;
-}
 
-.card {
-  flex: 0 0 auto; /* Flex grow, flex shrink, and flex basis */
-  width: 300px; /* Fixed width for each card */
-  margin-right: 16px; /* Space between cards */
-  scroll-snap-align: start; /* Align to the start edge of the snap container */
-}
+
+

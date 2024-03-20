@@ -24,8 +24,8 @@ export const mainData:IAvailableSubscriptions = {
       endDate: '01.02.2022',
       subscriptionType: 'month',
       cost: 100,
-      iconBig: '../images/card_images/ivi_big.png',
-      iconSquare: './src/images/card_images/ivi_square.png'
+      iconBig: 'src/images/cards_images/ivi_big.png',
+      iconSquare: 'src/images/cards_images/ivi_square.png'
     },
     {
       id: '2',
@@ -35,8 +35,8 @@ export const mainData:IAvailableSubscriptions = {
       endDate: '01.02.2022',
       subscriptionType: 'month',
       cost: 200,
-      iconBig: '../images/card_images/kinopoisk_big.png',
-      iconSquare: '../images/card_images/oko_square.png'
+      iconBig: 'src/images/cards_images/kinopoisk_big.png',
+      iconSquare: 'src/images/cards_images/oko_square.png'
     },
     {
       id: '3',
@@ -46,8 +46,41 @@ export const mainData:IAvailableSubscriptions = {
       endDate: '01.02.2022',
       subscriptionType: 'month',
       cost: 300,
-      iconBig: '../images/card_images/plus_big.png',
-      iconSquare: '../images/card_images/spotify_square.png'
+      iconBig: 'src/images/cards_images/plus_big.png',
+      iconSquare: 'src/images/cards_images/spotify_square.png'
+    },
+    {
+      id: '3',
+      name: 'Подписка на 6 месяцов',
+      category: 'Базовая',
+      startDate: '01.01.2022',
+      endDate: '01.02.2022',
+      subscriptionType: 'month',
+      cost: 300,
+      iconBig: 'src/images/cards_images/plus_big.png',
+      iconSquare: 'src/images/cards_images/spotify_square.png'
+    },
+    {
+      id: '3',
+      name: 'Подписка на 6 месяцов',
+      category: 'Базовая',
+      startDate: '01.01.2022',
+      endDate: '01.02.2022',
+      subscriptionType: 'month',
+      cost: 300,
+      iconBig: 'src/images/cards_images/plus_big.png',
+      iconSquare: 'src/images/cards_images/spotify_square.png'
+    },
+    {
+      id: '3',
+      name: 'Подписка на 6 месяцов',
+      category: 'Базовая',
+      startDate: '01.01.2022',
+      endDate: '01.02.2022',
+      subscriptionType: 'month',
+      cost: 300,
+      iconBig: 'src/images/cards_images/plus_big.png',
+      iconSquare: 'src/images/cards_images/spotify_square.png'
     }
   ]
 }
