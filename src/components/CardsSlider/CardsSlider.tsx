@@ -1,14 +1,20 @@
-import { ReactElement, useEffect, useRef, useState } from 'react';
+import { ReactElement } from 'react';
 import './CardsSlider.scss';
 import CardListHeader from '../CardListHeader/CardListHeader.tsx';
 import { useSelector } from '../../hooks/store.ts';
 import { ISubscription } from '../../utils/fakeData.ts';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/scss';
+import 'swiper/scss/pagination';
+import { Link } from 'react-router-dom';
+
 
 interface ICardsSliderProps {
   title: string,
   cardType: 'square' | 'big',
   link: string,
   items: ISubscription[]
+  slidesPerView: number
 }
 
 function CardsSlider(props: ICardsSliderProps): ReactElement {
@@ -17,18 +23,17 @@ function CardsSlider(props: ICardsSliderProps): ReactElement {
 
 
   return (
-    <section className="cards-slider">
+    <section>
       <CardListHeader title={ props.title } link={ props.link }/>
-      <div className="slider">
-        <div
-          className={ `slider__container ${ props.cardType === 'square' ? 'slider__container_type_square' : '' }` }>
-          { availableSubscriptions.map((card, index) => (
-            <div key={ index } className="slider__card">
+      <Swiper slidesPerView={ props.slidesPerView } spaceBetween={ 8 } className="cards-slider">
+        { availableSubscriptions.map((card, index) => (
+          <SwiperSlide key={`card-${index}`}>
+            <Link to={ `services/${ card.id }` }>
               <img src={ props.cardType === 'square' ? card.iconSquare : card.iconBig } alt=""/>
-            </div>
-          )) }
-        </div>
-      </div>
+            </Link>
+          </SwiperSlide>
+        )) }
+      </Swiper>
     </section>
   );
 }

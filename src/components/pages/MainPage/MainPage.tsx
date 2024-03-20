@@ -13,9 +13,8 @@ function MainPage(): ReactElement {
   return (
     <>
       <SearchFrom/>
-      <CardsSlider items={availableSubscriptions} title='Мои подписки' cardType='square' link="/available-services"/>
-      <CardsSlider items={availableSubscriptions} title='Популярное' cardType='big' link="/available-services"/>
-      <CardsSlider items={availableSubscriptions} title='Каталог' cardType='small' link="/available-services"/>
+      <CardsSlider slidesPerView={3} items={availableSubscriptions} title='Мои подписки' cardType='square' link="/available-services"/>
+      <CardsSlider slidesPerView={1.8} items={availableSubscriptions} title='Популярное' cardType='big' link="/available-services"/>
     </>
   );
 }
