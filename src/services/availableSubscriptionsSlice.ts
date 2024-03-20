@@ -16,11 +16,12 @@ const availableSubscriptionsSlice = createSlice({
     addAvailableSubscriptions: (state, action: PayloadAction<ISubscription[]>) => {
       state.availableSubscriptions = action.payload;
     },
-    removeAvailableSubscriptions: (state, action: PayloadAction<string>) => {
-      state.availableSubscriptions = state.availableSubscriptions.filter((item) => item.id !== action.payload);
-    }
+    // removeAvailableSubscriptions: (state, action: PayloadAction<string>) => {
+    //   state.availableSubscriptions = state.availableSubscriptions.filter((item) => item.id !== action.payload);
+    // }
   }
 });
 
-export const { addAvailableSubscriptions, removeAvailableSubscriptions } = availableSubscriptionsSlice.actions;
+
+export const { addAvailableSubscriptions } = availableSubscriptionsSlice.actions;
 export const reducer = availableSubscriptionsSlice.reducer;

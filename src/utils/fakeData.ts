@@ -1,4 +1,4 @@
-export interface ISubscription {
+export type ISubscription = {
   id: string,
   name: string,
   category: string,
@@ -14,7 +14,42 @@ export interface IAvailableSubscriptions {
   availableSubscriptions: ISubscription[],
 }
 
-export const mainData:IAvailableSubscriptions = {
+export type TSubscriptionsCategories = {
+  id: string,
+  name: string,
+  description: string,
+  icon: string
+}[]
+
+
+export const subscriptionsCategoriesData: TSubscriptionsCategories = [
+  {
+    id: '1',
+    name: 'Книги',
+    description: 'Книги по подписке',
+    icon: 'src/images/icons/books.svg'
+  },
+  {
+    id: '2',
+    name: 'Музыка',
+    description: 'Музыка по подписке',
+    icon: 'src/images/icons/music.svg'
+  },
+  {
+    id: '3',
+    name: 'Здоровье',
+    description: 'Здоровье по подписке',
+    icon: 'src/images/icons/heart.svg'
+  },
+  {
+    id: '4',
+    name: 'Кино',
+    description: 'Кино по подписке',
+    icon: 'src/images/icons/video.svg'
+  }
+];
+
+export const subscriptionsData: IAvailableSubscriptions = {
   availableSubscriptions: [
     {
       id: '1',
@@ -83,4 +118,4 @@ export const mainData:IAvailableSubscriptions = {
       iconSquare: 'src/images/cards_images/spotify_square.png'
     }
   ]
-}
+};

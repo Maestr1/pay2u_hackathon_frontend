@@ -4,7 +4,7 @@ import './AvailableServicesPage.scss';
 function AvailableServicesPage(): ReactElement {
   return (
     <section>
-      ServicesPage
+      AvailableServicesPage
     </section>
   );
 }

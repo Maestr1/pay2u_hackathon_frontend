@@ -21,13 +21,12 @@ function CardsSlider(props: ICardsSliderProps): ReactElement {
 
   const availableSubscriptions = useSelector(store => store.availableSubscriptionsReducer.availableSubscriptions);
 
-
   return (
     <section>
       <CardListHeader title={ props.title } link={ props.link }/>
-      <Swiper slidesPerView={ props.slidesPerView } spaceBetween={ 8 } className="cards-slider">
+      <Swiper tag="ul" slidesPerView={ props.slidesPerView } spaceBetween={ 8 } className="cards-slider">
         { availableSubscriptions.map((card, index) => (
-          <SwiperSlide key={`card-${index}`}>
+          <SwiperSlide tag="li"  key={`card-${index}`}>
             <Link to={ `services/${ card.id }` }>
               <img src={ props.cardType === 'square' ? card.iconSquare : card.iconBig } alt=""/>
             </Link>
