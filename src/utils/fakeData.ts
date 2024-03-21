@@ -1,3 +1,10 @@
+import serviceBig from '../images/cards_images/kinopoisk_big.png'
+import serviceSquare from '../images/cards_images/oko_square.png'
+import book from '../images/icons/books.svg'
+import music from '../images/icons/music.svg'
+import health from '../images/icons/heart.svg'
+import video from '../images/icons/video.svg'
+
 export type ISubscription = {
   id: string,
   name: string,
@@ -27,28 +34,27 @@ export const subscriptionsCategoriesData: TSubscriptionsCategories = [
     id: '1',
     name: 'Книги',
     description: 'Книги по подписке',
-    icon: 'src/images/icons/books.svg'
+    icon: book
   },
   {
     id: '2',
     name: 'Музыка',
     description: 'Музыка по подписке',
-    icon: 'src/images/icons/music.svg'
+    icon: music
   },
   {
     id: '3',
     name: 'Здоровье',
     description: 'Здоровье по подписке',
-    icon: 'src/images/icons/heart.svg'
+    icon: health
   },
   {
     id: '4',
     name: 'Кино',
     description: 'Кино по подписке',
-    icon: 'src/images/icons/video.svg'
+    icon: video
   }
 ];
-
 export const subscriptionsData: IAvailableSubscriptions = {
   availableSubscriptions: [
     {
@@ -59,8 +65,8 @@ export const subscriptionsData: IAvailableSubscriptions = {
       endDate: '01.02.2022',
       subscriptionType: 'month',
       cost: 100,
-      iconBig: 'src/images/cards_images/ivi_big.png',
-      iconSquare: 'src/images/cards_images/ivi_square.png'
+      iconBig: serviceBig,
+      iconSquare: serviceSquare
     },
     {
       id: '2',
@@ -70,8 +76,8 @@ export const subscriptionsData: IAvailableSubscriptions = {
       endDate: '01.02.2022',
       subscriptionType: 'month',
       cost: 200,
-      iconBig: 'src/images/cards_images/kinopoisk_big.png',
-      iconSquare: 'src/images/cards_images/oko_square.png'
+      iconBig: serviceBig,
+      iconSquare: serviceSquare
     },
     {
       id: '3',
@@ -81,8 +87,8 @@ export const subscriptionsData: IAvailableSubscriptions = {
       endDate: '01.02.2022',
       subscriptionType: 'month',
       cost: 300,
-      iconBig: 'src/images/cards_images/plus_big.png',
-      iconSquare: 'src/images/cards_images/spotify_square.png'
+      iconBig: serviceBig,
+      iconSquare: serviceSquare
     },
     {
       id: '3',
@@ -92,8 +98,8 @@ export const subscriptionsData: IAvailableSubscriptions = {
       endDate: '01.02.2022',
       subscriptionType: 'month',
       cost: 300,
-      iconBig: 'src/images/cards_images/plus_big.png',
-      iconSquare: 'src/images/cards_images/spotify_square.png'
+      iconBig: serviceBig,
+      iconSquare: serviceSquare
     },
     {
       id: '3',
@@ -103,8 +109,8 @@ export const subscriptionsData: IAvailableSubscriptions = {
       endDate: '01.02.2022',
       subscriptionType: 'month',
       cost: 300,
-      iconBig: 'src/images/cards_images/plus_big.png',
-      iconSquare: 'src/images/cards_images/spotify_square.png'
+      iconBig: serviceBig,
+      iconSquare: serviceSquare
     },
     {
       id: '3',
@@ -114,8 +120,8 @@ export const subscriptionsData: IAvailableSubscriptions = {
       endDate: '01.02.2022',
       subscriptionType: 'month',
       cost: 300,
-      iconBig: 'src/images/cards_images/plus_big.png',
-      iconSquare: 'src/images/cards_images/spotify_square.png'
+      iconBig: serviceBig,
+      iconSquare: serviceSquare
     }
   ]
 };

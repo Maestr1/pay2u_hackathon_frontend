@@ -8,8 +8,8 @@ import { store } from './services/store.ts';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <Provider store={store}>
-      <BrowserRouter>
+    <Provider store={ store }>
+      <BrowserRouter basename={ import.meta.env.BASE_URL }>
         <App/>
       </BrowserRouter>
     </Provider>
