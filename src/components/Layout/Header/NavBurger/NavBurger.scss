@@ -1,19 +1,19 @@
 .nav-burger {
-  transform: translateY(-100%);
-  max-width: 425px;
-  margin: 0 auto;
-  box-sizing: border-box;
-  padding: 52px 16px 20px;
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
   z-index: 20;
-  background-color: rgb(255, 255, 255);
+  top: 0;
+  right: 0;
+  left: 0;
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 52px 16px 20px;
   width: 100%;
-  border-bottom-left-radius: 12px;
+  max-width: 740px;
   border-bottom-right-radius: 12px;
+  border-bottom-left-radius: 12px;
+  background-color: rgb(255, 255, 255);
   transition: transform .4s ease-in-out;
+  transform: translateY(-100%);
 
   & ul {
     box-sizing: border-box;
@@ -26,9 +26,9 @@
     gap: 8px;
 
     & li {
-      text-align: left;
-      width: 100%;
       display: flex;
+      width: 100%;
+      text-align: left;
 
       & img {
         height: 24px;
@@ -38,11 +38,11 @@
     & a {
       padding-block: 4px;
       display: flex;
-      gap: 8px;
       align-items: center;
       width: 100%;
       line-height: 1.5;
       color: var(--black-90);
+      gap: 8px;
 
       &:active {
         color: var(--black-90);

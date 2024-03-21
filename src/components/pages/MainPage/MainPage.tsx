@@ -2,8 +2,7 @@ import { ReactElement } from 'react';
 import SearchFrom from '../../SearchFrom/SearchFrom.tsx';
 import CardsSlider from '../../CardsSlider/CardsSlider.tsx';
 import { useSelector } from '../../../hooks/store.ts';
-import CardListHeader from '../../CardListHeader/CardListHeader.tsx';
-import CardList from '../../CardList/CardList.tsx';
+import CategoriesList from '../../CategoriesList/CategoriesList.tsx';
 
 
 function MainPage(): ReactElement {
@@ -19,10 +18,7 @@ function MainPage(): ReactElement {
                    link="/services/my-services"/>
       <CardsSlider slidesPerView={ 1.8 } items={ availableSubscriptions } title="Популярное" cardType="big"
                    link="/services/category/popular"/>
-      <section>
-        <CardListHeader title={ 'Каталог' } link="/services/available"/>
-        <CardList items={subscriptionsCategories}/>
-      </section>
+      <CategoriesList subscriptionsCategories={ subscriptionsCategories }/>
     </>
   );
 }
