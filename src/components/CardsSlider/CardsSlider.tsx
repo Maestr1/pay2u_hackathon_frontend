@@ -6,8 +6,7 @@ import { ISubscription } from '../../utils/fakeData.ts';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/scss';
 import 'swiper/scss/pagination';
-import SquareCard from '../Cards/SquareCard.tsx';
-import BigCard from '../Cards/BigCard.tsx';
+import ServiceCard from '../ServiceCard/ServiceCard.tsx';
 
 
 interface ICardsSliderProps {
@@ -27,8 +26,8 @@ function CardsSlider(props: ICardsSliderProps): ReactElement {
       <CardListHeader title={ props.title } link={ props.link }/>
       <Swiper tag="ul" slidesPerView={ props.slidesPerView } spaceBetween={ 8 } className="cards-slider">
         { availableSubscriptions.map((card, index) => (
-          <SwiperSlide tag="li"  key={`card-${index}`}>
-            { props.cardType === 'square' ? <SquareCard card={ card }/> : <BigCard card={ card }/> }
+          <SwiperSlide tag="li" key={ `card-${ index }` }>
+            <ServiceCard card={ card } cardType={ props.cardType }/>
           </SwiperSlide>
         )) }
       </Swiper>
