@@ -1,13 +1,14 @@
 import './Overlay.scss'
-import { ReactElement } from 'react';
+import { MouseEventHandler, ReactElement } from 'react';
 
 interface OverlayProps {
   isMenuOpen: boolean;
+  handleMenuOpen: MouseEventHandler<HTMLDivElement>;
 }
 
 function Overlay(props: OverlayProps): ReactElement {
   return (
-    <div className={`overlay ${props.isMenuOpen ? 'overlay_active' : ''}`}/>
+    <div onClick={props.handleMenuOpen} className={`overlay ${props.isMenuOpen ? 'overlay_active' : ''}`}/>
   );
 }
 

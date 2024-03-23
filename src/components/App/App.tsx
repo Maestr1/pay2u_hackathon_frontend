@@ -5,7 +5,7 @@ import Layout from '../Layout/Layout.tsx';
 import ErrorPage from '../pages/ErrorPage/ErrorPage.tsx';
 import { ReactElement, useEffect } from 'react';
 import { subscriptionsCategoriesData, subscriptionsData } from '../../utils/fakeData.ts';
-import AvailableServicesPage from '../pages/AvailableServicesPage/AvailableServicesPage.tsx';
+import CategoryCatalogPage from '../pages/CategoryCatalogPage/CategoryCatalogPage.tsx';
 import ServicePage from '../pages/ServicePage/ServicePage.tsx';
 import PurchasePage from '../pages/PurchasePage/PurchasePage.tsx';
 import SuccessfulPurchasePage from '../pages/SuccessfulPurchasePage/SuccessfulPurchasePage.tsx';
@@ -30,8 +30,9 @@ function App(): ReactElement {
     <Routes>
       <Route path="/" element={ <Layout/> }>
         <Route index element={ <MainPage/> }/>
-        <Route path="/services/available" element={ <AvailableServicesPage/> }/>
+        <Route path="/services/all" element={ <CategoryCatalogPage/> }/>
         <Route path="/services/my-services" element={ <UserServicesPage/> }/>
+        <Route path="/services/category/popular" element={ <CategorizedServicesPage/> }/>
         <Route path="/services/category/:category" element={ <CategorizedServicesPage/> }/>
         <Route path="/services/:id" element={ <ServicePage/> }/>
         <Route path="/purchase" element={ <PurchasePage/> }/>

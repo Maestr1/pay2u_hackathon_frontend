@@ -5,7 +5,8 @@ import NavBurger from './NavBurger/NavBurger.tsx';
 
 
 interface HeaderProps {
-  handleClick: () => void,
+  handleMenuOpen: () => void
+  handleMenuClose: () => void,
   isMenuOpen: boolean
 }
 
@@ -13,8 +14,8 @@ function Header(props: HeaderProps): ReactElement {
 
   return (
     <header className="header">
-      <BurgerButton onClick={ props.handleClick } isMenuOpen={ props.isMenuOpen }/>
-      <NavBurger isMenuOpen={ props.isMenuOpen }/>
+      <BurgerButton handleMenuOpen={ props.handleMenuOpen } isMenuOpen={ props.isMenuOpen }/>
+      <NavBurger handleMenuClose={props.handleMenuClose} handleMenuOpen={props.handleMenuOpen} isMenuOpen={ props.isMenuOpen }/>
     </header>
   );
 }

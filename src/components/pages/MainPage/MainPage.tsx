@@ -18,7 +18,7 @@ function MainPage(): ReactElement {
                    link="/services/my-services"/>
       <CardsSlider slidesPerView={ 1.8 } items={ availableSubscriptions } title="Популярное" cardType="big"
                    link="/services/category/popular"/>
-      <CategoriesList subscriptionsCategories={ subscriptionsCategories }/>
+      <CategoriesList link="/services/all" subscriptionsCategories={ subscriptionsCategories }/>
     </>
   );
 }

@@ -8,12 +8,17 @@ function Layout(): ReactElement {
 
   const [navIsOpen, setNavIsOpen] = useState(false);
 
-  function handleClick() {
+  function handleMenuOpen() {
     setNavIsOpen(!navIsOpen);
   }
+
+  function handleMenuClose() {
+    setTimeout(()=> setNavIsOpen(false), 300);
+  }
+
   return (
     <>
-      <Header handleClick={ handleClick } isMenuOpen={ navIsOpen }/>
+      <Header handleMenuClose={handleMenuClose} handleMenuOpen={ handleMenuOpen } isMenuOpen={ navIsOpen }/>
       <main>
         <Outlet/>
       </main>

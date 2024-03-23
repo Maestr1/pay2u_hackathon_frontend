@@ -25,7 +25,7 @@ export type TSubscriptionsCategories = {
   id: string,
   name: string,
   description: string,
-  icon: string
+  icon?: string
 }[]
 
 
@@ -60,7 +60,7 @@ export const subscriptionsData: IAvailableSubscriptions = {
     {
       id: '1',
       name: 'Подписка на 1 месяц',
-      category: 'Базовая',
+      category: '0',
       startDate: '01.01.2022',
       endDate: '01.02.2022',
       subscriptionType: 'month',
@@ -69,9 +69,9 @@ export const subscriptionsData: IAvailableSubscriptions = {
       iconSquare: serviceSquare
     },
     {
-      id: '2',
+      id: '1',
       name: 'Подписка на 3 месяца',
-      category: 'Базовая',
+      category: '1',
       startDate: '01.01.2022',
       endDate: '01.02.2022',
       subscriptionType: 'month',
@@ -80,9 +80,42 @@ export const subscriptionsData: IAvailableSubscriptions = {
       iconSquare: serviceSquare
     },
     {
-      id: '3',
+      id: '1',
       name: 'Подписка на 6 месяцов',
-      category: 'Базовая',
+      category: '2',
+      startDate: '01.01.2022',
+      endDate: '01.02.2022',
+      subscriptionType: 'month',
+      cost: 300,
+      iconBig: serviceBig,
+      iconSquare: serviceSquare
+    },
+    {
+      id: '2',
+      name: 'Подписка на 6 месяцов',
+      category: '3',
+      startDate: '01.01.2022',
+      endDate: '01.02.2022',
+      subscriptionType: 'month',
+      cost: 300,
+      iconBig: serviceBig,
+      iconSquare: serviceSquare
+    },
+    {
+      id: '2',
+      name: 'Подписка на 6 месяцов',
+      category: '3',
+      startDate: '01.01.2022',
+      endDate: '01.02.2022',
+      subscriptionType: 'month',
+      cost: 300,
+      iconBig: serviceBig,
+      iconSquare: serviceSquare
+    },
+    {
+      id: '2',
+      name: 'Подписка на 6 месяцов',
+      category: '2',
       startDate: '01.01.2022',
       endDate: '01.02.2022',
       subscriptionType: 'month',
@@ -93,7 +126,7 @@ export const subscriptionsData: IAvailableSubscriptions = {
     {
       id: '3',
       name: 'Подписка на 6 месяцов',
-      category: 'Базовая',
+      category: '2',
       startDate: '01.01.2022',
       endDate: '01.02.2022',
       subscriptionType: 'month',
@@ -104,7 +137,7 @@ export const subscriptionsData: IAvailableSubscriptions = {
     {
       id: '3',
       name: 'Подписка на 6 месяцов',
-      category: 'Базовая',
+      category: '2',
       startDate: '01.01.2022',
       endDate: '01.02.2022',
       subscriptionType: 'month',
@@ -115,7 +148,40 @@ export const subscriptionsData: IAvailableSubscriptions = {
     {
       id: '3',
       name: 'Подписка на 6 месяцов',
-      category: 'Базовая',
+      category: '2',
+      startDate: '01.01.2022',
+      endDate: '01.02.2022',
+      subscriptionType: 'month',
+      cost: 300,
+      iconBig: serviceBig,
+      iconSquare: serviceSquare
+    },
+    {
+      id: '4',
+      name: 'Подписка на 6 месяцов',
+      category: '2',
+      startDate: '01.01.2022',
+      endDate: '01.02.2022',
+      subscriptionType: 'month',
+      cost: 300,
+      iconBig: serviceBig,
+      iconSquare: serviceSquare
+    },
+    {
+      id: '4',
+      name: 'Подписка на 6 месяцов',
+      category: '2',
+      startDate: '01.01.2022',
+      endDate: '01.02.2022',
+      subscriptionType: 'month',
+      cost: 300,
+      iconBig: serviceBig,
+      iconSquare: serviceSquare
+    },
+    {
+      id: '4',
+      name: 'Подписка на 6 месяцов',
+      category: '2',
       startDate: '01.01.2022',
       endDate: '01.02.2022',
       subscriptionType: 'month',
