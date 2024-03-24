@@ -1,0 +1,43 @@
+.service-page {
+  text-align: left;
+
+  &__header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 16px;
+
+    & h2 {
+      margin: 0;
+    }
+
+    & img {
+      max-height: 56px;
+    }
+  }
+
+  &__description-wrap {
+    padding-block: 12px 20px;
+    display: flex;
+    flex-direction: column;
+
+    & a {
+      color: var(--primary-color-80);
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.43;
+    }
+  }
+
+  &__description-title {
+    margin: 0 0 8px;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--black-20);
+  }
+
+  &__description {
+    margin: 0 0 4px;
+
+  }
+}

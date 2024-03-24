@@ -3,6 +3,7 @@ export interface ISubscription {
   id: string,
   name: string,
   category: ICategory[],
+  link: string,
   startDate?: string,
   endDate?: string,
   subscriptionType: string,
