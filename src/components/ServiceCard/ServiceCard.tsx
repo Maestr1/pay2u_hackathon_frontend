@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import { ISubscription } from '../../utils/fakeData';
+import { ISubscription } from '../../interfaces.ts';
 import { Link } from 'react-router-dom';
 import './ServiceCard.scss'
 
@@ -10,8 +10,8 @@ interface ICardProps {
 
 function ServiceCard(props: ICardProps): ReactElement {
   return (
-    <Link className='big-card' to={ `services/${ props.card.id }` }>
-      <img src={ props.cardType === 'square' ? props.card.iconSquare : props.card.iconBig } alt=""/>
+    <Link className='big-card' to={ `/services/${ props.card.id }` }>
+      <img src={ props.cardType === 'square' ? props.card.serviceIconSquare : props.card.serviceIconBig } alt=""/>
     </Link>
   );
 }

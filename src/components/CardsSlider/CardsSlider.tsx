@@ -2,7 +2,7 @@ import { ReactElement } from 'react';
 import './CardsSlider.scss';
 import CardListHeader from '../CardListHeader/CardListHeader.tsx';
 import { useSelector } from '../../hooks/store.ts';
-import { ISubscription } from '../../utils/fakeData.ts';
+import { ISubscription } from '../../interfaces.ts';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/scss';
 import 'swiper/scss/pagination';

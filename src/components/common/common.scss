@@ -12,6 +12,7 @@
   --black-90: #1A1A1A;
   --black-80: #333333;
   --black-70: #4C4C4C;
+  --black-60: #666666;
   --black-50: #808080;
   --black-40: #999999;
   --black-20: #CCCCCC;
@@ -21,4 +22,13 @@
 
 .link {
   text-decoration: none;
+}
+
+.title {
+  padding-block: 12px;
+  text-align: left;
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.5;
 }

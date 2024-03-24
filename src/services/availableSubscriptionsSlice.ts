@@ -1,4 +1,4 @@
-import { ISubscription } from '../utils/fakeData.ts';
+import { ISubscription } from '../interfaces.ts';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface IAvailableSubscriptionsState {

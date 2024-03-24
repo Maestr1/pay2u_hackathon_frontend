@@ -11,7 +11,7 @@ import PurchasePage from '../pages/PurchasePage/PurchasePage.tsx';
 import SuccessfulPurchasePage from '../pages/SuccessfulPurchasePage/SuccessfulPurchasePage.tsx';
 import { useDispatch } from '../../hooks/store.ts';
 import { addAvailableSubscriptions } from '../../services/availableSubscriptionsSlice.ts';
-import CategorizedServicesPage from '../pages/СategorizedServicesPage/СategorizedServicesPage.tsx';
+import CategorizedServicesPage from '../pages/CategoryPage/CategoryPage.tsx';
 import UserServicesPage from '../pages/UserServicesPage/UserServicesPage.tsx';
 import { addSubscriptionsCategories } from '../../services/subscriptionsCategoriesSlice.ts';
 
@@ -21,7 +21,7 @@ function App(): ReactElement {
 
   useEffect(() => {
     //Делаем фиктивный запрос на бэк и помещаем данные в стор
-    dispatch(addAvailableSubscriptions(subscriptionsData.availableSubscriptions));
+    dispatch(addAvailableSubscriptions(subscriptionsData));
     dispatch(addSubscriptionsCategories(subscriptionsCategoriesData))
   }, [dispatch]);
 

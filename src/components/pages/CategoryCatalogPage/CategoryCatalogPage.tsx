@@ -12,12 +12,11 @@ function CategoryCatalogPage(): ReactElement {
 
   return (
     <section className='category-catalog'>
-      <h1>Все сервисы</h1>
+      <h1 className='title'>Все сервисы</h1>
       <SearchFrom/>
-      <CardsSlider title='Популярное' cardType="big" link="/services/category/popular" items={availableSubscriptions} slidesPerView={1.8}/>
       { subscriptionsCategories.map((item, index) => (
-        <CardsSlider key={ `category-${ index }` } title={ `${ item.name }` } cardType="big"
-                     link={ `/services/category/${ item.id }` } items={ availableSubscriptions }
+        <CardsSlider key={ `category-${ index }` } title={ `${ item.title }` } cardType="big"
+                     link={ `/services/category/${ item.name }/` } items={ availableSubscriptions }
                      slidesPerView={ 1.8 }/>
       )) }
     </section>

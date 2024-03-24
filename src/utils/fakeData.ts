@@ -1,21 +1,12 @@
-import serviceBig from '../images/cards_images/kinopoisk_big.png'
-import serviceSquare from '../images/cards_images/oko_square.png'
-import book from '../images/icons/books.svg'
-import music from '../images/icons/music.svg'
-import health from '../images/icons/heart.svg'
-import video from '../images/icons/video.svg'
+import serviceBig from '../images/cards_images/plus_big.png';
+import serviceSquare from '../images/cards_images/oko_square.png';
+import serviceSmall from '../images/cards_images/plus_small.png';
+import book from '../images/icons/books.svg';
+import music from '../images/icons/music.svg';
+import health from '../images/icons/heart.svg';
+import video from '../images/icons/video.svg';
+import { ISubscription } from '../interfaces.ts';
 
-export type ISubscription = {
-  id: string,
-  name: string,
-  category: string,
-  startDate: string,
-  endDate: string,
-  subscriptionType: string,
-  cost: number,
-  iconBig: string,
-  iconSquare: string
-}
 
 export interface IAvailableSubscriptions {
   availableSubscriptions: ISubscription[],
@@ -24,6 +15,7 @@ export interface IAvailableSubscriptions {
 export type TSubscriptionsCategories = {
   id: string,
   name: string,
+  title: string,
   description: string,
   icon?: string
 }[]
@@ -31,163 +23,196 @@ export type TSubscriptionsCategories = {
 
 export const subscriptionsCategoriesData: TSubscriptionsCategories = [
   {
-    id: '1',
-    name: 'Книги',
+    id: '0',
+    title: 'Книги',
+    name: 'books',
     description: 'Книги по подписке',
     icon: book
   },
   {
-    id: '2',
-    name: 'Музыка',
+    id: '1',
+    title: 'Музыка',
+    name: 'music',
     description: 'Музыка по подписке',
     icon: music
   },
   {
-    id: '3',
-    name: 'Здоровье',
+    id: '2',
+    title: 'Здоровье',
+    name: 'health',
     description: 'Здоровье по подписке',
     icon: health
   },
   {
+    id: '3',
+    title: 'Кино',
+    name: 'movies',
+    description: 'Кино по подписке',
+    icon: video
+  },
+  {
     id: '4',
-    name: 'Кино',
+    title: 'Развлечения',
+    name: 'entertainment',
     description: 'Кино по подписке',
     icon: video
   }
 ];
-export const subscriptionsData: IAvailableSubscriptions = {
-  availableSubscriptions: [
-    {
-      id: '1',
-      name: 'Подписка на 1 месяц',
-      category: '0',
-      startDate: '01.01.2022',
-      endDate: '01.02.2022',
-      subscriptionType: 'month',
-      cost: 100,
-      iconBig: serviceBig,
-      iconSquare: serviceSquare
-    },
-    {
-      id: '1',
-      name: 'Подписка на 3 месяца',
-      category: '1',
-      startDate: '01.01.2022',
-      endDate: '01.02.2022',
-      subscriptionType: 'month',
-      cost: 200,
-      iconBig: serviceBig,
-      iconSquare: serviceSquare
-    },
-    {
-      id: '1',
-      name: 'Подписка на 6 месяцов',
-      category: '2',
-      startDate: '01.01.2022',
-      endDate: '01.02.2022',
-      subscriptionType: 'month',
-      cost: 300,
-      iconBig: serviceBig,
-      iconSquare: serviceSquare
-    },
-    {
-      id: '2',
-      name: 'Подписка на 6 месяцов',
-      category: '3',
-      startDate: '01.01.2022',
-      endDate: '01.02.2022',
-      subscriptionType: 'month',
-      cost: 300,
-      iconBig: serviceBig,
-      iconSquare: serviceSquare
-    },
-    {
-      id: '2',
-      name: 'Подписка на 6 месяцов',
-      category: '3',
-      startDate: '01.01.2022',
-      endDate: '01.02.2022',
-      subscriptionType: 'month',
-      cost: 300,
-      iconBig: serviceBig,
-      iconSquare: serviceSquare
-    },
-    {
-      id: '2',
-      name: 'Подписка на 6 месяцов',
-      category: '2',
-      startDate: '01.01.2022',
-      endDate: '01.02.2022',
-      subscriptionType: 'month',
-      cost: 300,
-      iconBig: serviceBig,
-      iconSquare: serviceSquare
-    },
-    {
-      id: '3',
-      name: 'Подписка на 6 месяцов',
-      category: '2',
-      startDate: '01.01.2022',
-      endDate: '01.02.2022',
-      subscriptionType: 'month',
-      cost: 300,
-      iconBig: serviceBig,
-      iconSquare: serviceSquare
-    },
-    {
-      id: '3',
-      name: 'Подписка на 6 месяцов',
-      category: '2',
-      startDate: '01.01.2022',
-      endDate: '01.02.2022',
-      subscriptionType: 'month',
-      cost: 300,
-      iconBig: serviceBig,
-      iconSquare: serviceSquare
-    },
-    {
-      id: '3',
-      name: 'Подписка на 6 месяцов',
-      category: '2',
-      startDate: '01.01.2022',
-      endDate: '01.02.2022',
-      subscriptionType: 'month',
-      cost: 300,
-      iconBig: serviceBig,
-      iconSquare: serviceSquare
-    },
-    {
-      id: '4',
-      name: 'Подписка на 6 месяцов',
-      category: '2',
-      startDate: '01.01.2022',
-      endDate: '01.02.2022',
-      subscriptionType: 'month',
-      cost: 300,
-      iconBig: serviceBig,
-      iconSquare: serviceSquare
-    },
-    {
-      id: '4',
-      name: 'Подписка на 6 месяцов',
-      category: '2',
-      startDate: '01.01.2022',
-      endDate: '01.02.2022',
-      subscriptionType: 'month',
-      cost: 300,
-      iconBig: serviceBig,
-      iconSquare: serviceSquare
-    },
-    {
-      id: '4',
-      name: 'Подписка на 6 месяцов',
-      category: '2',
-      startDate: '01.01.2022',
-      endDate: '01.02.2022',
-      subscriptionType: 'month',
-      cost: 300,
-      iconBig: serviceBig,
-      iconSquare: serviceSquare
-    }
-  ]
-};
+export const subscriptionsData: ISubscription[] = [
+  {
+    id: '0',
+    name: 'Кинопоиск',
+    category: [{ id: '1', name: 'имя категории', description: 'описание категории', icon: book }],
+    startDate: '01.01.2022',
+    endDate: '01.02.2022',
+    subscriptionType: 'month',
+    cost: 100,
+    serviceIconBig: serviceBig,
+    serviceIconSquare: serviceSquare,
+    serviceIconSmall: serviceSmall,
+    serviceDetails: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tristique tortor tortor. Aenean eget lectus nulla. Nullam et velit rutrum felis laoreet sagittis sed ultrices nibh. Phasellus id massa enim. Proin congue pellentesque magna, et fringilla arcu mollis at. Sed vitae nunc pulvinar est dignissim malesuada sit amet at justo.'
+  },
+  {
+    id: '1',
+    name: 'Spotify',
+    category: [{ id: '1', name: 'имя категории', description: 'описание категории', icon: book }],
+    startDate: '01.01.2022',
+    endDate: '01.02.2022',
+    subscriptionType: 'month',
+    cost: 200,
+    serviceIconBig: serviceBig,
+    serviceIconSquare: serviceSquare,
+    serviceIconSmall: serviceSmall,
+    serviceDetails: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tristique tortor tortor. Aenean eget lectus nulla. Nullam et velit rutrum felis laoreet sagittis sed ultrices nibh. Phasellus id massa enim. Proin congue pellentesque magna, et fringilla arcu mollis at. Sed vitae nunc pulvinar est dignissim malesuada sit amet at justo.'
+  },
+  {
+    id: '2',
+    name: 'Иви',
+    category: [{ id: '1', name: 'имя категории', description: 'описание категории', icon: book }],
+    startDate: '01.01.2022',
+    endDate: '01.02.2022',
+    subscriptionType: 'month',
+    cost: 300,
+    serviceIconBig: serviceBig,
+    serviceIconSquare: serviceSquare,
+    serviceIconSmall: serviceSmall,
+    serviceDetails: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tristique tortor tortor. Aenean eget lectus nulla. Nullam et velit rutrum felis laoreet sagittis sed ultrices nibh. Phasellus id massa enim. Proin congue pellentesque magna, et fringilla arcu mollis at. Sed vitae nunc pulvinar est dignissim malesuada sit amet at justo.'
+  },
+  {
+    id: '2',
+    name: 'Окко',
+    category: [{ id: '1', name: 'имя категории', description: 'описание категории', icon: book }],
+    startDate: '01.01.2022',
+    endDate: '01.02.2022',
+    subscriptionType: 'month',
+    cost: 300,
+    serviceIconBig: serviceBig,
+    serviceIconSquare: serviceSquare,
+    serviceIconSmall: serviceSmall,
+    serviceDetails: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tristique tortor tortor. Aenean eget lectus nulla. Nullam et velit rutrum felis laoreet sagittis sed ultrices nibh. Phasellus id massa enim. Proin congue pellentesque magna, et fringilla arcu mollis at. Sed vitae nunc pulvinar est dignissim malesuada sit amet at justo.'
+  },
+  {
+    id: '2',
+    name: 'Яндекс.Плюс',
+    category: [{ id: '1', name: 'имя категории', description: 'описание категории', icon: music }],
+    startDate: '01.01.2022',
+    endDate: '01.02.2022',
+    subscriptionType: 'month',
+    cost: 300,
+    serviceIconBig: serviceBig,
+    serviceIconSquare: serviceSquare,
+    serviceIconSmall: serviceSmall,
+    serviceDetails: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tristique tortor tortor. Aenean eget lectus nulla. Nullam et velit rutrum felis laoreet sagittis sed ultrices nibh. Phasellus id massa enim. Proin congue pellentesque magna, et fringilla arcu mollis at. Sed vitae nunc pulvinar est dignissim malesuada sit amet at justo.'
+  },
+  {
+    id: '2',
+    name: 'Кинопоиск',
+    category: [{ id: '1', name: 'имя категории', description: 'описание категории', icon: music }],
+    startDate: '01.01.2022',
+    endDate: '01.02.2022',
+    subscriptionType: 'month',
+    cost: 300,
+    serviceIconBig: serviceBig,
+    serviceIconSquare: serviceSquare,
+    serviceIconSmall: serviceSmall,
+    serviceDetails: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tristique tortor tortor. Aenean eget lectus nulla. Nullam et velit rutrum felis laoreet sagittis sed ultrices nibh. Phasellus id massa enim. Proin congue pellentesque magna, et fringilla arcu mollis at. Sed vitae nunc pulvinar est dignissim malesuada sit amet at justo.'
+  },
+  {
+    id: '3',
+    name: 'Кинопоиск',
+    category: [{ id: '1', name: 'имя категории', description: 'описание категории', icon: music }],
+    startDate: '01.01.2022',
+    endDate: '01.02.2022',
+    subscriptionType: 'month',
+    cost: 300,
+    serviceIconBig: serviceBig,
+    serviceIconSquare: serviceSquare,
+    serviceIconSmall: serviceSmall,
+    serviceDetails: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tristique tortor tortor. Aenean eget lectus nulla. Nullam et velit rutrum felis laoreet sagittis sed ultrices nibh. Phasellus id massa enim. Proin congue pellentesque magna, et fringilla arcu mollis at. Sed vitae nunc pulvinar est dignissim malesuada sit amet at justo.'
+  },
+  {
+    id: '3',
+    name: 'Кинопоиск',
+    category: [{ id: '1', name: 'имя категории', description: 'описание категории', icon: music }],
+    startDate: '01.01.2022',
+    endDate: '01.02.2022',
+    subscriptionType: 'month',
+    cost: 300,
+    serviceIconBig: serviceBig,
+    serviceIconSquare: serviceSquare,
+    serviceIconSmall: serviceSmall,
+    serviceDetails: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tristique tortor tortor. Aenean eget lectus nulla. Nullam et velit rutrum felis laoreet sagittis sed ultrices nibh. Phasellus id massa enim. Proin congue pellentesque magna, et fringilla arcu mollis at. Sed vitae nunc pulvinar est dignissim malesuada sit amet at justo.'
+  },
+  {
+    id: '3',
+    name: 'Подписка на 6 месяцов',
+    category: [{ id: '1', name: 'имя категории', description: 'описание категории', icon: video }],
+    startDate: '01.01.2022',
+    endDate: '01.02.2022',
+    subscriptionType: 'month',
+    cost: 300,
+    serviceIconBig: serviceBig,
+    serviceIconSquare: serviceSquare,
+    serviceIconSmall: serviceSmall,
+    serviceDetails: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tristique tortor tortor. Aenean eget lectus nulla. Nullam et velit rutrum felis laoreet sagittis sed ultrices nibh. Phasellus id massa enim. Proin congue pellentesque magna, et fringilla arcu mollis at. Sed vitae nunc pulvinar est dignissim malesuada sit amet at justo.'
+  },
+  {
+    id: '4',
+    name: 'Подписка на 6 месяцов',
+    category: [{ id: '1', name: 'имя категории', description: 'описание категории', icon: video }],
+    startDate: '01.01.2022',
+    endDate: '01.02.2022',
+    subscriptionType: 'month',
+    cost: 300,
+    serviceIconBig: serviceBig,
+    serviceIconSquare: serviceSquare,
+    serviceIconSmall: serviceSmall,
+    serviceDetails: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tristique tortor tortor. Aenean eget lectus nulla. Nullam et velit rutrum felis laoreet sagittis sed ultrices nibh. Phasellus id massa enim. Proin congue pellentesque magna, et fringilla arcu mollis at. Sed vitae nunc pulvinar est dignissim malesuada sit amet at justo.'
+  },
+  {
+    id: '4',
+    name: 'Подписка на 6 месяцов',
+    category: [{ id: '1', name: 'имя категории', description: 'описание категории', icon: video }],
+    startDate: '01.01.2022',
+    endDate: '01.02.2022',
+    subscriptionType: 'month',
+    cost: 300,
+    serviceIconBig: serviceBig,
+    serviceIconSquare: serviceSquare,
+    serviceIconSmall: serviceSmall,
+    serviceDetails: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tristique tortor tortor. Aenean eget lectus nulla. Nullam et velit rutrum felis laoreet sagittis sed ultrices nibh. Phasellus id massa enim. Proin congue pellentesque magna, et fringilla arcu mollis at. Sed vitae nunc pulvinar est dignissim malesuada sit amet at justo.'
+  },
+  {
+    id: '4',
+    name: 'Подписка на 6 месяцов',
+    category: [{ id: '1', name: 'имя категории', description: 'описание категории', icon: video }],
+    startDate: '01.01.2022',
+    endDate: '01.02.2022',
+    subscriptionType: 'month',
+    cost: 300,
+    serviceIconBig: serviceBig,
+    serviceIconSquare: serviceSquare,
+    serviceIconSmall: serviceSmall,
+    serviceDetails: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tristique tortor tortor. Aenean eget lectus nulla. Nullam et velit rutrum felis laoreet sagittis sed ultrices nibh. Phasellus id massa enim. Proin congue pellentesque magna, et fringilla arcu mollis at. Sed vitae nunc pulvinar est dignissim malesuada sit amet at justo.'
+  }
+];

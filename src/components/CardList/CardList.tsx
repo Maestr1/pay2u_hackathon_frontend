@@ -12,10 +12,10 @@ function CardList(props: ICardListProps): ReactElement {
     <ul className="card-list">
       { props.items.map((card, index) => (
         <li key={ `category-card-${ index }` }>
-          <Link className="card-list__link link" to={ `/services/category/${ card.id }` }>
+          <Link className="card-list__link link" to={ `/services/category/${ card.name }` }>
             <div className="card-list__title">
               <img src={ card.icon } alt=""/>
-              <h3>{ card.name }</h3>
+              <h3>{ card.title }</h3>
             </div>
             <p>от 99р.</p>
           </Link>
