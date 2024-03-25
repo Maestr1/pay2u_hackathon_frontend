@@ -11,7 +11,7 @@ import PurchasePage from '../pages/PurchasePage/PurchasePage.tsx';
 import SuccessfulPurchasePage from '../pages/SuccessfulPurchasePage/SuccessfulPurchasePage.tsx';
 import { useDispatch } from '../../hooks/store.ts';
 import { addAvailableSubscriptions } from '../../services/availableSubscriptionsSlice.ts';
-import CategorizedServicesPage from '../pages/CategoryPage/CategoryPage.tsx';
+import CategoryPage from '../pages/CategoryPage/CategoryPage.tsx';
 import UserServicesPage from '../pages/UserServicesPage/UserServicesPage.tsx';
 import { addSubscriptionsCategories } from '../../services/subscriptionsCategoriesSlice.ts';
 
@@ -32,8 +32,8 @@ function App(): ReactElement {
         <Route index element={ <MainPage/> }/>
         <Route path="/services/all" element={ <CategoryCatalogPage/> }/>
         <Route path="/services/my-services" element={ <UserServicesPage/> }/>
-        <Route path="/services/category/popular" element={ <CategorizedServicesPage/> }/>
-        <Route path="/services/category/:category" element={ <CategorizedServicesPage/> }/>
+        <Route path="/services/category/popular" element={ <CategoryPage/> }/>
+        <Route path="/services/category/:category" element={ <CategoryPage/> }/>
         <Route path="/services/:id" element={ <ServicePage/> }/>
         <Route path="/purchase" element={ <PurchasePage/> }/>
         <Route path="/successful-purchase" element={ <SuccessfulPurchasePage/> }/>

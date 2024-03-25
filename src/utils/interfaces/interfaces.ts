@@ -7,7 +7,6 @@ export interface ISubscription {
   startDate?: string,
   endDate?: string,
   subscriptionType: string,
-  cost: number,
   serviceIconBig: string,
   serviceIconSquare: string,
   serviceIconSmall: string,
