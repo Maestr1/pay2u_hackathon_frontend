@@ -8,10 +8,6 @@ import './CategoryPage.scss';
 function CategoryPage(): ReactElement {
   const { category } = useParams();
   const [subscriptionsArray, setSubscriptionsArray] = useState([]);
-  // const [lowestPrice, setlowerPrice] = useState(
-  //   undefined as number | undefined
-  // );
-
   useEffect(() => {
     Api.searchSubscriptions(category).then((res) =>
       setSubscriptionsArray(res.content)
