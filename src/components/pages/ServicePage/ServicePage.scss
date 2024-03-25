@@ -16,6 +16,15 @@
     }
   }
 
+  &__tab-panel {
+    padding: 16px;
+  }
+
+  &__tariff-heading {
+    margin: 0;
+    font-weight: 400;
+  }
+
   &__description-wrap {
     padding-block: 12px 20px;
     display: flex;
@@ -38,6 +47,25 @@
 
   &__description {
     margin: 0 0 4px;
+  }
 
+&__costs {
+  color: var(--black-60);
+}
+
+  &__cost {
+    line-height: 1.5;
+    color: var(--black-60);
+
+    &_accent {
+      font-size: 20px;
+      font-weight: 600;
+      text-decoration: line-through;
+    }
+  }
+  &__tariff-description {
+    font-size: 12px;
+    line-height: 1.67;
+    color: var(--black-20);
   }
 }

@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import { ISubscription } from '../../interfaces.ts';
+import { ISubscription } from '../../utils/interfaces/interfaces.ts';
 import { Link } from 'react-router-dom';
 import './ServiceCard.scss'
 
