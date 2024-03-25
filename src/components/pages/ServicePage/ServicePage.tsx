@@ -75,7 +75,8 @@ function ServicePage(): ReactElement {
           }}
           sx={{
             '& .MuiTabs-flexContainer': {
-              justifyContent: 'space-between',},
+              justifyContent: 'space-between',
+            },
             '& button': {
               borderRadius: '12px',
               padding: '10px 12px',
@@ -97,7 +98,10 @@ function ServicePage(): ReactElement {
           {selectSubscription && selectSubscription.serviceTariffList
             ? tabPanels()
             : ''}
-          <Button to={'/'} state={{}} component={Link}
+          <Button
+            to={'/purchase'}
+            // state={{ subscription: selectSubscription, selectTariff: selectSubscription.serviceTariffList[+tabValue] }}
+            component={Link}
             sx={{
               width: '100%',
               fontSize: '16px',

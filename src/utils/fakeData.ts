@@ -45,7 +45,7 @@ export const subscriptionsData: ISubscription[] = [{
   serviceTariffList: [{
     tariffId: '1', tariffName: '1 месяц', tariffDescription: '',tariffPromoPrice: 199, tariffFullPrice: 399, tariffDuration: 1
   }, {
-    tariffId: '2', tariffName: '6 месяцев', tariffDescription: '',tariffPromoPrice: 199, tariffFullPrice: 399, tariffDuration: 6
+    tariffId: '2', tariffName: '6 месяцев', tariffDescription: '',tariffPromoPrice: 1998, tariffFullPrice: 2394, tariffDuration: 6
   }, {
     tariffId: '3', tariffName: '12 месяцев', tariffDescription: '',tariffPromoPrice: 199, tariffFullPrice: 399, tariffDuration: 12
   }]

@@ -14,28 +14,27 @@ const theme = createTheme({
   palette: {
     primary: {
       main: '#1D4ED8',
-    }
+    },
   },
   components: {
     MuiTab: {
       styleOverrides: {
         root: {
           textTransform: 'none',
-
-        }
+        },
       },
-    }
-  }
+    },
+  },
 });
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <Provider store={ store }>
-      <ThemeProvider theme={ theme }>
-        <BrowserRouter basename={ import.meta.env.BASE_URL }>
-          <App/>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <BrowserRouter basename={import.meta.env.BASE_URL}>
+          <App />
         </BrowserRouter>
       </ThemeProvider>
     </Provider>
-  </React.StrictMode>,
+  </React.StrictMode>
 );
