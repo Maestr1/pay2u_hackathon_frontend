@@ -1,21 +1,6 @@
 .service-page {
   text-align: left;
 
-  &__header {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 16px;
-
-    & h2 {
-      margin: 0;
-    }
-
-    & img {
-      max-height: 56px;
-    }
-  }
-
   &__tab-panel {
     padding: 16px;
   }
@@ -49,9 +34,9 @@
     margin: 0 0 4px;
   }
 
-&__costs {
-  color: var(--black-60);
-}
+  &__costs {
+    color: var(--black-60);
+  }
 
   &__cost {
     line-height: 1.5;

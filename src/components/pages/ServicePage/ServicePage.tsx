@@ -6,6 +6,7 @@ import { ISubscription } from '../../../utils/interfaces/interfaces.ts';
 import { Button, Tab } from '@mui/material';
 import TabPanel from '@mui/lab/TabPanel';
 import { TabContext, TabList } from '@mui/lab';
+import ServiceHeader from '../../ServiceHeader/ServiceHeader.tsx';
 
 function ServicePage(): ReactElement {
   const availableSubscriptions = useSelector(
@@ -57,10 +58,7 @@ function ServicePage(): ReactElement {
 
   return (
     <section className="service-page">
-      <div className="service-page__header">
-        <img src={selectSubscription.serviceIconSmall} alt="" />
-        <h2>{selectSubscription.name}</h2>
-      </div>
+      <ServiceHeader selectSubscription={selectSubscription} />
       <div className="service-page__description-wrap">
         <p className="service-page__description-title">Описание</p>
         <p className="service-page__description">
@@ -82,7 +80,7 @@ function ServicePage(): ReactElement {
               fontSize: '16px',
               fontWeight: 400,
               lineHeight: '1.5',
-              minHeight: 'inherit'
+              minHeight: 'inherit',
             },
             '& button:active': { bgcolor: '#1E40AF', color: '#FFFFFF' },
             '& button.Mui-selected': { bgcolor: '#1D4ED8', color: '#FFFFFF' },
@@ -97,7 +95,18 @@ function ServicePage(): ReactElement {
           {selectSubscription && selectSubscription.serviceTariffList
             ? tabPanels()
             : ''}
-          <Button sx={{ width: '100%', fontSize: '16px', fontWeight: 400, paddingBlock: '12px', borderRadius: '8px' }} variant="contained">Подключить</Button>
+          <Button
+            sx={{
+              width: '100%',
+              fontSize: '16px',
+              fontWeight: 400,
+              paddingBlock: '12px',
+              borderRadius: '8px',
+            }}
+            variant="contained"
+          >
+            Подключить
+          </Button>
         </div>
       </TabContext>
     </section>

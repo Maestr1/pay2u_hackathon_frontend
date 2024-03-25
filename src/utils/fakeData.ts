@@ -51,7 +51,7 @@ export const subscriptionsData: ISubscription[] = [{
   }]
 }, {
   id: '1',
-  name: 'Spotify',
+  name: 'Яндекс.Плюс',
   category: [{ id: '1', name: 'имя категории', description: 'описание категории', icon: book }],
   startDate: '01.01.2022',
   endDate: '01.02.2022',
