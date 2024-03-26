@@ -2,7 +2,10 @@ import React, { ReactElement, useEffect, useState } from 'react';
 import './ServicePage.scss';
 import { Link, useParams } from 'react-router-dom';
 import { useSelector } from '../../../hooks/store.ts';
-import { ISubscription } from '../../../utils/interfaces/interfaces.ts';
+import {
+  ISubscription,
+  ITariff,
+} from '../../../utils/interfaces/interfaces.ts';
 import { Button, Tab } from '@mui/material';
 import TabPanel from '@mui/lab/TabPanel';
 import { TabContext, TabList } from '@mui/lab';
@@ -17,6 +20,15 @@ function ServicePage(): ReactElement {
     {} as ISubscription
   );
   const [tabValue, setTabValue] = useState('0');
+  const [selectedTariff, setSelectedTariff] = useState({} as ITariff);
+
+  useEffect(() => {
+    const subscription = availableSubscriptions.find((item) => item.id === id);
+    if (subscription) {
+      setSelectSubscription(subscription);
+      setSelectedTariff(subscription.serviceTariffList[0]);
+    }
+  }, [availableSubscriptions]);
 
   const tabs = () => {
     return selectSubscription.serviceTariffList.map((item, index) => (
@@ -38,22 +50,15 @@ function ServicePage(): ReactElement {
           ₽ за месяц
         </p>
         <p className="service-page__tariff-description">
-          {`первый месяц ${item.tariffPromoPrice} ₽, последующие ${item.tariffFullPrice} ₽
-Кешбэк будет начислен до 25 числа месяца, следующего за текущим.`}
+          {`первый месяц ${item.tariffPromoPrice / item.tariffDuration} ₽, последующие ${item.tariffFullPrice / item.tariffDuration} ₽`}
         </p>
       </TabPanel>
     ));
   };
 
-  useEffect(() => {
-    const subscription = availableSubscriptions.find((item) => item.id === id);
-    if (subscription) {
-      setSelectSubscription(subscription);
-    }
-  }, [availableSubscriptions]);
-
-  function handleChange(_event: React.SyntheticEvent, newValue: string) {
+  function handleTabChange(_event: React.SyntheticEvent, newValue: string) {
     setTabValue(newValue);
+    setSelectedTariff(selectSubscription.serviceTariffList[Number(newValue)])
   }
 
   return (
@@ -78,6 +83,7 @@ function ServicePage(): ReactElement {
               justifyContent: 'space-between',
             },
             '& button': {
+              transition: 'background-color 0.3s ease-in-out, color 0.3s ease-in-out',
               borderRadius: '12px',
               padding: '10px 12px',
               fontSize: '16px',
@@ -88,7 +94,7 @@ function ServicePage(): ReactElement {
             '& button:active': { bgcolor: '#1E40AF', color: '#FFFFFF' },
             '& button.Mui-selected': { bgcolor: '#1D4ED8', color: '#FFFFFF' },
           }}
-          onChange={handleChange}
+          onChange={handleTabChange}
         >
           {selectSubscription && selectSubscription.serviceTariffList
             ? tabs()
@@ -100,15 +106,8 @@ function ServicePage(): ReactElement {
             : ''}
           <Button
             to={'/purchase'}
-            // state={{ subscription: selectSubscription, selectTariff: selectSubscription.serviceTariffList[+tabValue] }}
+            state={{ subscription: selectSubscription, selectTariff: selectedTariff }}
             component={Link}
-            sx={{
-              width: '100%',
-              fontSize: '16px',
-              fontWeight: 400,
-              paddingBlock: '12px',
-              borderRadius: '8px',
-            }}
             variant="contained"
           >
             Подключить

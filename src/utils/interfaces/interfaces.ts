@@ -46,3 +46,11 @@ export interface IPaymentMethod {
   priorityMethod: boolean,
   methodIcon: string
 }
+
+
+export interface IShippingFields {
+  userId: string,
+  telNumber: string,
+  paymentMethodId: string,
+  subscriptionId: string
+}
