@@ -2,8 +2,8 @@ import { ReactElement } from 'react';
 import './PurchasePage.scss';
 import { useLocation } from 'react-router-dom';
 import ServiceHeader from '../../components/ServiceHeader/ServiceHeader.tsx';
-import { IShippingFields, ITariff } from '../../utils/interfaces/interfaces.ts';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { ITariff } from '../../utils/interfaces/interfaces.ts';
+// import { SubmitHandler, useForm } from 'react-hook-form';
 import {
   Button,
   FormControlLabel,
@@ -21,7 +21,7 @@ function PurchasePage(): ReactElement {
   );
   const subscription = useLocation().state.subscription;
   const tariff: ITariff = useLocation().state.selectTariff;
-  const { register, handleSubmit } = useForm<IShippingFields>();
+  // const { register, handleSubmit } = useForm<IShippingFields>();
 
   function calculateDeclension() {
     if (tariff.tariffDuration > 1 && tariff.tariffDuration < 5) {
@@ -33,9 +33,9 @@ function PurchasePage(): ReactElement {
     return 'месяц';
   }
 
-  const onSubmit: SubmitHandler<IShippingFields> = (data) => {
-    console.log(data);
-  };
+  // const onSubmit: SubmitHandler<IShippingFields> = (data) => {
+  //   console.log(data);
+  // };
 
   return (
     <section className="purchase-page">
@@ -57,7 +57,7 @@ function PurchasePage(): ReactElement {
         <span>Итого:</span>
         <span>{tariff.tariffPromoPrice} ₽</span>
       </p>
-      <form className="purchase-page__form" onSubmit={handleSubmit(onSubmit)}>
+      <form className="purchase-page__form" >
         {/* <input
           {...(register('telNumber'),
           { required: true, placeholder: '+7 999 999 99 99' })}
