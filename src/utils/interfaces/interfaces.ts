@@ -36,7 +36,8 @@ export interface IUser {
   phone: string,
   email: string,
   login: string,
-  userIcon: string
+  userIcon: string,
+  paymentMethods: IPaymentMethod[],
 }
 
 export interface IPaymentMethod {
@@ -52,5 +53,6 @@ export interface IShippingFields {
   userId: string,
   telNumber: string,
   paymentMethodId: string,
-  subscriptionId: string
+  subscriptionId: string,
+  autopayment: boolean
 }

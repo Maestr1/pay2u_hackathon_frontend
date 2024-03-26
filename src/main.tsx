@@ -24,20 +24,20 @@ const theme = createTheme({
       },
       styleOverrides: {
         root: () => ({
-          boxShadow: 'none',
+          paddingBlock: '12px',
           width: '100%',
+          borderRadius: '8px',
+          boxShadow: 'none',
           fontSize: '16px',
           fontWeight: 400,
-          paddingBlock: '12px',
-          borderRadius: '8px',
 
           '&:active': {
-            backgroundColor: '#1E40AF',
             boxShadow: 'none',
+            backgroundColor: '#1E40AF',
           },
           '&:hover': {
             boxShadow: 'none',
-            backgroundColor: '#1D4ED8',
+            backgroundColor: 'none',
           },
         }),
       },

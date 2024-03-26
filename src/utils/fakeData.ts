@@ -5,7 +5,10 @@ import book from '../images/icons/books.svg';
 import music from '../images/icons/music.svg';
 import health from '../images/icons/heart.svg';
 import video from '../images/icons/video.svg';
-import { ISubscription } from './interfaces/interfaces.ts';
+import userImage from '../images/other_images/user.jpg';
+import paymentMethodLogo1 from '../images/logos/sbp_logo.png';
+import paymentMethodLogo2 from '../images/logos/master-card_logo.png';
+import { ISubscription, IUser } from './interfaces/interfaces.ts';
 
 export interface IAvailableSubscriptions {
   availableSubscriptions: ISubscription[];
@@ -18,6 +21,31 @@ export type TSubscriptionsCategories = {
   description: string;
   icon?: string;
 }[];
+
+export const currentUser: IUser = {
+  userId: '1',
+  fullName: 'Иван Иванов',
+  phone: '+7 999 999 99 99',
+  email: 'WfNkN@example.com',
+  login: 'login',
+  userIcon: userImage,
+  paymentMethods: [
+    {
+      id: '1',
+      methodName: 'СБП',
+      methodToken: 'card',
+      priorityMethod: true,
+      methodIcon: paymentMethodLogo1,
+    },
+    {
+      id: '2',
+      methodName: 'MasterCard **** 1324',
+      methodToken: 'card',
+      priorityMethod: false,
+      methodIcon: paymentMethodLogo2,
+    },
+  ],
+};
 
 export const subscriptionsCategoriesData: TSubscriptionsCategories = [
   {

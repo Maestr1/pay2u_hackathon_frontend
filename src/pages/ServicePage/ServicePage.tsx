@@ -1,15 +1,15 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import './ServicePage.scss';
 import { Link, useParams } from 'react-router-dom';
-import { useSelector } from '../../../hooks/store.ts';
+import { useSelector } from '../../hooks/store.ts';
 import {
   ISubscription,
   ITariff,
-} from '../../../utils/interfaces/interfaces.ts';
+} from '../../utils/interfaces/interfaces.ts';
 import { Button, Tab } from '@mui/material';
 import TabPanel from '@mui/lab/TabPanel';
 import { TabContext, TabList } from '@mui/lab';
-import ServiceHeader from '../../ServiceHeader/ServiceHeader.tsx';
+import ServiceHeader from '../../components/ServiceHeader/ServiceHeader.tsx';
 
 function ServicePage(): ReactElement {
   const availableSubscriptions = useSelector(

@@ -1,8 +1,8 @@
 import { ReactElement } from 'react';
-import SearchFrom from '../../SearchFrom/SearchFrom.tsx';
-import CardsSlider from '../../CardsSlider/CardsSlider.tsx';
-import { useSelector } from '../../../hooks/store.ts';
-import CategoriesList from '../../CategoriesList/CategoriesList.tsx';
+import SearchFrom from '../../components/SearchFrom/SearchFrom.tsx';
+import CardsSlider from '../../components/CardsSlider/CardsSlider.tsx';
+import { useSelector } from '../../hooks/store.ts';
+import CategoriesList from '../../components/CategoriesList/CategoriesList.tsx';
 
 
 function MainPage(): ReactElement {

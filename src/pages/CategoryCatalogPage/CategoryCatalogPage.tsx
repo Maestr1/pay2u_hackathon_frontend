@@ -1,8 +1,8 @@
 import { ReactElement } from 'react';
 import './CategoryCatalogPage.scss';
-import SearchFrom from '../../SearchFrom/SearchFrom.tsx';
-import CardsSlider from '../../CardsSlider/CardsSlider.tsx';
-import { useSelector } from '../../../hooks/store.ts';
+import SearchFrom from '../../components/SearchFrom/SearchFrom.tsx';
+import CardsSlider from '../../components/CardsSlider/CardsSlider.tsx';
+import { useSelector } from '../../hooks/store.ts';
 
 function CategoryCatalogPage(): ReactElement {
 

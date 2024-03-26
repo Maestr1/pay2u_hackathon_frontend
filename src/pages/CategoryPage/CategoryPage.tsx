@@ -1,8 +1,8 @@
 import { ReactElement, useEffect, useState } from 'react';
-import SearchFrom from '../../SearchFrom/SearchFrom.tsx';
+import SearchFrom from '../../components/SearchFrom/SearchFrom.tsx';
 import { Link, useParams } from 'react-router-dom';
-import Api from '../../../utils/Api.ts';
-import { ISubscription } from '../../../utils/interfaces/interfaces.ts';
+import Api from '../../utils/Api.ts';
+import { ISubscription } from '../../utils/interfaces/interfaces.ts';
 import './CategoryPage.scss';
 
 function CategoryPage(): ReactElement {
