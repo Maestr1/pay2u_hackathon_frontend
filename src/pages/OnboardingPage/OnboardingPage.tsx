@@ -2,13 +2,18 @@ import styled from 'styled-components';
 import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import SmallFullWidthCard from '../../components/SmallFullWidthCard/SmallFullWidthCard';
+import folderIcon from '../../images/icons/folder.svg';
+import walletIcon from '../../images/icons/wallet2.svg';
+import crownIcon from '../../images/icons/crown.svg';
+import iviPromo from '../../images/cards_images/ivi_promo.png';
+import yandexPromo from '../../images/cards_images/yandex.plus_promo.png';
 
 const Section = styled.section`
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
+  height: calc(100svh - 72px);
 `;
 
 const Title = styled.h1`
@@ -24,6 +29,7 @@ const CardList = styled.ul`
   padding: 0;
   display: flex;
   flex-direction: column;
+  width: 100%;
   list-style: none;
   gap: 8px;
 `;
@@ -69,26 +75,32 @@ export default function OnboardingPage() {
       <CardList>
         <li>
           <SmallFullWidthCard
-            card={{ title: 'Хранить подписки в одном месте', icon: '' }}
+            card={{ title: 'Хранить подписки в одном месте', icon: folderIcon }}
           />
         </li>
         <li>
           <SmallFullWidthCard
-            card={{ title: 'Получать кэшбэк за каждую оплату', icon: '' }}
+            card={{
+              title: 'Получать кэшбэк за каждую оплату',
+              icon: walletIcon,
+            }}
           />
         </li>
         <li>
           <SmallFullWidthCard
-            card={{ title: 'Управлять подписками в одном экране', icon: '' }}
+            card={{
+              title: 'Управлять подписками в одном экране',
+              icon: crownIcon,
+            }}
           />
         </li>
       </CardList>
       <CardWrapper>
         <PromoCard>
-          <img src="./src/images/cards_images/ivi_promo.png" alt="" />
+          <img src={iviPromo} alt="" />
         </PromoCard>
         <PromoCard>
-          <img src="./src/images/cards_images/yandex.plus_promo.png" alt="" />
+          <img src={yandexPromo} alt="" />
         </PromoCard>
       </CardWrapper>
       <LinkWrapper>
