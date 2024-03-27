@@ -30,6 +30,7 @@ const theme = createTheme({
           boxShadow: 'none',
           fontSize: '16px',
           fontWeight: 400,
+          textTransform: 'none',
 
           '&:active': {
             boxShadow: 'none',

@@ -1,6 +1,6 @@
 import './App.scss';
 import MainPage from '../../pages/MainPage/MainPage.tsx';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import Layout from '../Layout/Layout.tsx';
 import ErrorPage from '../../pages/ErrorPage/ErrorPage.tsx';
 import { ReactElement, useEffect } from 'react';
@@ -15,10 +15,12 @@ import CategoryPage from '../../pages/CategoryPage/CategoryPage.tsx';
 import UserServicesPage from '../../pages/UserServicesPage/UserServicesPage.tsx';
 import { addSubscriptionsCategories } from '../../services/subscriptionsCategoriesSlice.ts';
 import { addCurrentUser } from '../../services/currentUserSlice.ts';
+import OnboardingPage from '../../pages/OnboardingPage/OnboardingPage.tsx';
 
 function App(): ReactElement {
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     //Делаем фиктивный запрос на бэк и помещаем данные в стор
@@ -26,6 +28,15 @@ function App(): ReactElement {
     dispatch(addSubscriptionsCategories(subscriptionsCategoriesData));
     dispatch(addCurrentUser(currentUser))
   }, [dispatch]);
+
+  useEffect(() => {
+    const isVisited = localStorage.getItem('isVisited');
+    if (!isVisited) {
+      navigate('/onboarding');
+      // localStorage.setItem('isVisited', 'true');
+    }
+  }, [])
+  
 
 
   return (
@@ -39,6 +50,7 @@ function App(): ReactElement {
         <Route path="/services/:id" element={ <ServicePage/> }/>
         <Route path="/purchase" element={ <PurchasePage/> }/>
         <Route path="/successful-purchase" element={ <SuccessfulPurchasePage/> }/>
+        <Route path="/onboarding" element={ <OnboardingPage/> }/>
       </Route>
       <Route path="*" element={ <ErrorPage/> }/>
     </Routes>

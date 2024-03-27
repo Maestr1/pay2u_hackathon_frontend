@@ -2,6 +2,8 @@ import { ReactElement } from 'react';
 import './CardList.scss';
 import { TSubscriptionsCategories } from '../../utils/fakeData.ts';
 import { Link } from 'react-router-dom';
+import SmallFullWidthCard from '../SmallFullWidthCard/SmallFullWidthCard.tsx';
+
 
 interface ICardListProps {
   items: TSubscriptionsCategories;
@@ -13,11 +15,7 @@ function CardList(props: ICardListProps): ReactElement {
       { props.items.map((card, index) => (
         <li key={ `category-card-${ index }` }>
           <Link className="card-list__link link" to={ `/services/category/${ card.name }` }>
-            <div className="card-list__title">
-              <img src={ card.icon } alt=""/>
-              <h3>{ card.title }</h3>
-            </div>
-            <p>от 99р.</p>
+            <SmallFullWidthCard description='от 99 ₽' card={ card }/>
           </Link>
         </li>
       )) }

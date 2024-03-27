@@ -4,9 +4,11 @@ import { Link } from 'react-router-dom';
 import SmallFullWidthCard from '../../components/SmallFullWidthCard/SmallFullWidthCard';
 
 const Section = styled.section`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 100vh;
 `;
 
 const Title = styled.h1`
@@ -39,6 +41,15 @@ const PromoCard = styled.div`
       0 5px 4px 0 rgba(95, 105, 131, 0.08), 0 0 4px 0 rgba(95, 105, 131, 0.06);
     width: 100%;
   }
+`;
+const LinkWrapper = styled.div`
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  bottom: 0;
+  width: 100%;
+  align-self: flex-end;
 `;
 const OnbordingLink = styled(Link)`
   display: block;
@@ -80,8 +91,10 @@ export default function OnboardingPage() {
           <img src="./src/images/cards_images/yandex.plus_promo.png" alt="" />
         </PromoCard>
       </CardWrapper>
-      <Button variant="contained">Подробнее</Button>
-      <OnbordingLink to={'/'}>Перейти на главный экран</OnbordingLink>
+      <LinkWrapper>
+        <Button variant="contained">Подробнее</Button>
+        <OnbordingLink to={'/'}>Перейти на главный экран</OnbordingLink>
+      </LinkWrapper>
     </Section>
   );
 }
