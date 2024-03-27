@@ -3,6 +3,7 @@ import './PurchasePage.scss';
 import { useLocation } from 'react-router-dom';
 import ServiceHeader from '../../components/ServiceHeader/ServiceHeader.tsx';
 import { ITariff } from '../../utils/interfaces/interfaces.ts';
+// import { useBeforeunload } from 'react-beforeunload';
 // import { SubmitHandler, useForm } from 'react-hook-form';
 import {
   Button,
@@ -23,6 +24,7 @@ function PurchasePage(): ReactElement {
   const tariff: ITariff = useLocation().state.selectTariff;
   // const { register, handleSubmit } = useForm<IShippingFields>();
 
+
   function calculateDeclension() {
     if (tariff.tariffDuration > 1 && tariff.tariffDuration < 5) {
       return 'месяца';
@@ -42,7 +44,6 @@ function PurchasePage(): ReactElement {
       <ServiceHeader selectSubscription={subscription} />
       <div className="purchase-page__tariff-title-wrap">
         <h2>{tariff.tariffName}</h2>
-        <p>выгодно</p>
       </div>
       <p className="">
         {tariff.tariffPromoPrice / tariff.tariffDuration} ₽ за месяц
@@ -57,7 +58,7 @@ function PurchasePage(): ReactElement {
         <span>Итого:</span>
         <span>{tariff.tariffPromoPrice} ₽</span>
       </p>
-      <form className="purchase-page__form" >
+      <form className="purchase-page__form">
         {/* <input
           {...(register('telNumber'),
           { required: true, placeholder: '+7 999 999 99 99' })}
@@ -86,10 +87,11 @@ function PurchasePage(): ReactElement {
         <RadioGroup name="payment-method">
           {currentUser?.paymentMethods.map((method, index) => (
             <FormControlLabel
+              checked={method.priorityMethod}
               sx={{
                 justifyContent: 'space-between',
                 margin: '0',
-                '& img': {height: '39px'},
+                '& img': { height: '39px' },
                 '& .MuiTypography-root': {
                   display: 'flex',
                   alignItems: 'center',
@@ -111,6 +113,7 @@ function PurchasePage(): ReactElement {
         </RadioGroup>
 
         <FormControlLabel
+          checked
           value="start"
           control={<SwitchLovely color="primary" />}
           label="Подключить автоплатеж"
