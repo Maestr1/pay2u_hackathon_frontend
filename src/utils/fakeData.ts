@@ -144,8 +144,11 @@ export const subscriptionsData: ISubscription[] = [
         icon: book,
       },
     ],
+    // TODO убрать
     startDate: '01.01.2022',
+    // TODO убрать
     endDate: '01.02.2022',
+    // TODO убрать
     subscriptionType: 'month',
     link: 'ya.ru',
     serviceIconBig: serviceBig,

@@ -9,6 +9,7 @@ import iviPromo from '../../images/cards_images/ivi_promo.png';
 import yandexPromo from '../../images/cards_images/yandex.plus_promo.png';
 
 const Section = styled.section`
+padding-bottom: 28px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -110,7 +111,7 @@ export default function OnboardingPage() {
         </CardWrapper>
       </MainWrapper>
       <LinkWrapper>
-        <Button variant="contained">Подробнее</Button>
+        <Button component={Link} to={'/guide'} variant="contained">Подробнее</Button>
         <OnbordingLink to={'/'}>Перейти на главный экран</OnbordingLink>
       </LinkWrapper>
     </Section>
