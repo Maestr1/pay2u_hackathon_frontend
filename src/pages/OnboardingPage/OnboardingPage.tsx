@@ -9,11 +9,14 @@ import iviPromo from '../../images/cards_images/ivi_promo.png';
 import yandexPromo from '../../images/cards_images/yandex.plus_promo.png';
 
 const Section = styled.section`
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   height: calc(100svh - 72px);
+`;
+
+const MainWrapper = styled.div`
+  flex: 1 0 auto;
 `;
 
 const Title = styled.h1`
@@ -49,11 +52,9 @@ const PromoCard = styled.div`
   }
 `;
 const LinkWrapper = styled.div`
-  position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
-  bottom: 0;
   width: 100%;
   align-self: flex-end;
 `;
@@ -71,38 +72,43 @@ const OnbordingLink = styled(Link)`
 export default function OnboardingPage() {
   return (
     <Section>
-      <Title>Наш сервис умеет</Title>
-      <CardList>
-        <li>
-          <SmallFullWidthCard
-            card={{ title: 'Хранить подписки в одном месте', icon: folderIcon }}
-          />
-        </li>
-        <li>
-          <SmallFullWidthCard
-            card={{
-              title: 'Получать кэшбэк за каждую оплату',
-              icon: walletIcon,
-            }}
-          />
-        </li>
-        <li>
-          <SmallFullWidthCard
-            card={{
-              title: 'Управлять подписками в одном экране',
-              icon: crownIcon,
-            }}
-          />
-        </li>
-      </CardList>
-      <CardWrapper>
-        <PromoCard>
-          <img src={iviPromo} alt="" />
-        </PromoCard>
-        <PromoCard>
-          <img src={yandexPromo} alt="" />
-        </PromoCard>
-      </CardWrapper>
+      <MainWrapper>
+        <Title>Наш сервис умеет</Title>
+        <CardList>
+          <li>
+            <SmallFullWidthCard
+              card={{
+                title: 'Хранить подписки в одном месте',
+                icon: folderIcon,
+              }}
+            />
+          </li>
+          <li>
+            <SmallFullWidthCard
+              card={{
+                title: 'Получать кэшбэк за каждую оплату',
+                icon: walletIcon,
+              }}
+            />
+          </li>
+          <li>
+            <SmallFullWidthCard
+              card={{
+                title: 'Управлять подписками в одном экране',
+                icon: crownIcon,
+              }}
+            />
+          </li>
+        </CardList>
+        <CardWrapper>
+          <PromoCard>
+            <img src={iviPromo} alt="" />
+          </PromoCard>
+          <PromoCard>
+            <img src={yandexPromo} alt="" />
+          </PromoCard>
+        </CardWrapper>
+      </MainWrapper>
       <LinkWrapper>
         <Button variant="contained">Подробнее</Button>
         <OnbordingLink to={'/'}>Перейти на главный экран</OnbordingLink>
