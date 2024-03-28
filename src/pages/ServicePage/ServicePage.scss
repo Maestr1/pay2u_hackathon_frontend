@@ -18,7 +18,7 @@
     flex-direction: column;
 
     & a {
-      color: var(--primary-color-80);
+      color: var(--navy-blue-2);
       font-size: 14px;
       font-weight: 600;
       line-height: 1.43;
@@ -30,7 +30,7 @@
     margin: 0 0 8px;
     font-size: 16px;
     line-height: 1.5;
-    color: var(--black-20);
+    color: var(--grey-2);
   }
 
   &__description {
@@ -38,12 +38,12 @@
   }
 
   &__costs {
-    color: var(--black-60);
+    color: var(--grey-1);
   }
 
   &__cost {
     line-height: 1.5;
-    color: var(--black-60);
+    color: var(--grey-1);
 
     &_accent {
       font-size: 20px;
@@ -54,6 +54,6 @@
   &__tariff-description {
     font-size: 12px;
     line-height: 1.67;
-    color: var(--black-20);
+    color: var(--grey-2);
   }
 }

@@ -64,9 +64,9 @@ const OnbordingLink = styled(Link)`
   margin-top: 20px;
   width: max-content;
   text-decoration: none;
-  color: var(--primary-color-80);
+  color: var(--navy-blue-2);
   &:active {
-    color: var(--primary-color-90);
+    color: var(--navy-blue-1);
   }
 `;
 
