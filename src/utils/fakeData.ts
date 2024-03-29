@@ -8,19 +8,8 @@ import video from '../images/icons/video.svg';
 import userImage from '../images/other_images/user.jpg';
 import paymentMethodLogo1 from '../images/logos/sbp_logo.png';
 import paymentMethodLogo2 from '../images/logos/master-card_logo.png';
-import { ISubscription, IUser } from './interfaces/interfaces.ts';
+import { ICategory, ISubscription, IUser } from './interfaces/interfaces.ts';
 
-export interface IAvailableSubscriptions {
-  availableSubscriptions: ISubscription[];
-}
-
-export type TSubscriptionsCategories = {
-  id: string;
-  name: string;
-  title: string;
-  description: string;
-  icon: string;
-}[];
 
 export const currentUser: IUser = {
   userId: '1',
@@ -47,38 +36,38 @@ export const currentUser: IUser = {
   ],
 };
 
-export const subscriptionsCategoriesData: TSubscriptionsCategories = [
+export const subscriptionsCategoriesData: ICategory[] = [
   {
     id: '0',
-    title: 'Книги',
+    slug: 'Книги',
     name: 'books',
     description: 'Книги по подписке',
     icon: book,
   },
   {
     id: '1',
-    title: 'Музыка',
+    slug: 'Музыка',
     name: 'music',
     description: 'Музыка по подписке',
     icon: music,
   },
   {
     id: '2',
-    title: 'Здоровье',
+    slug: 'Здоровье',
     name: 'health',
     description: 'Здоровье по подписке',
     icon: health,
   },
   {
     id: '3',
-    title: 'Кино',
+    slug: 'Кино',
     name: 'movies',
     description: 'Кино по подписке',
     icon: video,
   },
   {
     id: '4',
-    title: 'Развлечения',
+    slug: 'Развлечения',
     name: 'entertainment',
     description: 'Кино по подписке',
     icon: video,
@@ -92,14 +81,12 @@ export const subscriptionsData: ISubscription[] = [
     category: [
       {
         id: '1',
-        name: 'имя категории',
+        name: 'books',
+        slug: 'имя категории',
         description: 'описание категории',
         icon: book,
       },
     ],
-    startDate: '01.01.2022',
-    endDate: '01.02.2022',
-    subscriptionType: 'month',
     link: 'ya.ru',
     serviceIconBig: serviceBig,
     serviceIconSquare: serviceSquare,
@@ -139,17 +126,12 @@ export const subscriptionsData: ISubscription[] = [
     category: [
       {
         id: '1',
-        name: 'имя категории',
+        name: 'books',
+        slug: 'имя категории',
         description: 'описание категории',
         icon: book,
       },
     ],
-    // TODO убрать
-    startDate: '01.01.2022',
-    // TODO убрать
-    endDate: '01.02.2022',
-    // TODO убрать
-    subscriptionType: 'month',
     link: 'ya.ru',
     serviceIconBig: serviceBig,
     serviceIconSquare: serviceSquare,
@@ -189,14 +171,12 @@ export const subscriptionsData: ISubscription[] = [
     category: [
       {
         id: '1',
-        name: 'имя категории',
+        name: 'books',
+        slug: 'имя категории',
         description: 'описание категории',
         icon: book,
       },
     ],
-    startDate: '01.01.2022',
-    endDate: '01.02.2022',
-    subscriptionType: 'month',
     link: 'ya.ru',
     serviceIconBig: serviceBig,
     serviceIconSquare: serviceSquare,
@@ -236,14 +216,12 @@ export const subscriptionsData: ISubscription[] = [
     category: [
       {
         id: '1',
-        name: 'имя категории',
+        name: 'books',
+        slug: 'имя категории',
         description: 'описание категории',
         icon: book,
       },
     ],
-    startDate: '01.01.2022',
-    endDate: '01.02.2022',
-    subscriptionType: 'month',
     link: 'ya.ru',
     serviceIconBig: serviceBig,
     serviceIconSquare: serviceSquare,
@@ -283,14 +261,12 @@ export const subscriptionsData: ISubscription[] = [
     category: [
       {
         id: '1',
-        name: 'имя категории',
+        name: 'books',
+        slug: 'имя категории',
         description: 'описание категории',
         icon: music,
       },
     ],
-    startDate: '01.01.2022',
-    endDate: '01.02.2022',
-    subscriptionType: 'month',
     link: 'ya.ru',
     serviceIconBig: serviceBig,
     serviceIconSquare: serviceSquare,
@@ -330,14 +306,12 @@ export const subscriptionsData: ISubscription[] = [
     category: [
       {
         id: '1',
-        name: 'имя категории',
+        name: 'books',
+        slug: 'имя категории',
         description: 'описание категории',
         icon: music,
       },
     ],
-    startDate: '01.01.2022',
-    endDate: '01.02.2022',
-    subscriptionType: 'month',
     link: 'ya.ru',
     serviceIconBig: serviceBig,
     serviceIconSquare: serviceSquare,
@@ -377,14 +351,12 @@ export const subscriptionsData: ISubscription[] = [
     category: [
       {
         id: '1',
-        name: 'имя категории',
+        name: 'books',
+        slug: 'имя категории',
         description: 'описание категории',
         icon: music,
       },
     ],
-    startDate: '01.01.2022',
-    endDate: '01.02.2022',
-    subscriptionType: 'month',
     link: 'ya.ru',
     serviceIconBig: serviceBig,
     serviceIconSquare: serviceSquare,
@@ -424,14 +396,12 @@ export const subscriptionsData: ISubscription[] = [
     category: [
       {
         id: '1',
-        name: 'имя категории',
+        name: 'books',
+        slug: 'имя категории',
         description: 'описание категории',
         icon: music,
       },
     ],
-    startDate: '01.01.2022',
-    endDate: '01.02.2022',
-    subscriptionType: 'month',
     link: 'ya.ru',
     serviceIconBig: serviceBig,
     serviceIconSquare: serviceSquare,
@@ -471,14 +441,12 @@ export const subscriptionsData: ISubscription[] = [
     category: [
       {
         id: '1',
-        name: 'имя категории',
+        name: 'books',
+        slug: 'имя категории',
         description: 'описание категории',
         icon: video,
       },
     ],
-    startDate: '01.01.2022',
-    endDate: '01.02.2022',
-    subscriptionType: 'month',
     link: 'ya.ru',
     serviceIconBig: serviceBig,
     serviceIconSquare: serviceSquare,
@@ -518,14 +486,12 @@ export const subscriptionsData: ISubscription[] = [
     category: [
       {
         id: '1',
-        name: 'имя категории',
+        name: 'books',
+        slug: 'имя категории',
         description: 'описание категории',
         icon: video,
       },
     ],
-    startDate: '01.01.2022',
-    endDate: '01.02.2022',
-    subscriptionType: 'month',
     link: 'ya.ru',
     serviceIconBig: serviceBig,
     serviceIconSquare: serviceSquare,
@@ -565,14 +531,12 @@ export const subscriptionsData: ISubscription[] = [
     category: [
       {
         id: '1',
-        name: 'имя категории',
+        name: 'books',
+        slug: 'имя категории',
         description: 'описание категории',
         icon: video,
       },
     ],
-    startDate: '01.01.2022',
-    endDate: '01.02.2022',
-    subscriptionType: 'month',
     link: 'ya.ru',
     serviceIconBig: serviceBig,
     serviceIconSquare: serviceSquare,
@@ -612,14 +576,12 @@ export const subscriptionsData: ISubscription[] = [
     category: [
       {
         id: '1',
-        name: 'имя категории',
+        name: 'books',
+        slug: 'имя категории',
         description: 'описание категории',
         icon: video,
       },
     ],
-    startDate: '01.01.2022',
-    endDate: '01.02.2022',
-    subscriptionType: 'month',
     link: 'ya.ru',
     serviceIconBig: serviceBig,
     serviceIconSquare: serviceSquare,

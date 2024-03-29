@@ -4,9 +4,6 @@ export interface ISubscription {
   name: string,
   category: ICategory[],
   link: string,
-  startDate?: string,
-  endDate?: string,
-  subscriptionType: string,
   serviceIconBig: string,
   serviceIconSquare: string,
   serviceIconSmall: string,
@@ -26,6 +23,7 @@ export interface ITariff {
 export interface ICategory {
   id: string,
   name: string,
+  slug: string,
   description: string,
   icon: string
 }
