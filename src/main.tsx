@@ -31,7 +31,6 @@ const theme = createTheme({
           fontSize: '16px',
           fontWeight: 400,
           textTransform: 'none',
-
           '&:active': {
             boxShadow: 'none',
             backgroundColor: '#1E40AF',
@@ -50,6 +49,22 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           textTransform: 'none',
+          color: '#333333',
+        },
+      },
+    },
+    MuiTabs: {
+      styleOverrides: {
+        flexContainer: {
+          containertype: 'inline-size',
+          '& button': {
+            width: '33%'
+          },
+          '@media (max-width: 374px)': {
+            '& button': {
+              fontSize: '4.0cqw',
+            },
+          },
         },
       },
     },

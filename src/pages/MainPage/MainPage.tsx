@@ -14,7 +14,7 @@ function MainPage(): ReactElement {
   return (
     <>
       <SearchFrom/>
-      <CardsSlider slidesPerView={ 3 } items={ availableSubscriptions } title="Мои подписки" cardType="square"
+      <CardsSlider slidesPerView={ 2.8 } items={ availableSubscriptions } title="Мои подписки" cardType="square"
                    link="/services/my-services"/>
       <CardsSlider slidesPerView={ 1.8 } items={ availableSubscriptions } title="Популярное" cardType="big"
                    link="/services/category/popular"/>

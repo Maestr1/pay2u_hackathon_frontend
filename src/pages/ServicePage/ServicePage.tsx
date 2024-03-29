@@ -23,7 +23,7 @@ function ServicePage(): ReactElement {
   const [selectedTariff, setSelectedTariff] = useState({} as ITariff);
 
   useEffect(() => {
-    const subscription = availableSubscriptions.find((item) => item.id === id);
+    const subscription = availableSubscriptions.find((item) => String(item.id) === id);
     if (subscription) {
       setSelectSubscription(subscription);
       setSelectedTariff(subscription.serviceTariffList[0]);

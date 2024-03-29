@@ -37,7 +37,7 @@ function App(): ReactElement {
     const isVisited = localStorage.getItem('isVisited');
     if (!isVisited) {
       navigate('/onboarding');
-      // localStorage.setItem('isVisited', 'true');
+      localStorage.setItem('isVisited', 'true');
     }
   }, []);
 
