@@ -1,10 +1,10 @@
 import { ReactElement } from 'react';
 import CardListHeader from '../CardListHeader/CardListHeader.tsx';
 import CardList from '../CardList/CardList.tsx';
-import { TSubscriptionsCategories } from '../../utils/fakeData.ts';
+import { ICategory } from '../../utils/interfaces/interfaces.ts';
 
 interface ICategoriesListProps {
-  subscriptionsCategories: TSubscriptionsCategories,
+  subscriptionsCategories: ICategory[],
   link: string
 }
 

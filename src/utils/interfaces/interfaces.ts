@@ -1,6 +1,6 @@
 
 export interface ISubscription {
-  id: string,
+  id: number,
   name: string,
   category: ICategory[],
   link: string,
@@ -12,7 +12,7 @@ export interface ISubscription {
 }
 
 export interface ITariff {
-  tariffId: string,
+  tariffId: number,
   tariffName: string,
   tariffPromoPrice: number,
   tariffFullPrice: number,
@@ -21,7 +21,7 @@ export interface ITariff {
 }
 
 export interface ICategory {
-  id: string,
+  id: number,
   name: string,
   slug: string,
   description: string,
@@ -29,7 +29,7 @@ export interface ICategory {
 }
 
 export interface IUser {
-  userId: string,
+  userId: number,
   fullName: string,
   phone: string,
   email: string,
@@ -39,7 +39,7 @@ export interface IUser {
 }
 
 export interface IPaymentMethod {
-  id: string,
+  id: number,
   methodName: string,
   methodToken: string,
   priorityMethod: boolean,
@@ -48,7 +48,7 @@ export interface IPaymentMethod {
 
 
 export interface IShippingFields {
-  userId: string,
+  userId: number,
   telNumber: string,
   paymentMethodId: string,
   subscriptionId: string,

@@ -79,7 +79,7 @@ export default function OnboardingPage() {
           <li>
             <SmallFullWidthCard
               card={{
-                title: 'Хранить подписки в одном месте',
+                name: 'Хранить подписки в одном месте',
                 icon: folderIcon,
               }}
             />
@@ -87,7 +87,7 @@ export default function OnboardingPage() {
           <li>
             <SmallFullWidthCard
               card={{
-                title: 'Получать кэшбэк за каждую оплату',
+                name: 'Получать кэшбэк за каждую оплату',
                 icon: walletIcon,
               }}
             />
@@ -95,7 +95,7 @@ export default function OnboardingPage() {
           <li>
             <SmallFullWidthCard
               card={{
-                title: 'Управлять подписками в одном экране',
+                name: 'Управлять подписками в одном экране',
                 icon: crownIcon,
               }}
             />

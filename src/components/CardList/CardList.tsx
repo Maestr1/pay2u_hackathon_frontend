@@ -1,12 +1,12 @@
 import { ReactElement } from 'react';
 import './CardList.scss';
-import { TSubscriptionsCategories } from '../../utils/fakeData.ts';
 import { Link } from 'react-router-dom';
 import SmallFullWidthCard from '../SmallFullWidthCard/SmallFullWidthCard.tsx';
+import { ICategory } from '../../utils/interfaces/interfaces.ts';
 
 
 interface ICardListProps {
-  items: TSubscriptionsCategories;
+  items: ICategory[];
 }
 
 function CardList(props: ICardListProps): ReactElement {
