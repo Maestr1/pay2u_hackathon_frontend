@@ -2,9 +2,13 @@ import { ReactElement } from 'react';
 import './PurchasePage.scss';
 import { useLocation } from 'react-router-dom';
 import ServiceHeader from '../../components/ServiceHeader/ServiceHeader.tsx';
-import { IShippingFields, ITariff } from '../../utils/interfaces/interfaces.ts';
+import {
+  IPaymentMethod,
+  IShippingFields,
+  ITariff,
+} from '../../utils/interfaces/interfaces.ts';
 // import { useBeforeunload } from 'react-beforeunload';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { SubmitHandler, useForm, Controller } from 'react-hook-form';
 import {
   Button,
   FormControlLabel,
@@ -12,9 +16,36 @@ import {
   Radio,
   RadioGroup,
   TextField,
+  styled,
 } from '@mui/material';
 import { SwitchLovely } from '../../components/uxComponents/switch.ts';
 import { useSelector } from '../../hooks/store.ts';
+
+const PhoneNubmerInput = styled(TextField)(() => ({
+  '& legend': { display: 'none' },
+  '& label': { transform: 'translate(0, -26px) scale(0.75)' },
+  '& fieldset': {
+    transition: 'border-color 200ms cubic-bezier(0.0, 0, 0.2, 1)',
+  },
+  '.MuiOutlinedInput-notchedOutline': { top: '0' },
+}));
+
+const RadioButton = styled(FormControlLabel)(() => ({
+  justifyContent: 'space-between',
+  margin: '0',
+  '& img': { height: '39px' },
+  '& .MuiTypography-root': {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '12px',
+  },
+}));
+
+const AutopaymentSwitch = styled(FormControlLabel)(() => ({
+  gap: '12px',
+  flexDirection: 'row',
+  margin: '0',
+}));
 
 function PurchasePage(): ReactElement {
   const currentUser = useSelector(
@@ -22,7 +53,23 @@ function PurchasePage(): ReactElement {
   );
   const subscription = useLocation().state.subscription;
   const tariff: ITariff = useLocation().state.selectTariff;
-  const { register, handleSubmit } = useForm<IShippingFields>();
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<IShippingFields>({
+    defaultValues: {
+      phoneNumber: currentUser?.phone.slice(2) || '',
+      userId: currentUser.userId,
+      subscriptionId: subscription.id,
+      autopayment: true,
+      paymentMethodId: currentUser.paymentMethods.find(
+        (item: IPaymentMethod) => item.priorityMethod
+      )?.id,
+    },
+    mode: 'onTouched',
+  });
 
   function calculateDeclension() {
     if (tariff.tariffDuration > 1 && tariff.tariffDuration < 5) {
@@ -35,7 +82,10 @@ function PurchasePage(): ReactElement {
   }
 
   const onSubmit: SubmitHandler<IShippingFields> = (data) => {
+    console.log(currentUser);
     console.log(data);
+    console.log(errors);
+    // reset()
   };
 
   return (
@@ -45,14 +95,9 @@ function PurchasePage(): ReactElement {
         <h2>{tariff.tariffName}</h2>
       </div>
       <p className="">
-        {tariff.tariffPromoPrice / tariff.tariffDuration} ₽ за месяц
+        {tariff.tariffPromoPrice / tariff.tariffDuration} ₽ за один месяц
       </p>
-      {tariff.tariffDuration > 1 && (
-        <p>
-          всего за {tariff.tariffDuration} {calculateDeclension()}{' '}
-          {tariff.tariffPromoPrice} ₽
-        </p>
-      )}
+
       <p className="purchase-page__total">
         <span>Итого:</span>
         <span>{tariff.tariffPromoPrice} ₽</span>
@@ -60,66 +105,47 @@ function PurchasePage(): ReactElement {
 
       {/* FORM */}
       <form className="purchase-page__form" onSubmit={handleSubmit(onSubmit)}>
-        <div className="purchase-page__phone-input">
-          <TextField
-            
-            fullWidth
-            label="Телефон для оформления подписки"
-            required
-            type="tel"
-            placeholder="999 999 99 99"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">+7</InputAdornment>
-              ),
-            }}
-            sx={{
-              '& legend': { display: 'none' },
-              '& label': { transform: 'translate(0, -26px) scale(0.75)' },
-              '.MuiOutlinedInput-notchedOutline': { top: '0' },
-            }}
-          />
-        </div>
         <p>Способ оплаты</p>
-        <RadioGroup name="payment-method">
-          {currentUser?.paymentMethods.map((method, index) => (
-            <FormControlLabel
-              {...register('telNumber')}
-              checked={method.priorityMethod}
-              labelPlacement="start"
-              key={`payment-method-${index}`}
-              value={method.id}
-              control={<Radio />}
-              label={
-                <>
-                  <img src={method.methodIcon} alt={method.methodName} />
-                  <p>{method.methodName}</p>
-                </>
-              }
-              sx={{
-                justifyContent: 'space-between',
-                margin: '0',
-                '& img': { height: '39px' },
-                '& .MuiTypography-root': {
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '12px',
-                },
-              }}
-            />
-          ))}
-        </RadioGroup>
-
-        <FormControlLabel
-          {...register('autopayment')}
-          checked
-          value="start"
-          control={<SwitchLovely color="primary" />}
-          label="Подключить автоплатеж"
-          labelPlacement="start"
-          sx={{ gap: '12px', flexDirection: 'row', margin: '0' }}
+        <Controller
+          control={control}
+          name="paymentMethodId"
+          render={({ field }) => (
+            <RadioGroup name="paymentMethodId" value={field.value}>
+              {currentUser?.paymentMethods.map((method, index) => (
+                <RadioButton
+                  label={
+                    <>
+                      <img src={method.methodIcon} alt={method.methodName} />
+                      <p>{method.methodName}</p>
+                    </>
+                  }
+                  labelPlacement="start"
+                  key={`payment-method-${index}`}
+                  control={<Radio />}
+                  onChange={(e) => field.onChange(e)}
+                  value={method.id}
+                />
+              ))}
+            </RadioGroup>
+          )}
         />
-        <Button variant="contained">Оплатить</Button>
+        <Controller
+          control={control}
+          name="autopayment"
+          render={({ field }) => (
+            <AutopaymentSwitch
+              checked={field.value}
+              control={<SwitchLovely color="primary" />}
+              label="Подключить автоплатеж"
+              labelPlacement="start"
+              onChange={(e) => field.onChange(e)}
+              value={field.value}
+            />
+          )}
+        />
+        <Button type="submit" variant="contained">
+          Оплатить
+        </Button>
       </form>
     </section>
   );

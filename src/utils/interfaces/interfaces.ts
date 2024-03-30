@@ -49,8 +49,8 @@ export interface IPaymentMethod {
 
 export interface IShippingFields {
   userId: number,
-  telNumber: string,
-  paymentMethodId: string,
-  subscriptionId: string,
+  phoneNumber: string,
+  paymentMethodId: number,
+  subscriptionId: number,
   autopayment: boolean
 }

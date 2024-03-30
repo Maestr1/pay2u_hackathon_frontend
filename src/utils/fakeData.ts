@@ -15,7 +15,7 @@ import { ICategory, ISubscription, IUser } from './interfaces/interfaces.ts';
 export const currentUser: IUser = {
   userId: 1,
   fullName: 'Иван Иванов',
-  phone: '+7 999 999 99 99',
+  phone: '+75551234567',
   email: 'WfNkN@example.com',
   login: 'login',
   userIcon: userImage,

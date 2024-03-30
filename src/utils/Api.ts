@@ -16,7 +16,7 @@ class Api {
   constructor() {
     this._testApi = true;
     this._options = {
-      baseUrl: 'http://localhost:3000',
+      baseUrl: 'http://localhost:8000',
       config: {
         withCredentials: true,
       }
@@ -26,6 +26,16 @@ class Api {
       baseURL: this._options.baseUrl
     });
   }
+
+getAllServices() {
+  if (this._testApi) {
+    return Promise.resolve({ content: subscriptionsData });
+  } else {
+    return this._requester.get('/services')
+      .then((res) => res.data)
+      .catch((err) => `Ошибка запроса. Код ошибки: ${ err.response.status }`);
+  }
+}
 
   searchSubscriptions(query: string = '') {
     if (this._testApi) {
