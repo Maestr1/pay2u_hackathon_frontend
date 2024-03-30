@@ -2,9 +2,9 @@ import { ReactElement } from 'react';
 import './PurchasePage.scss';
 import { useLocation } from 'react-router-dom';
 import ServiceHeader from '../../components/ServiceHeader/ServiceHeader.tsx';
-import { ITariff } from '../../utils/interfaces/interfaces.ts';
+import { IShippingFields, ITariff } from '../../utils/interfaces/interfaces.ts';
 // import { useBeforeunload } from 'react-beforeunload';
-// import { SubmitHandler, useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import {
   Button,
   FormControlLabel,
@@ -22,8 +22,7 @@ function PurchasePage(): ReactElement {
   );
   const subscription = useLocation().state.subscription;
   const tariff: ITariff = useLocation().state.selectTariff;
-  // const { register, handleSubmit } = useForm<IShippingFields>();
-
+  const { register, handleSubmit } = useForm<IShippingFields>();
 
   function calculateDeclension() {
     if (tariff.tariffDuration > 1 && tariff.tariffDuration < 5) {
@@ -35,9 +34,9 @@ function PurchasePage(): ReactElement {
     return 'месяц';
   }
 
-  // const onSubmit: SubmitHandler<IShippingFields> = (data) => {
-  //   console.log(data);
-  // };
+  const onSubmit: SubmitHandler<IShippingFields> = (data) => {
+    console.log(data);
+  };
 
   return (
     <section className="purchase-page">
@@ -58,19 +57,12 @@ function PurchasePage(): ReactElement {
         <span>Итого:</span>
         <span>{tariff.tariffPromoPrice} ₽</span>
       </p>
-      <form className="purchase-page__form">
-        {/* <input
-          {...(register('telNumber'),
-          { required: true, placeholder: '+7 999 999 99 99' })}
-          type="tel"
-        /> */}
+
+      {/* FORM */}
+      <form className="purchase-page__form" onSubmit={handleSubmit(onSubmit)}>
         <div className="purchase-page__phone-input">
           <TextField
-            sx={{
-              '& legend': { display: 'none' },
-              '& label': { transform: 'translate(0, -26px) scale(0.75)' },
-              '.MuiOutlinedInput-notchedOutline': { top: '0' },
-            }}
+            
             fullWidth
             label="Телефон для оформления подписки"
             required
@@ -81,23 +73,19 @@ function PurchasePage(): ReactElement {
                 <InputAdornment position="start">+7</InputAdornment>
               ),
             }}
+            sx={{
+              '& legend': { display: 'none' },
+              '& label': { transform: 'translate(0, -26px) scale(0.75)' },
+              '.MuiOutlinedInput-notchedOutline': { top: '0' },
+            }}
           />
         </div>
         <p>Способ оплаты</p>
         <RadioGroup name="payment-method">
           {currentUser?.paymentMethods.map((method, index) => (
             <FormControlLabel
+              {...register('telNumber')}
               checked={method.priorityMethod}
-              sx={{
-                justifyContent: 'space-between',
-                margin: '0',
-                '& img': { height: '39px' },
-                '& .MuiTypography-root': {
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '12px',
-                },
-              }}
               labelPlacement="start"
               key={`payment-method-${index}`}
               value={method.id}
@@ -108,11 +96,22 @@ function PurchasePage(): ReactElement {
                   <p>{method.methodName}</p>
                 </>
               }
+              sx={{
+                justifyContent: 'space-between',
+                margin: '0',
+                '& img': { height: '39px' },
+                '& .MuiTypography-root': {
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '12px',
+                },
+              }}
             />
           ))}
         </RadioGroup>
 
         <FormControlLabel
+          {...register('autopayment')}
           checked
           value="start"
           control={<SwitchLovely color="primary" />}

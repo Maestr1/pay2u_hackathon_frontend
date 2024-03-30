@@ -1,8 +1,8 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { TSubscriptionsCategories } from '../utils/fakeData.ts';
+import { ICategory } from '../utils/interfaces/interfaces.ts';
 
 interface ISubscriptionsCategoriesState {
-  subscriptionsCategories: TSubscriptionsCategories
+  subscriptionsCategories: ICategory[]
 }
 
 const initialState: ISubscriptionsCategoriesState = {
@@ -13,7 +13,7 @@ const subscriptionsCategoriesSlice = createSlice({
   name: 'subscriptionsCategories',
   initialState,
   reducers: {
-    addSubscriptionsCategories: (state, action: PayloadAction<TSubscriptionsCategories>) => {
+    addSubscriptionsCategories: (state, action: PayloadAction<ICategory[]>) => {
       state.subscriptionsCategories = action.payload;
     }
   }

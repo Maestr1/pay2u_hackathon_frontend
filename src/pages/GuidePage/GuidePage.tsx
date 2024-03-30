@@ -6,6 +6,8 @@ import 'swiper/scss/pagination';
 import { useState } from 'react';
 import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
+import guidePic1 from '../../images/other_images/guide1.png';
+import guidePic2 from '../../images/other_images/guide2.png';
 
 const Section = styled.section`
   display: flex;
@@ -75,10 +77,10 @@ export default function GuidePage() {
           className="mySwiper"
         >
           <GuideSwiperSlide>
-            <img src="src\images\other_images\guide1.png" alt="" />
+            <img src={guidePic1} alt="" />
           </GuideSwiperSlide>
           <GuideSwiperSlide>
-            <img src="src\images\other_images\guide2.png" alt="" />
+            <img src={guidePic2} alt="" />
           </GuideSwiperSlide>
         </Swiper>
         <Title>
@@ -96,7 +98,9 @@ export default function GuidePage() {
             Далее
           </Button>
         ) : (
-          <Button component={Link} to={'/'} variant="contained">Здорово</Button>
+          <Button component={Link} to={'/'} variant="contained">
+            Здорово
+          </Button>
         )}
 
         <OnbordingLink $visibility={activeSlide === 0 ? true : false} to={'/'}>
