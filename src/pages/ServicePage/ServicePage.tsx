@@ -1,34 +1,39 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import './ServicePage.scss';
 import { Link, useParams } from 'react-router-dom';
-import { useSelector } from '../../hooks/store.ts';
-import {
-  ISubscription,
-  ITariff,
-} from '../../utils/interfaces/interfaces.ts';
+import { ISubscription, ITariff } from '../../utils/interfaces/interfaces.ts';
 import { Button, Tab } from '@mui/material';
 import TabPanel from '@mui/lab/TabPanel';
 import { TabContext, TabList } from '@mui/lab';
 import ServiceHeader from '../../components/ServiceHeader/ServiceHeader.tsx';
+import { getService } from '../../utils/Api.ts';
 
 function ServicePage(): ReactElement {
-  const availableSubscriptions = useSelector(
-    (store) => store.availableSubscriptionsReducer.availableSubscriptions
-  );
+  // const availableSubscriptions = useSelector(
+  //   (store) => store.availableSubscriptionsReducer.availableSubscriptions
+  // );
   const { id } = useParams();
   const [selectSubscription, setSelectSubscription] = useState<ISubscription>(
     {} as ISubscription
   );
   const [tabValue, setTabValue] = useState('0');
   const [selectedTariff, setSelectedTariff] = useState({} as ITariff);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // useEffect(() => {
+  //   const subscription = availableSubscriptions.find((item) => String(item.id) === id);
+  //   if (subscription) {
+  //     setSelectSubscription(subscription);
+  //     setSelectedTariff(subscription.serviceTariffList[0]);
+  //   }
+  // }, [availableSubscriptions]);
 
   useEffect(() => {
-    const subscription = availableSubscriptions.find((item) => String(item.id) === id);
-    if (subscription) {
-      setSelectSubscription(subscription);
-      setSelectedTariff(subscription.serviceTariffList[0]);
-    }
-  }, [availableSubscriptions]);
+    getService(Number(id))
+      .then((res) => setSelectSubscription(res))
+      .then(() => setIsLoading(false))
+      .catch((err) => console.log(err));
+  }, []);
 
   const tabs = () => {
     return selectSubscription.serviceTariffList.map((item, index) => (
@@ -50,7 +55,9 @@ function ServicePage(): ReactElement {
           ₽ за месяц
         </p>
         <p className="service-page__tariff-description">
-          {`первый месяц ${item.tariffPromoPrice / item.tariffDuration} ₽, последующие ${item.tariffFullPrice / item.tariffDuration} ₽`}
+          {`первый месяц ${
+            item.tariffPromoPrice / item.tariffDuration
+          } ₽, последующие ${item.tariffFullPrice / item.tariffDuration} ₽`}
         </p>
       </TabPanel>
     ));
@@ -58,7 +65,7 @@ function ServicePage(): ReactElement {
 
   function handleTabChange(_event: React.SyntheticEvent, newValue: string) {
     setTabValue(newValue);
-    setSelectedTariff(selectSubscription.serviceTariffList[Number(newValue)])
+    setSelectedTariff(selectSubscription.serviceTariffList[Number(newValue)]);
   }
 
   return (
@@ -67,7 +74,7 @@ function ServicePage(): ReactElement {
       <div className="service-page__description-wrap">
         <p className="service-page__description-title">Описание</p>
         <p className="service-page__description">
-          {selectSubscription.serviceDetails}
+          {selectSubscription.description}
         </p>
         <Link className="link" to={selectSubscription.link}>
           Перейти на сервис
@@ -75,6 +82,7 @@ function ServicePage(): ReactElement {
       </div>
       <TabContext value={tabValue}>
         <TabList
+          onChange={handleTabChange}
           TabIndicatorProps={{
             sx: { display: 'none' },
           }}
@@ -83,7 +91,8 @@ function ServicePage(): ReactElement {
               justifyContent: 'space-between',
             },
             '& button': {
-              transition: 'background-color 0.3s ease-in-out, color 0.3s ease-in-out',
+              transition:
+                'background-color 0.3s ease-in-out, color 0.3s ease-in-out',
               borderRadius: '12px',
               padding: '10px 12px',
               fontSize: '16px',
@@ -94,7 +103,6 @@ function ServicePage(): ReactElement {
             '& button:active': { bgcolor: '#1E40AF', color: '#FFFFFF' },
             '& button.Mui-selected': { bgcolor: '#1D4ED8', color: '#FFFFFF' },
           }}
-          onChange={handleTabChange}
         >
           {selectSubscription && selectSubscription.serviceTariffList
             ? tabs()
@@ -106,7 +114,10 @@ function ServicePage(): ReactElement {
             : ''}
           <Button
             to={'/purchase'}
-            state={{ subscription: selectSubscription, selectTariff: selectedTariff }}
+            state={{
+              subscription: selectSubscription,
+              selectTariff: selectedTariff,
+            }}
             component={Link}
             variant="contained"
           >

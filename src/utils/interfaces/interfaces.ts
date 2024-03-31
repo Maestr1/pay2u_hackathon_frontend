@@ -2,12 +2,12 @@
 export interface ISubscription {
   id: number,
   name: string,
-  category: ICategory[],
+  category: ICategory,
   link: string,
-  serviceIconBig: string,
-  serviceIconSquare: string,
-  serviceIconSmall: string,
-  serviceDetails: string,
+  icon_big: string,
+  icon_square: string,
+  icon_small: string,
+  description: string,
   serviceTariffList: ITariff[]
 }
 

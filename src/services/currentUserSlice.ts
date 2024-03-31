@@ -2,11 +2,13 @@ import { IUser } from '../utils/interfaces/interfaces.ts';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface ICurrentUserState {
-  currentUser: IUser
+  currentUser: IUser,
+  apiToken: string
 }
 
 const initialState: ICurrentUserState = {
-  currentUser: {} as IUser
+  currentUser: {} as IUser,
+  apiToken: ''
 };
 
 const currentUserSlice = createSlice({
@@ -16,6 +18,9 @@ const currentUserSlice = createSlice({
     addCurrentUser: (state, action: PayloadAction<IUser>) => {
       state.currentUser = action.payload;
     },
+    addApiToken: (state, action: PayloadAction<string>) => {
+      state.apiToken = action.payload;
+    }
     // removeAvailableSubscriptions: (state, action: PayloadAction<string>) => {
     //   state.availableSubscriptions = state.availableSubscriptions.filter((item) => item.id !== action.payload);
     // }
@@ -23,5 +28,5 @@ const currentUserSlice = createSlice({
 });
 
 
-export const { addCurrentUser } = currentUserSlice.actions;
+export const { addCurrentUser, addApiToken } = currentUserSlice.actions;
 export const reducer = currentUserSlice.reducer;

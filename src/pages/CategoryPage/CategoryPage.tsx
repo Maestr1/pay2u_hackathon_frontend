@@ -1,18 +1,18 @@
 import { ReactElement, useEffect, useState } from 'react';
 import SearchFrom from '../../components/SearchFrom/SearchFrom.tsx';
 import { Link, useParams } from 'react-router-dom';
-import Api from '../../utils/Api.ts';
+import {} from '../../utils/Api.ts';
 import { ISubscription } from '../../utils/interfaces/interfaces.ts';
 import './CategoryPage.scss';
 
 function CategoryPage(): ReactElement {
   const { category } = useParams();
   const [subscriptionsArray, setSubscriptionsArray] = useState([]);
-  useEffect(() => {
-    Api.searchSubscriptions(category).then((res) =>
-      setSubscriptionsArray(res.content)
-    );
-  }, []);
+  // useEffect(() => {
+  //   Api.searchSubscriptions(category).then((res) =>
+  //     setSubscriptionsArray(res.content)
+  //   );
+  // }, []);
 
   useEffect(() => {
     if (subscriptionsArray.length > 0) {
