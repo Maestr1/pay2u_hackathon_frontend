@@ -8,16 +8,16 @@ export interface ISubscription {
   icon_square: string,
   icon_small: string,
   description: string,
-  serviceTariffList: ITariff[]
+  tariff: ITariff[]
 }
 
 export interface ITariff {
-  tariffId: number,
-  tariffName: string,
-  tariffPromoPrice: number,
-  tariffFullPrice: number,
-  tariffDuration: number,
-  tariffDescription: string
+  id: number,
+  name: string,
+  tariff_full_price: number,
+  tariff_promo_price: number,
+  services_duration: number,
+  description: string
 }
 
 export interface ICategory {

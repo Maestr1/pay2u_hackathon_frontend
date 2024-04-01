@@ -23,7 +23,7 @@ function CategoryPage(): ReactElement {
     return subscriptionsArray.map((item: ISubscription, index) => {
       // ищем наименьшее значение tariffPromoPrice из всех тарифов
       const lowestPrice = Math.min(
-        ...item.serviceTariffList.map((tariff) => tariff.tariffPromoPrice)
+        ...item.tariff.map((tariff) => tariff.tariff_full_price)
       );
       return (
         <li key={`subscription-${index}`}>

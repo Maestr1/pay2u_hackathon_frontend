@@ -36,28 +36,28 @@ function ServicePage(): ReactElement {
   }, []);
 
   const tabs = () => {
-    return selectSubscription.serviceTariffList.map((item, index) => (
+    return selectSubscription.tariff.map((item, index) => (
       <Tab
         key={`tariff-tab-${index}`}
-        label={item.tariffName}
+        label={item.name}
         value={`${index}`}
       />
     ));
   };
 
   const tabPanels = () => {
-    return selectSubscription.serviceTariffList.map((item, index) => (
+    return selectSubscription.tariff.map((item, index) => (
       <TabPanel sx={{ p: 0 }} key={`tariff-panel-${index}`} value={`${index}`}>
-        <h3 className="service-page__tariff-heading">{item.tariffName}</h3>
+        <h3 className="service-page__tariff-heading">{item.name}</h3>
         <p className="service-page__costs">
-          <span className="service-page__cost service-page__cost_accent">{`${item.tariffFullPrice} ₽`}</span>{' '}
-          <span className="service-page__cost">{`${item.tariffPromoPrice}`}</span>{' '}
+          <span className="service-page__cost service-page__cost_accent">{`${item.tariff_promo_price} ₽`}</span>{' '}
+          <span className="service-page__cost">{`${item.tariff_full_price}`}</span>{' '}
           ₽ за месяц
         </p>
         <p className="service-page__tariff-description">
           {`первый месяц ${
-            item.tariffPromoPrice / item.tariffDuration
-          } ₽, последующие ${item.tariffFullPrice / item.tariffDuration} ₽`}
+            item.tariff_full_price / item.services_duration
+          } ₽, последующие ${item.tariff_promo_price / item.services_duration} ₽`}
         </p>
       </TabPanel>
     ));
@@ -65,7 +65,7 @@ function ServicePage(): ReactElement {
 
   function handleTabChange(_event: React.SyntheticEvent, newValue: string) {
     setTabValue(newValue);
-    setSelectedTariff(selectSubscription.serviceTariffList[Number(newValue)]);
+    setSelectedTariff(selectSubscription.tariff[Number(newValue)]);
   }
 
   return (
@@ -104,12 +104,12 @@ function ServicePage(): ReactElement {
             '& button.Mui-selected': { bgcolor: '#1D4ED8', color: '#FFFFFF' },
           }}
         >
-          {selectSubscription && selectSubscription.serviceTariffList
+          {selectSubscription && selectSubscription.tariff
             ? tabs()
             : ''}
         </TabList>
         <div className="service-page__tab-panel">
-          {selectSubscription && selectSubscription.serviceTariffList
+          {selectSubscription && selectSubscription.tariff
             ? tabPanels()
             : ''}
           <Button

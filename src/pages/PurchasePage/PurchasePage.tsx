@@ -72,10 +72,10 @@ function PurchasePage(): ReactElement {
   });
 
   function calculateDeclension() {
-    if (tariff.tariffDuration > 1 && tariff.tariffDuration < 5) {
+    if (tariff.services_duration > 1 && tariff.services_duration < 5) {
       return 'месяца';
     }
-    if (tariff.tariffDuration > 4) {
+    if (tariff.services_duration > 4) {
       return 'месяцев';
     }
     return 'месяц';
@@ -92,15 +92,15 @@ function PurchasePage(): ReactElement {
     <section className="purchase-page">
       <ServiceHeader selectSubscription={subscription} />
       <div className="purchase-page__tariff-title-wrap">
-        <h2>{tariff.tariffName}</h2>
+        <h2>{tariff.name}</h2>
       </div>
       <p className="">
-        {tariff.tariffPromoPrice / tariff.tariffDuration} ₽ за один месяц
+        {tariff.tariff_full_price / tariff.services_duration} ₽ за один месяц
       </p>
 
       <p className="purchase-page__total">
         <span>Итого:</span>
-        <span>{tariff.tariffPromoPrice} ₽</span>
+        <span>{tariff.tariff_full_price} ₽</span>
       </p>
 
       {/* FORM */}
