@@ -19,12 +19,7 @@ import {
 } from '../../services/currentUserSlice.ts';
 import OnboardingPage from '../../pages/OnboardingPage/OnboardingPage.tsx';
 import GuidePage from '../../pages/GuidePage/GuidePage.tsx';
-import {
-  getApiToken,
-  getUserData,
-  getAllServicesList,
-  getCategoriesList,
-} from '../../utils/Api.ts';
+import api from '../../utils/api/Api.ts';
 import Loader from '../../pages/Loader/Loader.tsx';
 
 function App(): ReactElement {
@@ -35,14 +30,19 @@ function App(): ReactElement {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    getApiToken().then((res) => {
-      dispatch(addApiToken(res));
+    api.getApiToken().then((res) => {
+      dispatch(addApiToken(res.auth_token));
+      // localStorage.setItem('apiToken', res.auth_token);
     });
   }, []);
 
   useEffect(() => {
     if (apiToken) {
-      Promise.all([getUserData(), getAllServicesList(), getCategoriesList()])
+      Promise.all([
+        api.getUserData(),
+        api.getAllServicesList(),
+        api.getCategoriesList(),
+      ])
         .then((res) => {
           dispatch(addCurrentUser(res[0]));
           dispatch(addAvailableSubscriptions(res[1]));

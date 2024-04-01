@@ -6,7 +6,7 @@ import { Button, Tab } from '@mui/material';
 import TabPanel from '@mui/lab/TabPanel';
 import { TabContext, TabList } from '@mui/lab';
 import ServiceHeader from '../../components/ServiceHeader/ServiceHeader.tsx';
-import { getService } from '../../utils/Api.ts';
+import api from '../../utils/api/Api.ts';
 
 function ServicePage(): ReactElement {
   // const availableSubscriptions = useSelector(
@@ -29,7 +29,7 @@ function ServicePage(): ReactElement {
   // }, [availableSubscriptions]);
 
   useEffect(() => {
-    getService(Number(id))
+    api.getService(Number(id))
       .then((res) => setSelectSubscription(res))
       .then(() => setIsLoading(false))
       .catch((err) => console.log(err));

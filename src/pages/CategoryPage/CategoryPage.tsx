@@ -1,7 +1,7 @@
 import { ReactElement, useEffect, useState } from 'react';
 import SearchFrom from '../../components/SearchFrom/SearchFrom.tsx';
 import { Link, useParams } from 'react-router-dom';
-import {} from '../../utils/Api.ts';
+import {} from '../../utils/api/Api.ts';
 import { ISubscription } from '../../utils/interfaces/interfaces.ts';
 import './CategoryPage.scss';
 
