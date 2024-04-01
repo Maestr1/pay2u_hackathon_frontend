@@ -14,7 +14,7 @@ function CardList(props: ICardListProps): ReactElement {
     <ul className="card-list">
       { props.items.map((card, index) => (
         <li key={ `category-card-${ index }` }>
-          <Link className="card-list__link link" to={ `/services/category/${ card.name }` }>
+          <Link className="card-list__link link" to={ `/services/category/${ card.slug }` }>
             <SmallFullWidthCard description='от 99 ₽' card={ card }/>
           </Link>
         </li>

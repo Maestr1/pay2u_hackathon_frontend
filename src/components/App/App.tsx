@@ -9,7 +9,10 @@ import ServicePage from '../../pages/ServicePage/ServicePage.tsx';
 import PurchasePage from '../../pages/PurchasePage/PurchasePage.tsx';
 import SuccessfulPurchasePage from '../../pages/SuccessfulPurchasePage/SuccessfulPurchasePage.tsx';
 import { useDispatch, useSelector } from '../../hooks/store.ts';
-import { addAvailableSubscriptions } from '../../services/availableSubscriptionsSlice.ts';
+import {
+  addAvailableSubscriptions,
+  addUserSubscriptions,
+} from '../../services/subscriptionsSlice.ts';
 import CategoryPage from '../../pages/CategoryPage/CategoryPage.tsx';
 import UserServicesPage from '../../pages/UserServicesPage/UserServicesPage.tsx';
 import { addSubscriptionsCategories } from '../../services/subscriptionsCategoriesSlice.ts';
@@ -21,37 +24,35 @@ import OnboardingPage from '../../pages/OnboardingPage/OnboardingPage.tsx';
 import GuidePage from '../../pages/GuidePage/GuidePage.tsx';
 import api from '../../utils/api/Api.ts';
 import Loader from '../../pages/Loader/Loader.tsx';
+import { setIsLoadingState } from '../../services/pageStatesSlice.ts';
 
 function App(): ReactElement {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const apiToken = useSelector((state) => state.currentUserReducer.apiToken);
-
-  const [isLoading, setIsLoading] = useState(true);
+  // const apiToken = useSelector((state) => state.currentUserReducer.apiToken);
+  const isLoading = useSelector((state) => state.pageStatesReducer.isLoading);
+  const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
-    api.getApiToken().then((res) => {
-      dispatch(addApiToken(res.auth_token));
-      // localStorage.setItem('apiToken', res.auth_token);
-    });
+    login();
   }, []);
 
   useEffect(() => {
-    if (apiToken) {
-      Promise.all([
-        api.getUserData(),
-        api.getAllServicesList(),
-        api.getCategoriesList(),
-      ])
-        .then((res) => {
-          dispatch(addCurrentUser(res[0]));
-          dispatch(addAvailableSubscriptions(res[1]));
-          dispatch(addSubscriptionsCategories(res[2]));
-        })
-        .then(() => setIsLoading(false))
-        .catch((err) => console.log(err));
-    }
-  }, [apiToken]);
+    Promise.all([
+      api.getUserData(),
+      api.getAllServicesList(),
+      api.getUserSubscriptions(),
+      api.getCategoriesList(),
+    ])
+      .then((res) => {
+        dispatch(addCurrentUser(res[0]));
+        dispatch(addAvailableSubscriptions(res[1]));
+        dispatch(addUserSubscriptions(res[2]));
+        dispatch(addSubscriptionsCategories(res[3]));
+      })
+      .then(() => dispatch(setIsLoadingState(false)))
+      .catch((err) => console.log(err));
+  }, [loggedIn]);
 
   useEffect(() => {
     const isVisited = localStorage.getItem('isVisited');
@@ -60,6 +61,17 @@ function App(): ReactElement {
       localStorage.setItem('isVisited', 'true');
     }
   }, []);
+
+  function login() {
+    if (!localStorage.getItem('apiToken')) {
+      api
+        .login('pavlen', '1')
+        .then((res) => {
+          localStorage.setItem('apiToken', res.auth_token);
+        })
+        .then(() => setLoggedIn(true));
+    }
+  }
 
   if (isLoading) {
     return <Loader />;
@@ -83,6 +95,8 @@ function App(): ReactElement {
           />
           <Route path="/onboarding" element={<OnboardingPage />} />
           <Route path="/guide" element={<GuidePage />} />
+          // TODO не забыть удалить
+          <Route path="/loader" element={<Loader />} />
         </Route>
         <Route path="*" element={<ErrorPage />} />
       </Routes>

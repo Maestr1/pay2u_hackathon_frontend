@@ -7,6 +7,8 @@ import TabPanel from '@mui/lab/TabPanel';
 import { TabContext, TabList } from '@mui/lab';
 import ServiceHeader from '../../components/ServiceHeader/ServiceHeader.tsx';
 import api from '../../utils/api/Api.ts';
+import { setIsLoadingState } from '../../services/pageStatesSlice.ts';
+import { useDispatch } from '../../hooks/store.ts';
 
 function ServicePage(): ReactElement {
   // const availableSubscriptions = useSelector(
@@ -19,6 +21,7 @@ function ServicePage(): ReactElement {
   const [tabValue, setTabValue] = useState('0');
   const [selectedTariff, setSelectedTariff] = useState({} as ITariff);
   const [isLoading, setIsLoading] = useState(true);
+  const dispatch = useDispatch();
 
   // useEffect(() => {
   //   const subscription = availableSubscriptions.find((item) => String(item.id) === id);
@@ -29,9 +32,10 @@ function ServicePage(): ReactElement {
   // }, [availableSubscriptions]);
 
   useEffect(() => {
+    dispatch(setIsLoadingState(true));
     api.getService(Number(id))
       .then((res) => setSelectSubscription(res))
-      .then(() => setIsLoading(false))
+      .then(() => dispatch(setIsLoadingState(false)))
       .catch((err) => console.log(err));
   }, []);
 

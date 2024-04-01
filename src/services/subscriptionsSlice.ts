@@ -2,11 +2,13 @@ import { ISubscription } from '../utils/interfaces/interfaces.ts';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface IAvailableSubscriptionsState {
-  availableSubscriptions: ISubscription[]
+  availableSubscriptions: ISubscription[],
+  userSubscriptions: ISubscription[],
 }
 
 const initialState: IAvailableSubscriptionsState = {
-  availableSubscriptions: []
+  availableSubscriptions: [],
+  userSubscriptions: []
 };
 
 const availableSubscriptionsSlice = createSlice({
@@ -16,6 +18,9 @@ const availableSubscriptionsSlice = createSlice({
     addAvailableSubscriptions: (state, action: PayloadAction<ISubscription[]>) => {
       state.availableSubscriptions = action.payload;
     },
+    addUserSubscriptions: (state, action: PayloadAction<ISubscription[]>) => {
+      state.userSubscriptions = action.payload;
+    },
     // removeAvailableSubscriptions: (state, action: PayloadAction<string>) => {
     //   state.availableSubscriptions = state.availableSubscriptions.filter((item) => item.id !== action.payload);
     // }
@@ -23,5 +28,5 @@ const availableSubscriptionsSlice = createSlice({
 });
 
 
-export const { addAvailableSubscriptions } = availableSubscriptionsSlice.actions;
+export const { addAvailableSubscriptions, addUserSubscriptions } = availableSubscriptionsSlice.actions;
 export const reducer = availableSubscriptionsSlice.reducer;

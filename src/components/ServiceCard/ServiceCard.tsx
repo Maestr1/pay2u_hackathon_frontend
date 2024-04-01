@@ -14,17 +14,12 @@ function ServiceCard(props: ICardProps): ReactElement {
       <img
         src={
           props.cardType === 'square'
-            ? props.card.icon
-            : props.card.icon
+            ? props.card.icon_square
+            : props.card.icon_big
         }
         alt=""
       />
     </Link>
-
-    //закомментировано пока не будет три картинки с бэка
-    // <Link className='big-card' to={ `/services/${ props.card.id }` }>
-    //   <img src={ props.cardType === 'square' ? props.card.serviceIconSquare : props.card.serviceIconBig } alt=""/>
-    // </Link>
   );
 }
 

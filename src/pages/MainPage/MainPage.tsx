@@ -3,6 +3,7 @@ import SearchFrom from '../../components/SearchFrom/SearchFrom.tsx';
 import CardsSlider from '../../components/CardsSlider/CardsSlider.tsx';
 import { useSelector } from '../../hooks/store.ts';
 import CategoriesList from '../../components/CategoriesList/CategoriesList.tsx';
+import { Link } from 'react-router-dom';
 
 
 function MainPage(): ReactElement {
@@ -14,8 +15,11 @@ function MainPage(): ReactElement {
   return (
     <>
       <SearchFrom/>
-      <CardsSlider slidesPerView={ 2.8 } items={ availableSubscriptions } title="Мои подписки" cardType="square"
-                   link="/services/my-services"/>
+      <section>
+
+      </section>
+      {/* <CardsSlider slidesPerView={ 2.8 } items={ availableSubscriptions } title="Мои подписки" cardType="square"
+                   link="/services/my-services"/> */}
       <CardsSlider slidesPerView={ 1.8 } items={ availableSubscriptions } title="Популярное" cardType="big"
                    link="/services/category/popular"/>
       <CategoriesList link="/services/all" subscriptionsCategories={ subscriptionsCategories }/>

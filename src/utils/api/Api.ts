@@ -9,13 +9,13 @@ class Api {
 
   constructor(store: Store<RootState>, baseUrl: string) {
     this.store = store;
-    this.store.subscribe(this.handleStoreChange);
-    this.apiToken = '';
+    // this.store.subscribe(this.handleStoreChange);
+    this.apiToken = localStorage.getItem('apiToken') || '';
     this.baseUrl = baseUrl;
   }
 
   handleStoreChange = () => {
-    this.apiToken = this.store.getState().currentUserReducer.apiToken;
+    // this.apiToken = this.store.getState().currentUserReducer.apiToken;
   };
 
   private requester() {
@@ -27,11 +27,11 @@ class Api {
     });
   }
 
-  getApiToken = () =>
+  login = (username: string, password: string) =>
     this.requester()
       .post(
         '/auth/token/login/',
-        { password: '1', username: 'pavlen' },
+        { username, password },
         { headers: { Authorization: '' } }
       )
       .then(({ data }) => data);
@@ -39,6 +39,11 @@ class Api {
   getUserData = () =>
     this.requester()
       .get('/v1/users/me')
+      .then(({ data }) => data);
+
+  getUserSubscriptions = () =>
+    this.requester()
+      .get('/v1/subscriptions')
       .then(({ data }) => data);
 
   getAllServicesList = () =>
@@ -62,6 +67,6 @@ class Api {
       .then(({ data }) => data);
 }
 
-const api = new Api(store, 'http://127.0.0.1:8000/api/');
+const api = new Api(store, 'http://localhost:8000/api/');
 
 export default api;

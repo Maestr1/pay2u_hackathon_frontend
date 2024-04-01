@@ -21,7 +21,6 @@ function CardsSlider(props: ICardsSliderProps): ReactElement {
     (store) => store.availableSubscriptionsReducer.availableSubscriptions
   );
 
-
   return (
     <section className="cards-slider">
       <CardListHeader title={props.title} link={props.link} />

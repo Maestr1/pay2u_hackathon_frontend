@@ -23,6 +23,12 @@ const Card = styled.div`
   box-shadow: 0 4px 15px 0 rgba(95, 105, 131, 0.12),
     0 5px 4px 0 rgba(95, 105, 131, 0.05), 0 0 4px 0 rgba(95, 105, 131, 0.07);
   color: var(--black);
+
+  & img {
+    width: 24px;
+    height: 24px;
+  }
+  
   & h3 {
     font-size: inherit;
     font-weight: inherit;
