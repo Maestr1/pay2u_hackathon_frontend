@@ -9,7 +9,10 @@ import ServicePage from '../../pages/ServicePage/ServicePage.tsx';
 import PurchasePage from '../../pages/PurchasePage/PurchasePage.tsx';
 import SuccessfulPurchasePage from '../../pages/SuccessfulPurchasePage/SuccessfulPurchasePage.tsx';
 import { useDispatchTyped } from '../../hooks/store.ts';
-import { addCategorizedServices } from '../../services/servicesSlice.ts';
+import {
+  addCategorizedServices,
+  addPopularServices,
+} from '../../services/servicesSlice.ts';
 import CategoryPage from '../../pages/CategoryPage/CategoryPage.tsx';
 import UserServicesPage from '../../pages/UserServicesPage/UserServicesPage.tsx';
 import { addServicesCategories } from '../../services/servicesCategoriesSlice.ts';
@@ -34,20 +37,25 @@ function App(): ReactElement {
   }, []);
 
   useEffect(() => {
-    dispatch(setIsLoadingState(true));
-    Promise.all([
-      api.getUserData(),
-      api.getUserSubscriptions(),
-      api.getCategoriesList(),
-    ])
-      .then((res) => {
-        dispatch(addCurrentUser(res[0]));
-        dispatch(addUserSubscriptions(res[1]));
-        dispatch(addServicesCategories(res[2]));
-        getAllServicesList(res[2]);
-      })
-      .catch((err) => console.log(err))
-      .finally(() => dispatch(setIsLoadingState(false)));
+    if (loggedIn) {
+      dispatch(setIsLoadingState(true));
+      console.log('render');
+      Promise.all([
+        api.getUserData(),
+        api.getUserSubscriptions(),
+        api.getCategoriesList(),
+        api.getPopularServices(),
+      ])
+        .then(([user, subscriptions, categories, popularServices]) => {
+          dispatch(addCurrentUser(user));
+          dispatch(addUserSubscriptions(subscriptions));
+          dispatch(addServicesCategories(categories));
+          dispatch(addPopularServices(popularServices));
+          getAllServicesList(categories);
+        })
+        .catch(console.error)
+        .finally(() => dispatch(setIsLoadingState(false)));
+    }
   }, [loggedIn]);
 
   useEffect(() => {
@@ -57,7 +65,6 @@ function App(): ReactElement {
       localStorage.setItem('isVisited', 'true');
     }
   }, []);
-
   function login() {
     if (!localStorage.getItem('apiToken')) {
       api
@@ -66,11 +73,15 @@ function App(): ReactElement {
           localStorage.setItem('apiToken', res.auth_token);
         })
         .then(() => setLoggedIn(true));
+    } else {
+      setLoggedIn(true);
     }
   }
 
   function getAllServicesList(categories: ICategory[]) {
-    Promise.all(categories.map(({ id }) => api.getCategorizedServicesList(id)))
+    Promise.all(
+      categories.map(({ name }) => api.getCategorizedServicesList(name))
+    )
       .then((servicesList) =>
         dispatch(
           addCategorizedServices(

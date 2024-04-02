@@ -7,8 +7,8 @@ import Loader from '../Loader/Loader.tsx';
 import MainPageUserCards from '../../components/MainPageUserCards/MainPageUserCards.tsx';
 
 function MainPage(): ReactElement {
-  const availableSubscriptions = useSelectorTyped(
-    (store) => store.servicesReducer.availableServices
+  const popularServices = useSelectorTyped(
+    (store) => store.servicesReducer.popularServices
   );
   const subscriptionsCategories = useSelectorTyped(
     (store) => store.servicesCategoriesReducer.servicesCategories
@@ -24,7 +24,7 @@ function MainPage(): ReactElement {
         <MainPageUserCards />
         <CardsSlider
           slidesPerView={1.8}
-          items={availableSubscriptions}
+          items={popularServices}
           title="Популярное"
           cardType="big"
           link="/services/category/popular"

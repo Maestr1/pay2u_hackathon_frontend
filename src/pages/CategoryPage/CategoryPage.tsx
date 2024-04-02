@@ -1,37 +1,30 @@
-import { ReactElement, useEffect, useState } from 'react';
+import { ReactElement } from 'react';
 import SearchFrom from '../../components/SearchFrom/SearchFrom.tsx';
 import { Link, useParams } from 'react-router-dom';
 import {} from '../../utils/api/Api.ts';
 import { IService } from '../../utils/interfaces/interfaces.ts';
 import './CategoryPage.scss';
+import { useSelectorTyped } from '../../hooks/store.ts';
 
 function CategoryPage(): ReactElement {
-  const { category } = useParams();
-  const [subscriptionsArray, setSubscriptionsArray] = useState([]);
-  // useEffect(() => {
-  //   Api.searchSubscriptions(category).then((res) =>
-  //     setSubscriptionsArray(res.content)
-  //   );
-  // }, []);
+  const { category: categoryName } = useParams();
 
-  useEffect(() => {
-    if (subscriptionsArray.length > 0) {
-    }
-  }, [subscriptionsArray]);
+  const category = useSelectorTyped(
+    (state) => state.servicesReducer.categorizedServices
+  ).find((item) => item.category.slug === categoryName);
 
-  function subscriptionList() {
-    return subscriptionsArray.map((item: IService, index) => {
-      // ищем наименьшее значение tariffPromoPrice из всех тарифов
+  function renderSubscriptions() {
+    return category?.services.map((service: IService, index: number) => {
       const lowestPrice = Math.min(
-        ...item.tariff.map((tariff) => tariff.tariff_full_price)
+        ...service.tariff.map((t) => t.tariff_promo_price)
       );
       return (
         <li key={`subscription-${index}`}>
-          <Link className="link" to={`/services/${item.id}`}>
-            <img src={item.serviceIconSmall} alt="" />
+          <Link className="link" to={`/services/${service.id}`}>
+            <img src={service.icon_small} alt="" />
             <div className="category-page__decription">
-              <h3>{item.name}</h3>
-              <p>{`От ${lowestPrice} ₽ за 1 месяц`}</p>
+              <h3>{service.name}</h3>
+              <p>{`От ${lowestPrice} ₽ в месяц`}</p>
             </div>
           </Link>
         </li>
@@ -41,9 +34,9 @@ function CategoryPage(): ReactElement {
 
   return (
     <section className="category-page">
-      <h1 className="title"></h1>
+      <h1 className="title">{category?.category.name}</h1>
       <SearchFrom />
-      <ul className="category-page__list">{subscriptionList()}</ul>
+      <ul className="category-page__list">{renderSubscriptions()}</ul>
     </section>
   );
 }

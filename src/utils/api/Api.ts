@@ -41,9 +41,16 @@ class Api {
       .get('/v1/services')
       .then(({ data }) => data);
 
-  getCategorizedServicesList = (id: number) =>
+  getCategorizedServicesList = (name: string) =>
     this.requester()
-      .get(`/v1/categories/${id}/services`)
+      .get(`/v1/services/?category=${name}`)
+      // TODO вернуть обратно после исправления бека
+      // .get(`/v1/categories/${id}/services`)
+      .then(({ data }) => data);
+
+  getPopularServices = () =>
+    this.requester()
+      .get(`/v1/services/popular`)
       .then(({ data }) => data);
 
   getService = (id: number) =>

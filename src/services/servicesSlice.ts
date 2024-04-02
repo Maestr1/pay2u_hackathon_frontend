@@ -3,12 +3,14 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface IAvailableServicesState {
   availableServices: IService[],
-  categorizedServices: IServiceCategory[]
+  categorizedServices: IServiceCategory[],
+  popularServices: IService[],
 }
 
 const initialState: IAvailableServicesState = {
   availableServices: [],
-  categorizedServices: []
+  categorizedServices: [],
+  popularServices: []
 };
 
 const availableServicesSlice = createSlice({
@@ -20,10 +22,13 @@ const availableServicesSlice = createSlice({
     },
     addCategorizedServices: (state, action: PayloadAction<IServiceCategory[]>) => {
       state.categorizedServices = action.payload;
+    },
+    addPopularServices: (state, action: PayloadAction<IService[]>) => {
+      state.popularServices = action.payload;
     }
   }
 });
 
 
-export const { addAvailableServices, addCategorizedServices } = availableServicesSlice.actions;
+export const { addAvailableServices, addCategorizedServices, addPopularServices } = availableServicesSlice.actions;
 export const reducer = availableServicesSlice.reducer;

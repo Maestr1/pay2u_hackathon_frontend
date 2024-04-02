@@ -12,9 +12,6 @@ import { useDispatchTyped, useSelectorTyped } from '../../hooks/store.ts';
 import Loader from '../Loader/Loader.tsx';
 
 function ServicePage(): ReactElement {
-  // const availableSubscriptions = useSelector(
-  //   (store) => store.availableSubscriptionsReducer.availableSubscriptions
-  // );
   const { id } = useParams();
   const [selectSubscription, setSelectSubscription] = useState<IService>(
     {} as IService
