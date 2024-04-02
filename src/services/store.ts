@@ -1,14 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import { reducer as availableSubscriptionsReducer } from './subscriptionsSlice';
-import { reducer as subscriptionsCategoriesReducer } from './subscriptionsCategoriesSlice';
+import { reducer as servicesReducer } from './servicesSlice';
+import { reducer as servicesCategoriesReducer } from './servicesCategoriesSlice';
 import { reducer as currentUserReducer } from './currentUserSlice';
 import { reducer as pageStatesReducer } from './pageStatesSlice';
 
 export const store = configureStore({
   reducer: {
-    availableSubscriptionsReducer,
-    subscriptionsCategoriesReducer,
+    servicesReducer,
+    servicesCategoriesReducer,
     currentUserReducer,
     pageStatesReducer,
   },

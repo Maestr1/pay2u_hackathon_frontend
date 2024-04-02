@@ -40,7 +40,7 @@ export default function MainPageUserCards() {
   // );
 
   const userSubscriptions = useSelectorTyped(
-    (store) => store.availableSubscriptionsReducer.availableSubscriptions
+    (store) => store.servicesReducer.availableServices
   );
   const cardList = userSubscriptions.slice(0, 2);
 

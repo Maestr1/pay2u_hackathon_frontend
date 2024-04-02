@@ -1,10 +1,10 @@
 import { ReactElement } from 'react';
-import { ISubscription } from '../../utils/interfaces/interfaces.ts';
+import { IService } from '../../utils/interfaces/interfaces.ts';
 import { Link } from 'react-router-dom';
 import './ServiceCard.scss';
 
 interface ICardProps {
-  card: ISubscription;
+  card: IService;
   cardType: 'square' | 'big';
 }
 

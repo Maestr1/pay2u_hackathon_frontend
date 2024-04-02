@@ -1,5 +1,5 @@
 
-export interface ISubscription {
+export interface IService {
   id: number,
   name: string,
   category: ICategory,
@@ -9,6 +9,11 @@ export interface ISubscription {
   icon_small: string,
   description: string,
   tariff: ITariff[]
+}
+
+export interface IServiceCategory {
+  category: ICategory,
+  services: IService[]
 }
 
 export interface ITariff {

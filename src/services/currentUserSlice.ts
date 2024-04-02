@@ -1,10 +1,10 @@
-import { ISubscription, IUser } from '../utils/interfaces/interfaces.ts';
+import { IService, IUser } from '../utils/interfaces/interfaces.ts';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface ICurrentUserState {
   currentUser: IUser;
   apiToken: string;
-  userSubscriptions: ISubscription[];
+  userSubscriptions: IService[];
 }
 
 const initialState: ICurrentUserState = {
@@ -23,7 +23,7 @@ const currentUserSlice = createSlice({
     addApiToken: (state, action: PayloadAction<string>) => {
       state.apiToken = action.payload;
     },
-    addUserSubscriptions: (state, action: PayloadAction<ISubscription[]>) => {
+    addUserSubscriptions: (state, action: PayloadAction<IService[]>) => {
       state.userSubscriptions = action.payload;
     },
   },

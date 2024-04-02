@@ -2,7 +2,7 @@ import { ReactElement, useEffect, useState } from 'react';
 import SearchFrom from '../../components/SearchFrom/SearchFrom.tsx';
 import { Link, useParams } from 'react-router-dom';
 import {} from '../../utils/api/Api.ts';
-import { ISubscription } from '../../utils/interfaces/interfaces.ts';
+import { IService } from '../../utils/interfaces/interfaces.ts';
 import './CategoryPage.scss';
 
 function CategoryPage(): ReactElement {
@@ -20,7 +20,7 @@ function CategoryPage(): ReactElement {
   }, [subscriptionsArray]);
 
   function subscriptionList() {
-    return subscriptionsArray.map((item: ISubscription, index) => {
+    return subscriptionsArray.map((item: IService, index) => {
       // ищем наименьшее значение tariffPromoPrice из всех тарифов
       const lowestPrice = Math.min(
         ...item.tariff.map((tariff) => tariff.tariff_full_price)

@@ -1,11 +1,12 @@
-import { ISubscription } from '../../utils/interfaces/interfaces';
+import { IService } from '../../utils/interfaces/interfaces';
 import './ServiceHeader.scss';
 
 interface IServiceHeaderProps {
-  selectSubscription: ISubscription;
+  selectSubscription: IService;
 }
 
 function ServiceHeader(props: IServiceHeaderProps) {
+  console.log(props.selectSubscription)
   return (
     <div className="service-header">
       <img src={props.selectSubscription.icon_small} alt="" />

@@ -9,16 +9,20 @@ import ServicePage from '../../pages/ServicePage/ServicePage.tsx';
 import PurchasePage from '../../pages/PurchasePage/PurchasePage.tsx';
 import SuccessfulPurchasePage from '../../pages/SuccessfulPurchasePage/SuccessfulPurchasePage.tsx';
 import { useDispatchTyped } from '../../hooks/store.ts';
-import { addAvailableSubscriptions } from '../../services/subscriptionsSlice.ts';
+import { addCategorizedServices } from '../../services/servicesSlice.ts';
 import CategoryPage from '../../pages/CategoryPage/CategoryPage.tsx';
 import UserServicesPage from '../../pages/UserServicesPage/UserServicesPage.tsx';
-import { addSubscriptionsCategories } from '../../services/subscriptionsCategoriesSlice.ts';
-import { addCurrentUser, addUserSubscriptions } from '../../services/currentUserSlice.ts';
+import { addServicesCategories } from '../../services/servicesCategoriesSlice.ts';
+import {
+  addCurrentUser,
+  addUserSubscriptions,
+} from '../../services/currentUserSlice.ts';
 import OnboardingPage from '../../pages/OnboardingPage/OnboardingPage.tsx';
 import GuidePage from '../../pages/GuidePage/GuidePage.tsx';
 import api from '../../utils/api/Api.ts';
 import Loader from '../../pages/Loader/Loader.tsx';
 import { setIsLoadingState } from '../../services/pageStatesSlice.ts';
+import { ICategory, IService } from '../../utils/interfaces/interfaces.ts';
 
 function App(): ReactElement {
   const dispatch = useDispatchTyped();
@@ -33,15 +37,14 @@ function App(): ReactElement {
     dispatch(setIsLoadingState(true));
     Promise.all([
       api.getUserData(),
-      api.getAllServicesList(),
       api.getUserSubscriptions(),
       api.getCategoriesList(),
     ])
       .then((res) => {
         dispatch(addCurrentUser(res[0]));
-        dispatch(addAvailableSubscriptions(res[1]));
-        dispatch(addUserSubscriptions(res[2]));
-        dispatch(addSubscriptionsCategories(res[3]));
+        dispatch(addUserSubscriptions(res[1]));
+        dispatch(addServicesCategories(res[2]));
+        getAllServicesList(res[2]);
       })
       .catch((err) => console.log(err))
       .finally(() => dispatch(setIsLoadingState(false)));
@@ -64,6 +67,21 @@ function App(): ReactElement {
         })
         .then(() => setLoggedIn(true));
     }
+  }
+
+  function getAllServicesList(categories: ICategory[]) {
+    Promise.all(categories.map(({ id }) => api.getCategorizedServicesList(id)))
+      .then((servicesList) =>
+        dispatch(
+          addCategorizedServices(
+            servicesList.map((services, index) => ({
+              category: categories[index],
+              services,
+            }))
+          )
+        )
+      )
+      .catch(console.error);
   }
 
   return (

@@ -8,10 +8,10 @@ import MainPageUserCards from '../../components/MainPageUserCards/MainPageUserCa
 
 function MainPage(): ReactElement {
   const availableSubscriptions = useSelectorTyped(
-    (store) => store.availableSubscriptionsReducer.availableSubscriptions
+    (store) => store.servicesReducer.availableServices
   );
   const subscriptionsCategories = useSelectorTyped(
-    (store) => store.subscriptionsCategoriesReducer.subscriptionsCategories
+    (store) => store.servicesCategoriesReducer.servicesCategories
   );
   const isLoading = useSelectorTyped((store) => store.pageStatesReducer.isLoading);
 
@@ -31,7 +31,7 @@ function MainPage(): ReactElement {
         />
         <CategoriesList
           link="/services/all"
-          subscriptionsCategories={subscriptionsCategories}
+          servicesCategories={subscriptionsCategories}
         />
       </>
     );

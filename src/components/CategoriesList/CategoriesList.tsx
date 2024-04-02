@@ -4,7 +4,7 @@ import CardList from '../CardList/CardList.tsx';
 import { ICategory } from '../../utils/interfaces/interfaces.ts';
 
 interface ICategoriesListProps {
-  subscriptionsCategories: ICategory[],
+  servicesCategories: ICategory[],
   link: string
 }
 
@@ -12,7 +12,7 @@ function CategoriesList(props: ICategoriesListProps): ReactElement {
   return (
     <section>
       <CardListHeader title={ 'Каталог' } link={ props.link }/>
-      <CardList items={ props.subscriptionsCategories }/>
+      <CardList items={ props.servicesCategories }/>
     </section>
   );
 }
