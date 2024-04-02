@@ -9,8 +9,6 @@ function ServiceHeader(props: IServiceHeaderProps) {
   return (
     <div className="service-header">
       <img src={props.selectSubscription.icon_small} alt="" />
-
-      {/* <img src={props.selectSubscription.serviceIconSmall} alt="" /> */}
       <h2>{props.selectSubscription.name}</h2>
     </div>
   );

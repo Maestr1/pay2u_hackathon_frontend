@@ -5,7 +5,7 @@ interface IPageStatesState {
 }
 
 const initialState: IPageStatesState = {
-  isLoading: true,
+  isLoading: false,
 };
 
 const pageStatesSlice = createSlice({

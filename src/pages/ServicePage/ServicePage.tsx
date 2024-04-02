@@ -8,7 +8,8 @@ import { TabContext, TabList } from '@mui/lab';
 import ServiceHeader from '../../components/ServiceHeader/ServiceHeader.tsx';
 import api from '../../utils/api/Api.ts';
 import { setIsLoadingState } from '../../services/pageStatesSlice.ts';
-import { useDispatch } from '../../hooks/store.ts';
+import { useDispatch, useSelector } from '../../hooks/store.ts';
+import Loader from '../Loader/Loader.tsx';
 
 function ServicePage(): ReactElement {
   // const availableSubscriptions = useSelector(
@@ -20,32 +21,21 @@ function ServicePage(): ReactElement {
   );
   const [tabValue, setTabValue] = useState('0');
   const [selectedTariff, setSelectedTariff] = useState({} as ITariff);
-  const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   const subscription = availableSubscriptions.find((item) => String(item.id) === id);
-  //   if (subscription) {
-  //     setSelectSubscription(subscription);
-  //     setSelectedTariff(subscription.serviceTariffList[0]);
-  //   }
-  // }, [availableSubscriptions]);
+  const isLoading = useSelector((state) => state.pageStatesReducer.isLoading);
 
   useEffect(() => {
     dispatch(setIsLoadingState(true));
-    api.getService(Number(id))
+    api
+      .getService(Number(id))
       .then((res) => setSelectSubscription(res))
-      .then(() => dispatch(setIsLoadingState(false)))
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => dispatch(setIsLoadingState(false)));
   }, []);
 
   const tabs = () => {
     return selectSubscription.tariff.map((item, index) => (
-      <Tab
-        key={`tariff-tab-${index}`}
-        label={item.name}
-        value={`${index}`}
-      />
+      <Tab key={`tariff-tab-${index}`} label={item.name} value={`${index}`} />
     ));
   };
 
@@ -61,7 +51,9 @@ function ServicePage(): ReactElement {
         <p className="service-page__tariff-description">
           {`первый месяц ${
             item.tariff_full_price / item.services_duration
-          } ₽, последующие ${item.tariff_promo_price / item.services_duration} ₽`}
+          } ₽, последующие ${
+            item.tariff_promo_price / item.services_duration
+          } ₽`}
         </p>
       </TabPanel>
     ));
@@ -72,65 +64,48 @@ function ServicePage(): ReactElement {
     setSelectedTariff(selectSubscription.tariff[Number(newValue)]);
   }
 
-  return (
-    <section className="service-page">
-      <ServiceHeader selectSubscription={selectSubscription} />
-      <div className="service-page__description-wrap">
-        <p className="service-page__description-title">Описание</p>
-        <p className="service-page__description">
-          {selectSubscription.description}
-        </p>
-        <Link className="link" to={selectSubscription.link}>
-          Перейти на сервис
-        </Link>
-      </div>
-      <TabContext value={tabValue}>
-        <TabList
-          onChange={handleTabChange}
-          TabIndicatorProps={{
-            sx: { display: 'none' },
-          }}
-          sx={{
-            '& .MuiTabs-flexContainer': {
-              justifyContent: 'space-between',
-            },
-            '& button': {
-              transition:
-                'background-color 0.3s ease-in-out, color 0.3s ease-in-out',
-              borderRadius: '12px',
-              padding: '10px 12px',
-              fontSize: '16px',
-              fontWeight: 400,
-              lineHeight: '1.5',
-              minHeight: 'inherit',
-            },
-            '& button:active': { bgcolor: '#1E40AF', color: '#FFFFFF' },
-            '& button.Mui-selected': { bgcolor: '#1D4ED8', color: '#FFFFFF' },
-          }}
-        >
-          {selectSubscription && selectSubscription.tariff
-            ? tabs()
-            : ''}
-        </TabList>
-        <div className="service-page__tab-panel">
-          {selectSubscription && selectSubscription.tariff
-            ? tabPanels()
-            : ''}
-          <Button
-            to={'/purchase'}
-            state={{
-              subscription: selectSubscription,
-              selectTariff: selectedTariff,
-            }}
-            component={Link}
-            variant="contained"
-          >
-            Подключить
-          </Button>
+  if (isLoading) {
+    return <Loader />;
+  } else {
+    return (
+      <section className="service-page">
+        <ServiceHeader selectSubscription={selectSubscription} />
+        <div className="service-page__description-wrap">
+          <p className="service-page__description-title">Описание</p>
+          <p className="service-page__description">
+            {selectSubscription.description}
+          </p>
+          <Link className="link" to={selectSubscription.link}>
+            Перейти на сервис
+          </Link>
         </div>
-      </TabContext>
-    </section>
-  );
+        <TabContext value={tabValue}>
+          <TabList
+            onChange={handleTabChange}
+            TabIndicatorProps={{
+              sx: { display: 'none' },
+            }}
+          >
+            {selectSubscription && selectSubscription.tariff ? tabs() : ''}
+          </TabList>
+          <div className="service-page__tab-panel">
+            {selectSubscription && selectSubscription.tariff ? tabPanels() : ''}
+            <Button
+              to={'/purchase'}
+              state={{
+                subscription: selectSubscription,
+                selectTariff: selectedTariff,
+              }}
+              component={Link}
+              variant="contained"
+            >
+              Подключить
+            </Button>
+          </div>
+        </TabContext>
+      </section>
+    );
+  }
 }
 
 export default ServicePage;

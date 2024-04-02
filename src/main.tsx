@@ -56,9 +56,24 @@ const theme = createTheme({
     MuiTabs: {
       styleOverrides: {
         flexContainer: {
+          justifyContent: 'flex-start',
+          gap: '4px',
           containertype: 'inline-size',
           '& button': {
-            width: '33%'
+            flexGrow: 1,
+            transition:
+              'background-color 0.3s ease-in-out, color 0.3s ease-in-out',
+            borderRadius: '12px',
+            padding: '10px 12px',
+            fontSize: '16px',
+            fontWeight: 400,
+            lineHeight: '1.5',
+            minHeight: 'inherit',
+          },
+          '& button:active': { backgroundColor: '#1E40AF', color: '#FFFFFF' },
+          '& button.Mui-selected': {
+            backgroundColor: '#1D4ED8',
+            color: '#FFFFFF',
           },
           '@media (max-width: 374px)': {
             '& button': {
