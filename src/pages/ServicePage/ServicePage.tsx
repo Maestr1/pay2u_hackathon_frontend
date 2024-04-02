@@ -8,7 +8,7 @@ import { TabContext, TabList } from '@mui/lab';
 import ServiceHeader from '../../components/ServiceHeader/ServiceHeader.tsx';
 import api from '../../utils/api/Api.ts';
 import { setIsLoadingState } from '../../services/pageStatesSlice.ts';
-import { useDispatch, useSelector } from '../../hooks/store.ts';
+import { useDispatchTyped, useSelectorTyped } from '../../hooks/store.ts';
 import Loader from '../Loader/Loader.tsx';
 
 function ServicePage(): ReactElement {
@@ -21,8 +21,8 @@ function ServicePage(): ReactElement {
   );
   const [tabValue, setTabValue] = useState('0');
   const [selectedTariff, setSelectedTariff] = useState({} as ITariff);
-  const dispatch = useDispatch();
-  const isLoading = useSelector((state) => state.pageStatesReducer.isLoading);
+  const dispatch = useDispatchTyped();
+  const isLoading = useSelectorTyped((state) => state.pageStatesReducer.isLoading);
 
   useEffect(() => {
     dispatch(setIsLoadingState(true));
@@ -75,7 +75,7 @@ function ServicePage(): ReactElement {
           <p className="service-page__description">
             {selectSubscription.description}
           </p>
-          <Link className="link" to={selectSubscription.link}>
+          <Link className="link"  to={selectSubscription.link} target="_blank">
             Перейти на сервис
           </Link>
         </div>

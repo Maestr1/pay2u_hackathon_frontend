@@ -2,13 +2,13 @@ import { ReactElement } from 'react';
 import './CategoryCatalogPage.scss';
 import SearchFrom from '../../components/SearchFrom/SearchFrom.tsx';
 import CardsSlider from '../../components/CardsSlider/CardsSlider.tsx';
-import { useSelector } from '../../hooks/store.ts';
+import { useSelectorTyped } from '../../hooks/store.ts';
 import { ICategory, ISubscription } from '../../utils/interfaces/interfaces.ts';
 
 function CategoryCatalogPage(): ReactElement {
 
-  const availableSubscriptions:ISubscription[] = useSelector(store => store.availableSubscriptionsReducer.availableSubscriptions);
-  const subscriptionsCategories:ICategory[] = useSelector(store => store.subscriptionsCategoriesReducer.subscriptionsCategories);
+  const availableSubscriptions:ISubscription[] = useSelectorTyped(store => store.availableSubscriptionsReducer.availableSubscriptions);
+  const subscriptionsCategories:ICategory[] = useSelectorTyped(store => store.subscriptionsCategoriesReducer.subscriptionsCategories);
 
 
   return (

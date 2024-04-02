@@ -8,15 +8,12 @@ import CategoryCatalogPage from '../../pages/CategoryCatalogPage/CategoryCatalog
 import ServicePage from '../../pages/ServicePage/ServicePage.tsx';
 import PurchasePage from '../../pages/PurchasePage/PurchasePage.tsx';
 import SuccessfulPurchasePage from '../../pages/SuccessfulPurchasePage/SuccessfulPurchasePage.tsx';
-import { useDispatch } from '../../hooks/store.ts';
-import {
-  addAvailableSubscriptions,
-  addUserSubscriptions,
-} from '../../services/subscriptionsSlice.ts';
+import { useDispatchTyped } from '../../hooks/store.ts';
+import { addAvailableSubscriptions } from '../../services/subscriptionsSlice.ts';
 import CategoryPage from '../../pages/CategoryPage/CategoryPage.tsx';
 import UserServicesPage from '../../pages/UserServicesPage/UserServicesPage.tsx';
 import { addSubscriptionsCategories } from '../../services/subscriptionsCategoriesSlice.ts';
-import { addCurrentUser } from '../../services/currentUserSlice.ts';
+import { addCurrentUser, addUserSubscriptions } from '../../services/currentUserSlice.ts';
 import OnboardingPage from '../../pages/OnboardingPage/OnboardingPage.tsx';
 import GuidePage from '../../pages/GuidePage/GuidePage.tsx';
 import api from '../../utils/api/Api.ts';
@@ -24,7 +21,7 @@ import Loader from '../../pages/Loader/Loader.tsx';
 import { setIsLoadingState } from '../../services/pageStatesSlice.ts';
 
 function App(): ReactElement {
-  const dispatch = useDispatch();
+  const dispatch = useDispatchTyped();
   const navigate = useNavigate();
   const [loggedIn, setLoggedIn] = useState(false);
 

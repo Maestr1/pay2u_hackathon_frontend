@@ -1,14 +1,16 @@
-import { IUser } from '../utils/interfaces/interfaces.ts';
+import { ISubscription, IUser } from '../utils/interfaces/interfaces.ts';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface ICurrentUserState {
-  currentUser: IUser,
-  apiToken: string
+  currentUser: IUser;
+  apiToken: string;
+  userSubscriptions: ISubscription[];
 }
 
 const initialState: ICurrentUserState = {
   currentUser: {} as IUser,
-  apiToken: ''
+  apiToken: '',
+  userSubscriptions: [],
 };
 
 const currentUserSlice = createSlice({
@@ -20,13 +22,13 @@ const currentUserSlice = createSlice({
     },
     addApiToken: (state, action: PayloadAction<string>) => {
       state.apiToken = action.payload;
-    }
-    // removeAvailableSubscriptions: (state, action: PayloadAction<string>) => {
-    //   state.availableSubscriptions = state.availableSubscriptions.filter((item) => item.id !== action.payload);
-    // }
-  }
+    },
+    addUserSubscriptions: (state, action: PayloadAction<ISubscription[]>) => {
+      state.userSubscriptions = action.payload;
+    },
+  },
 });
 
-
-export const { addCurrentUser, addApiToken } = currentUserSlice.actions;
+export const { addCurrentUser, addApiToken, addUserSubscriptions } =
+  currentUserSlice.actions;
 export const reducer = currentUserSlice.reducer;

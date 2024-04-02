@@ -2,5 +2,5 @@ import { useDispatch as dispatchHook, useSelector as selectorHook} from 'react-r
 import {AppDispatch, RootState} from '../services/store';
 
 
-export const useDispatch = dispatchHook.withTypes<AppDispatch>()
-export const useSelector = selectorHook.withTypes<RootState>()
+export const useDispatchTyped = dispatchHook.withTypes<AppDispatch>()
+export const useSelectorTyped = selectorHook.withTypes<RootState>()

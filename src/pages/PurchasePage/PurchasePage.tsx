@@ -19,7 +19,7 @@ import {
   styled,
 } from '@mui/material';
 import { SwitchLovely } from '../../components/uxComponents/switch.ts';
-import { useSelector } from '../../hooks/store.ts';
+import { useSelectorTyped } from '../../hooks/store.ts';
 
 const PhoneNubmerInput = styled(TextField)(() => ({
   '& legend': { display: 'none' },
@@ -48,7 +48,7 @@ const AutopaymentSwitch = styled(FormControlLabel)(() => ({
 }));
 
 function PurchasePage(): ReactElement {
-  const currentUser = useSelector(
+  const currentUser = useSelectorTyped(
     (store) => store.currentUserReducer.currentUser
   );
   const subscription = useLocation().state.subscription;
