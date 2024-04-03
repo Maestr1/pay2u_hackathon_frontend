@@ -86,11 +86,6 @@ function ServicePage(): ReactElement {
     return selectSubscription.tariff.map((item, index) => (
       <TabPanel sx={{ p: 0 }} key={`tariff-panel-${index}`} value={`${index}`}>
         <h3 className="service-page__tariff-heading">{item.name}</h3>
-        {/* <p className="service-page__costs">
-          <span className="service-page__cost service-page__cost_accent">{`${item.tariff_full_price} ₽`}</span>{' '}
-          <span className="service-page__cost">{`${item.tariff_promo_price}`}</span>{' '}
-          ₽ за месяц
-        </p> */}
         {tariffInfo(item)}
       </TabPanel>
     ));
