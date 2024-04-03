@@ -24,7 +24,7 @@ const theme = createTheme({
       },
       styleOverrides: {
         root: () => ({
-          paddingBlock: '12px',
+          paddingBlock: '10px',
           width: '100%',
           borderRadius: '8px',
           boxShadow: 'none',
