@@ -21,7 +21,7 @@ export interface ITariff {
   name: string,
   tariff_full_price: number,
   tariff_promo_price: number,
-  services_duration: number,
+  services_duration: string,
   description: string
 }
 

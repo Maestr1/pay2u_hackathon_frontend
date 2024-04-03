@@ -18,13 +18,20 @@ function CategoryPage(): ReactElement {
       const lowestPrice = Math.min(
         ...service.tariff.map((t) => t.tariff_promo_price)
       );
+
       return (
         <li key={`subscription-${index}`}>
           <Link className="link" to={`/services/${service.id}`}>
             <img src={service.icon_small} alt="" />
             <div className="category-page__decription">
               <h3>{service.name}</h3>
-              <p>{`От ${lowestPrice} ₽ в месяц`}</p>
+              <p>
+                {lowestPrice === Infinity ? (
+                  <span>Недоступен для подписки &#128546;</span>
+                ) : (
+                  `От ${lowestPrice} ₽ в месяц`
+                )}
+              </p>
             </div>
           </Link>
         </li>

@@ -25,7 +25,7 @@ import GuidePage from '../../pages/GuidePage/GuidePage.tsx';
 import api from '../../utils/api/Api.ts';
 import Loader from '../../pages/Loader/Loader.tsx';
 import { setIsLoadingState } from '../../services/pageStatesSlice.ts';
-import { ICategory, IService } from '../../utils/interfaces/interfaces.ts';
+import { ICategory } from '../../utils/interfaces/interfaces.ts';
 
 function App(): ReactElement {
   const dispatch = useDispatchTyped();
@@ -39,7 +39,6 @@ function App(): ReactElement {
   useEffect(() => {
     if (loggedIn) {
       dispatch(setIsLoadingState(true));
-      console.log('render');
       Promise.all([
         api.getUserData(),
         api.getUserSubscriptions(),

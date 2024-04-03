@@ -6,7 +6,6 @@ interface IServiceHeaderProps {
 }
 
 function ServiceHeader(props: IServiceHeaderProps) {
-  console.log(props.selectSubscription)
   return (
     <div className="service-header">
       <img src={props.selectSubscription.icon_small} alt="" />

@@ -19,7 +19,9 @@ function ServicePage(): ReactElement {
   const [tabValue, setTabValue] = useState('0');
   const [selectedTariff, setSelectedTariff] = useState({} as ITariff);
   const dispatch = useDispatchTyped();
-  const isLoading = useSelectorTyped((state) => state.pageStatesReducer.isLoading);
+  const isLoading = useSelectorTyped(
+    (state) => state.pageStatesReducer.isLoading
+  );
 
   useEffect(() => {
     dispatch(setIsLoadingState(true));
@@ -36,22 +38,60 @@ function ServicePage(): ReactElement {
     ));
   };
 
+  const tariffInfo = (tariff: ITariff) => {
+    //TODO исправить, если промо-цена будет необязательной
+    if (tariff.tariff_promo_price !== 0) {
+      if (tariff.services_duration === '1') {
+        return (
+          <>
+            <p className="service-page__costs">
+              <span className="service-page__cost service-page__cost_accent">{`${tariff.tariff_full_price} ₽`}</span>{' '}
+              <span className="service-page__cost">{`${tariff.tariff_promo_price} ₽`}</span>{' '}
+              за месяц
+            </p>
+            <p className="service-page__tariff-description">
+              первый месяц {tariff.tariff_promo_price} ₽, последующие{' '}
+              {tariff.tariff_full_price} ₽
+            </p>
+          </>
+        );
+      } else {
+        return (
+          <>
+            <p className="service-page__costs">
+              <span className="service-page__cost service-page__cost_accent">{`${tariff.tariff_full_price} ₽`}</span>{' '}
+              <span className="service-page__cost">{`${tariff.tariff_promo_price}`}</span>{' '}
+              ₽ за месяц
+            </p>
+            <p className="service-page__tariff-description">
+              Всего за {tariff.services_duration} месяцев{' '}
+              {tariff.tariff_promo_price} ₽
+            </p>
+          </>
+        );
+      }
+    } else {
+      return (
+        <p className="service-page__costs">
+          <span className="service-page__cost">{`${Math.trunc(
+            tariff.tariff_full_price / Number(tariff.services_duration)
+          )} ₽`}</span>{' '}
+          за месяц
+        </p>
+      );
+    }
+  };
+
   const tabPanels = () => {
     return selectSubscription.tariff.map((item, index) => (
       <TabPanel sx={{ p: 0 }} key={`tariff-panel-${index}`} value={`${index}`}>
         <h3 className="service-page__tariff-heading">{item.name}</h3>
-        <p className="service-page__costs">
-          <span className="service-page__cost service-page__cost_accent">{`${item.tariff_promo_price} ₽`}</span>{' '}
-          <span className="service-page__cost">{`${item.tariff_full_price}`}</span>{' '}
+        {/* <p className="service-page__costs">
+          <span className="service-page__cost service-page__cost_accent">{`${item.tariff_full_price} ₽`}</span>{' '}
+          <span className="service-page__cost">{`${item.tariff_promo_price}`}</span>{' '}
           ₽ за месяц
-        </p>
-        <p className="service-page__tariff-description">
-          {`первый месяц ${
-            item.tariff_full_price / item.services_duration
-          } ₽, последующие ${
-            item.tariff_promo_price / item.services_duration
-          } ₽`}
-        </p>
+        </p> */}
+        {tariffInfo(item)}
       </TabPanel>
     ));
   };
@@ -72,7 +112,7 @@ function ServicePage(): ReactElement {
           <p className="service-page__description">
             {selectSubscription.description}
           </p>
-          <Link className="link"  to={selectSubscription.link} target="_blank">
+          <Link className="link" to={selectSubscription.link} target="_blank">
             Перейти на сервис
           </Link>
         </div>
