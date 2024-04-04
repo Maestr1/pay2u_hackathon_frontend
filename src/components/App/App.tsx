@@ -40,13 +40,12 @@ function App(): ReactElement {
     if (loggedIn) {
       dispatch(setIsLoadingState(true));
       Promise.all([
-        api.getUserData(),
+        // api.getUserData(),
         api.getUserSubscriptions(),
         api.getCategoriesList(),
         api.getPopularServices(),
       ])
-        .then(([user, subscriptions, categories, popularServices]) => {
-          dispatch(addCurrentUser(user));
+        .then(([subscriptions, categories, popularServices]) => {
           dispatch(addUserSubscriptions(subscriptions));
           dispatch(addServicesCategories(categories));
           dispatch(addPopularServices(popularServices));
@@ -54,6 +53,8 @@ function App(): ReactElement {
         })
         .catch(console.error)
         .finally(() => dispatch(setIsLoadingState(false)));
+    } else {
+      login();
     }
   }, [loggedIn]);
 
@@ -65,16 +66,21 @@ function App(): ReactElement {
     }
   }, []);
   function login() {
-    if (!localStorage.getItem('apiToken')) {
-      api
-        .login('pavlen', '1')
-        .then((res) => {
-          localStorage.setItem('apiToken', res.auth_token);
-        })
-        .then(() => setLoggedIn(true));
-    } else {
-      setLoggedIn(true);
-    }
+    api
+      .getUserData()
+      .then((res) => {
+        dispatch(addCurrentUser(res));
+        setLoggedIn(true);
+      })
+      .catch(() => {
+        api
+          .login('pavlen', '1')
+          .then((res) => {
+            localStorage.setItem('apiToken', res.auth_token);
+            setLoggedIn(true);
+          })
+          .catch(console.error);
+      });
   }
 
   function getAllServicesList(categories: ICategory[]) {

@@ -28,44 +28,76 @@ class Api {
 
   getUserData = () =>
     this.requester()
-      .get('/v1/users/me')
+      .get('/v1/users/me', {
+        headers: {
+          Authorization: `Token ${localStorage.getItem('apiToken')}`,
+        },
+      })
       .then(({ data }) => data);
 
   getUserSubscriptions = () =>
     this.requester()
-      .get('/v1/subscriptions')
+      .get('/v1/subscriptions', {
+        headers: {
+          Authorization: `Token ${localStorage.getItem('apiToken')}`,
+        },
+      })
       .then(({ data }) => data);
 
   getAllServicesList = () =>
     this.requester()
-      .get('/v1/services')
+      .get('/v1/services', {
+        headers: {
+          Authorization: `Token ${localStorage.getItem('apiToken')}`,
+        },
+      })
       .then(({ data }) => data);
 
   getCategorizedServicesList = (name: string) =>
     this.requester()
-      .get(`/v1/services/?category=${name}`)
+      .get(`/v1/services/?category=${name}`, {
+        headers: {
+          Authorization: `Token ${localStorage.getItem('apiToken')}`,
+        },
+      })
       // TODO вернуть обратно после исправления бека
       // .get(`/v1/categories/${id}/services`)
       .then(({ data }) => data);
 
   getPopularServices = () =>
     this.requester()
-      .get(`/v1/services/popular`)
+      .get(`/v1/services/popular`, {
+        headers: {
+          Authorization: `Token ${localStorage.getItem('apiToken')}`,
+        },
+      })
       .then(({ data }) => data);
 
   getService = (id: number) =>
     this.requester()
-      .get(`/v1/services/${id}`)
+      .get(`/v1/services/${id}`, {
+        headers: {
+          Authorization: `Token ${localStorage.getItem('apiToken')}`,
+        },
+      })
       .then(({ data }) => data);
 
   getCategoriesList = () =>
     this.requester()
-      .get(`/v1/categories`)
+      .get(`/v1/categories`, {
+        headers: {
+          Authorization: `Token ${localStorage.getItem('apiToken')}`,
+        },
+      })
       .then(({ data }) => data);
 
   searchSubscriptionsByQuery = (query: string = '') =>
     this.requester()
-      .get(`/v1/subscriptions/search/${query}`)
+      .get(`/v1/subscriptions/search/${query}`, {
+        headers: {
+          Authorization: `Token ${localStorage.getItem('apiToken')}`,
+        },
+      })
       .then(({ data }) => data);
 }
 
