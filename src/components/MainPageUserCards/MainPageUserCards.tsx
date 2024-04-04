@@ -34,16 +34,12 @@ const PlusSpan = styled.span`
 `;
 
 export default function MainPageUserCards() {
-  //TODO вернуть, как будут подписки
-  // const userSubscriptions = useSelectorTyped(
-  //   (store) => store.currentUserReducer.userSubscriptions
-  // );
-
   const userSubscriptions = useSelectorTyped(
-    (store) => store.servicesReducer.availableServices
+    (store) => store.currentUserReducer.userSubscriptions
   );
-  const cardList = userSubscriptions.slice(0, 2);
 
+  const cardList = userSubscriptions.slice(0, 2);
+console.log(userSubscriptions)
   return (
     <section>
       <CardListHeader title="Мои подписки" link="/services/my-services/" />
@@ -51,7 +47,7 @@ export default function MainPageUserCards() {
         {cardList.map((card, index) => (
           <ServiceCard
             key={`user-card-${index}`}
-            card={card}
+            card={card.service}
             cardType="square"
           />
         ))}

@@ -60,6 +60,7 @@ const theme = createTheme({
           gap: '4px',
           containertype: 'inline-size',
           '& button': {
+            minWidth: '0',
             flexGrow: 1,
             transition:
               'background-color 0.3s ease-in-out, color 0.3s ease-in-out',

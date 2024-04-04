@@ -1,9 +1,9 @@
-import { IService, IUser } from '../utils/interfaces/interfaces.ts';
+import { ISubscription, IUser } from '../utils/interfaces/interfaces.ts';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface ICurrentUserState {
   currentUser: IUser;
-  userSubscriptions: IService[];
+  userSubscriptions: ISubscription[];
 }
 
 const initialState: ICurrentUserState = {
@@ -18,7 +18,7 @@ const currentUserSlice = createSlice({
     addCurrentUser: (state, action: PayloadAction<IUser>) => {
       state.currentUser = action.payload;
     },
-    addUserSubscriptions: (state, action: PayloadAction<IService[]>) => {
+    addUserSubscriptions: (state, action: PayloadAction<ISubscription[]>) => {
       state.userSubscriptions = action.payload;
     },
   },
