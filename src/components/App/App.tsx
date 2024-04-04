@@ -25,7 +25,7 @@ import GuidePage from '../../pages/GuidePage/GuidePage.tsx';
 import api from '../../utils/api/Api.ts';
 import Loader from '../../pages/Loader/Loader.tsx';
 import { setIsLoadingState } from '../../services/pageStatesSlice.ts';
-import { ICategory, ISubscription } from '../../utils/interfaces/interfaces.ts';
+import { ICategory } from '../../utils/interfaces/interfaces.ts';
 
 function App(): ReactElement {
   const dispatch = useDispatchTyped();
@@ -45,7 +45,6 @@ function App(): ReactElement {
         api.getPopularServices(),
       ])
         .then(([subscriptions, categories, popularServices]) => {
-          // getUserSubscriptions(subscriptions);
           dispatch(addUserSubscriptions(subscriptions));
           dispatch(addServicesCategories(categories));
           dispatch(addPopularServices(popularServices));
@@ -83,18 +82,6 @@ function App(): ReactElement {
       });
   }
 
-  // function getUserSubscriptions(userSubscriptions: ISubscription[]) {
-  //   Promise.all(userSubscriptions.map(({ id }) => api.getService(id)))
-  //     .then((res) => {
-  //       dispatch(
-  //         addUserSubscriptions(
-  //           userSubscriptions.map((item, index) => (item.service = res[index]))
-  //         )
-  //       );
-  //     })
-  //     .catch(console.error);
-  // }
-
   function getAllServicesList(categories: ICategory[]) {
     Promise.all(
       categories.map(({ name }) => api.getCategorizedServicesList(name))
@@ -117,7 +104,10 @@ function App(): ReactElement {
       <Route path="/" element={<Layout />}>
         <Route index element={<MainPage />} />
         <Route path="/services/all" element={<CategoryCatalogPage />} />
-        <Route path="/services/my-subscriptions" element={<UserSubscriptionsPage />} />
+        <Route
+          path="/services/my-subscriptions"
+          element={<UserSubscriptionsPage />}
+        />
         <Route path="/services/category/popular" element={<CategoryPage />} />
         <Route path="/services/category/:category" element={<CategoryPage />} />
         <Route path="/services/:id" element={<ServicePage />} />

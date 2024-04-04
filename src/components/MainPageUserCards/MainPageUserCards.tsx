@@ -39,7 +39,6 @@ export default function MainPageUserCards() {
   );
 
   const cardList = userSubscriptions.slice(0, 2);
-console.log(userSubscriptions)
   return (
     <section>
       <CardListHeader title="Мои подписки" link="/services/my-subscriptions/" />
