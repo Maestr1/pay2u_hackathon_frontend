@@ -2,7 +2,7 @@ import { ReactElement } from 'react';
 import SearchFrom from '../../components/SearchFrom/SearchFrom.tsx';
 import { Link, useParams } from 'react-router-dom';
 import {} from '../../utils/api/Api.ts';
-import { IService } from '../../utils/interfaces/interfaces.ts';
+import { IServiceExtended } from '../../utils/interfaces/interfaces.ts';
 import './CategoryPage.scss';
 import { useSelectorTyped } from '../../hooks/store.ts';
 
@@ -14,7 +14,7 @@ function CategoryPage(): ReactElement {
   ).find((item) => item.category.slug === categoryName);
 
   function renderSubscriptions() {
-    return category?.services.map((service: IService, index: number) => {
+    return category?.services.map((service: IServiceExtended, index: number) => {
       const lowestPrice = Math.min(
         ...service.tariff.map((t) => t.tariff_promo_price)
       );

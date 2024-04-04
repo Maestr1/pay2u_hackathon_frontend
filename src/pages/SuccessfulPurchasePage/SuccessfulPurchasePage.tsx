@@ -2,7 +2,7 @@ import { ReactElement } from 'react';
 import './SuccessfulPurchasePage.scss';
 import succesfullPurchaseImg from '../../images/other_images/succefullPurchaseImg.png';
 import styled from 'styled-components';
-import { IService, ITariff } from '../../utils/interfaces/interfaces';
+import { IServiceExtended, ITariff } from '../../utils/interfaces/interfaces';
 import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 
@@ -90,7 +90,7 @@ const OnbordingLink = styled(Link)`
 `;
 
 interface ISuccessfulPurchasePageProps {
-  service: IService;
+  service: IServiceExtended;
   tariff: ITariff;
   payment: any;
 }

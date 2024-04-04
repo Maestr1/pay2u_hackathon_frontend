@@ -46,7 +46,7 @@ function App(): ReactElement {
       ])
         .then(([subscriptions, categories, popularServices]) => {
           // getUserSubscriptions(subscriptions);
-          // dispatch(addUserSubscriptions(subscriptions));
+          dispatch(addUserSubscriptions(subscriptions));
           dispatch(addServicesCategories(categories));
           dispatch(addPopularServices(popularServices));
           getAllServicesList(categories);

@@ -42,16 +42,16 @@ export default function MainPageUserCards() {
 console.log(userSubscriptions)
   return (
     <section>
-      <CardListHeader title="Мои подписки" link="/services/my-services/" />
+      <CardListHeader title="Мои подписки" link="/services/my-subscriptions/" />
       <CardWrapper>
         {cardList.map((card, index) => (
           <ServiceCard
             key={`user-card-${index}`}
-            card={card.service}
+            card={card.tariff.services}
             cardType="square"
           />
         ))}
-        <UserServicesLink to={'/services/my-services/'}>
+        <UserServicesLink to={'/services/all/'}>
           <PlusSpan>+</PlusSpan>
           Добавить подписку
         </UserServicesLink>

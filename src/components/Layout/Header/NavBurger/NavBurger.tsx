@@ -23,7 +23,7 @@ function NavBurger(props: NavBurgerProps): ReactElement {
             <Link onClick={props.handleMenuClose} className="link" to="/"><img src={ homeIcon } alt=""/>Главная</Link>
           </li>
           <li>
-            <Link onClick={props.handleMenuClose} className="link" to="/services/my-services"><img src={ subscribesLogo } alt=""/>Мои подписки</Link>
+            <Link onClick={props.handleMenuClose} className="link" to="/services/my-subscriptions"><img src={ subscribesLogo } alt=""/>Мои подписки</Link>
           </li>
           <li>
             <Link onClick={props.handleMenuClose} className="link" to="/payment-history"><img src={ walletIcon } alt=""/>История платежей</Link>

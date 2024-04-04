@@ -1,8 +1,8 @@
-import { IService } from '../../utils/interfaces/interfaces';
+import { IServiceExtended } from '../../utils/interfaces/interfaces';
 import './ServiceHeader.scss';
 
 interface IServiceHeaderProps {
-  selectSubscription: IService;
+  selectSubscription: IServiceExtended;
 }
 
 function ServiceHeader(props: IServiceHeaderProps) {

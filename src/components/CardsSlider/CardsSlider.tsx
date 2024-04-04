@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 import './CardsSlider.scss';
 import CardListHeader from '../CardListHeader/CardListHeader.tsx';
-import { IService } from '../../utils/interfaces/interfaces.ts';
+import { IServiceExtended } from '../../utils/interfaces/interfaces.ts';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/scss';
 import 'swiper/scss/pagination';
@@ -11,7 +11,7 @@ interface ICardsSliderProps {
   title: string;
   cardType: 'square' | 'big';
   link: string;
-  items: IService[];
+  items: IServiceExtended[];
   slidesPerView: number;
 }
 

@@ -1,10 +1,10 @@
-import { IService, IServiceCategory } from '../utils/interfaces/interfaces.ts';
+import { IServiceExtended, IServiceCategory } from '../utils/interfaces/interfaces.ts';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface IAvailableServicesState {
-  availableServices: IService[],
+  availableServices: IServiceExtended[],
   categorizedServices: IServiceCategory[],
-  popularServices: IService[],
+  popularServices: IServiceExtended[],
 }
 
 const initialState: IAvailableServicesState = {
@@ -17,13 +17,13 @@ const availableServicesSlice = createSlice({
   name: 'availableServices',
   initialState,
   reducers: {
-    addAvailableServices: (state, action: PayloadAction<IService[]>) => {
+    addAvailableServices: (state, action: PayloadAction<IServiceExtended[]>) => {
       state.availableServices = action.payload;
     },
     addCategorizedServices: (state, action: PayloadAction<IServiceCategory[]>) => {
       state.categorizedServices = action.payload;
     },
-    addPopularServices: (state, action: PayloadAction<IService[]>) => {
+    addPopularServices: (state, action: PayloadAction<IServiceExtended[]>) => {
       state.popularServices = action.payload;
     }
   }

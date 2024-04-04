@@ -10,7 +10,7 @@ interface ICardProps {
 
 function ServiceCard(props: ICardProps): ReactElement {
   return (
-    <Link className="big-card" to={`/services/${props.card.id}`}>
+    <Link className={`card card_type_${props.cardType}`} to={`/services/${props.card.id}`}>
       <img
         src={
           props.cardType === 'square'

@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import './ServicePage.scss';
 import { Link, useParams } from 'react-router-dom';
-import { IService, ITariff } from '../../utils/interfaces/interfaces.ts';
+import { IServiceExtended, ITariff } from '../../utils/interfaces/interfaces.ts';
 import { Button, Tab } from '@mui/material';
 import TabPanel from '@mui/lab/TabPanel';
 import { TabContext, TabList } from '@mui/lab';
@@ -13,8 +13,8 @@ import Loader from '../Loader/Loader.tsx';
 
 function ServicePage(): ReactElement {
   const { id } = useParams();
-  const [selectSubscription, setSelectSubscription] = useState<IService>(
-    {} as IService
+  const [selectSubscription, setSelectSubscription] = useState<IServiceExtended>(
+    {} as IServiceExtended
   );
   const [tabValue, setTabValue] = useState('0');
   const [selectedTariff, setSelectedTariff] = useState({} as ITariff);

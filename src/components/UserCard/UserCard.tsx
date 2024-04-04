@@ -1,9 +1,9 @@
 import React from 'react';
-import { IService } from '../../utils/interfaces/interfaces';
+import { IServiceExtended } from '../../utils/interfaces/interfaces';
 import { styled } from 'styled-components';
 
 interface IUserCardProps {
-  card: IService;
+  card: IServiceExtended;
 }
 
 const Card = styled.div`

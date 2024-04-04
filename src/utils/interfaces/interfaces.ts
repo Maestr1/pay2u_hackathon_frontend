@@ -1,32 +1,34 @@
+// Прошу считать все странные наименования и не логичные сплетения интерфейсов проблемой бэкендеров
+
 export interface IService {
   id: number;
   name: string;
-  category: ICategory;
   link: string;
+  category: ICategoryShort;
   icon_big: string;
   icon_square: string;
   icon_small: string;
+  is_popuar: boolean;
+}
+
+export interface IServiceExtended extends IService {
+  category: ICategory;
   description: string;
   tariff: ITariff[];
 }
 
-export interface IServiceShort {
-  //TODO сделать сокращенную версию
-}
-
 export interface IServiceCategory {
   category: ICategory;
-  services: IService[];
+  services: IServiceExtended[];
 }
 
 export interface ISubscription {
   created_at: string;
   id: number;
   is_active: boolean;
-  tariff: ITariff;
+  tariff: ITariffExtended;
   updated_at: string;
   user: number;
-  service: IService;
 }
 
 export interface ITariff {
@@ -36,6 +38,10 @@ export interface ITariff {
   tariff_promo_price: number;
   services_duration: string;
   description: string;
+}
+
+export interface ITariffExtended extends ITariff {
+  services: IService;
 }
 
 export interface ICashback {
@@ -59,6 +65,11 @@ export interface ICategory {
   slug: string;
   description: string;
   icon: string;
+}
+
+export interface ICategoryShort {
+  name: string;
+  slug: string;
 }
 
 export interface IUser {
