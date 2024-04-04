@@ -10,6 +10,10 @@ export interface IService {
   tariff: ITariff[];
 }
 
+export interface IServiceShort {
+  //TODO сделать сокращенную версию
+}
+
 export interface IServiceCategory {
   category: ICategory;
   services: IService[];
@@ -22,7 +26,7 @@ export interface ISubscription {
   tariff: ITariff;
   updated_at: string;
   user: number;
-  service: IService
+  service: IService;
 }
 
 export interface ITariff {
@@ -34,6 +38,21 @@ export interface ITariff {
   description: string;
 }
 
+export interface ICashback {
+  id: number;
+  serviceId: number;
+  type_cashback: 'percentage' | 'fixed_amount';
+  amountCashback: number;
+}
+
+export interface ICashbackSubscription {
+  tariffId: number;
+  userId: number;
+  paymentId: number;
+  accruedСashback: number;
+  status: 'cashback_completed' | 'cashback_not_received';
+}
+
 export interface ICategory {
   id: number;
   name: string;
@@ -43,13 +62,14 @@ export interface ICategory {
 }
 
 export interface IUser {
-  userId: number;
-  fullName: string;
-  phone: string;
+  id: number;
   email: string;
-  login: string;
-  userIcon: string;
+  username: string;
+  first_name: string;
+  last_name: string;
+
   paymentMethods: IPaymentMethod[];
+  subscriptions: ISubscription[];
 }
 
 export interface IPaymentMethod {
@@ -66,4 +86,15 @@ export interface IShippingFields {
   paymentMethodId: number;
   subscriptionId: number;
   autopayment: boolean;
+}
+
+export interface IPayment {
+  id: number;
+  subscription: number;
+  payment_methods: number;
+  cost: string;
+  paymentDate: string;
+  expiredDate: string;
+  status: string;
+  cashback: ICashbackSubscription;
 }

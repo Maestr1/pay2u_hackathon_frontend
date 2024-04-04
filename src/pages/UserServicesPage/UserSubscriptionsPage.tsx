@@ -21,6 +21,8 @@ const CategoryImg = styled.img`
 
 function UserSubscriptionsPage(): ReactElement {
   const [tabValue, setTabValue] = useState('0');
+
+  //TODO переделать на подписки пользователя
   const userSubscriptions = useSelectorTyped(
     (store) => store.servicesReducer.popularServices
   );
