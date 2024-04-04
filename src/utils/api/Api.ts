@@ -91,9 +91,9 @@ class Api {
       })
       .then(({ data }) => data);
 
-  searchSubscriptionsByQuery = (query: string = '') =>
+  searchServicesByQuery = (query: string) =>
     this.requester()
-      .get(`/v1/subscriptions/search/${query}`, {
+      .get(`/v1/services?name=${query}`, {
         headers: {
           Authorization: `Token ${localStorage.getItem('apiToken')}`,
         },

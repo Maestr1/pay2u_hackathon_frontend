@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import ServiceHeader from '../../components/ServiceHeader/ServiceHeader.tsx';
 import {
   IPaymentMethod,
-  IShippingFields,
+  IPurchseShippingFields,
   ITariff,
 } from '../../utils/interfaces/interfaces.ts';
 // import { useBeforeunload } from 'react-beforeunload';
@@ -58,7 +58,7 @@ function PurchasePage(): ReactElement {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<IShippingFields>({
+  } = useForm<IPurchseShippingFields>({
     defaultValues: {
       phoneNumber: currentUser?.phone.slice(2) || '',
       userId: currentUser.userId,
@@ -81,7 +81,7 @@ function PurchasePage(): ReactElement {
     return 'месяц';
   }
 
-  const onSubmit: SubmitHandler<IShippingFields> = (data) => {
+  const onSubmit: SubmitHandler<IPurchseShippingFields> = (data) => {
     console.log(currentUser);
     console.log(data);
     console.log(errors);

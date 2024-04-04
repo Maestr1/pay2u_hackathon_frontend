@@ -31,6 +31,7 @@
     "swiper": "^11.0.7"
   },
   "devDependencies": {
+    "@types/lodash": "^4.17.0",
     "@types/react": "^18.2.64",
     "@types/react-beforeunload": "^2.1.5",
     "@types/react-dom": "^18.2.21",

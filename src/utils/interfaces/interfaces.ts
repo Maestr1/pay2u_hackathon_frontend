@@ -91,12 +91,16 @@ export interface IPaymentMethod {
   methodIcon: string;
 }
 
-export interface IShippingFields {
+export interface IPurchseShippingFields {
   userId: number;
   phoneNumber: string;
   paymentMethodId: number;
   subscriptionId: number;
   autopayment: boolean;
+}
+
+export interface ISearchShippingFields {
+  query: string;
 }
 
 export interface IPayment {
