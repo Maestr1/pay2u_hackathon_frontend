@@ -41,7 +41,7 @@ export default function MainPageUserCards() {
   const cardList = userSubscriptions.slice(0, 2);
   return (
     <section>
-      <CardListHeader title="Мои подписки" link="/services/my-subscriptions/" />
+      <CardListHeader title="Мои подписки" link="/user/my-subscriptions/" />
       <CardWrapper>
         {cardList.map((card, index) => (
           <ServiceCard
