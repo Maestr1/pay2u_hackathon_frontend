@@ -26,6 +26,7 @@ import api from '../../utils/api/Api.ts';
 import Loader from '../../pages/Loader/Loader.tsx';
 import { setIsLoadingState } from '../../services/pageStatesSlice.ts';
 import { ICategory } from '../../utils/interfaces/interfaces.ts';
+import UserPaymentsPage from '../../pages/UserPaymentsPage/UserPaymentsPage.tsx';
 
 function App(): ReactElement {
   const dispatch = useDispatchTyped();
@@ -105,9 +106,10 @@ function App(): ReactElement {
         <Route index element={<MainPage />} />
         <Route path="/services/all" element={<CategoryCatalogPage />} />
         <Route
-          path="/services/my-subscriptions"
+          path="/user/my-subscriptions"
           element={<UserSubscriptionsPage />}
         />
+        <Route path="/user/my-payments" element={<UserPaymentsPage />} />
         <Route path="/services/category/popular" element={<CategoryPage />} />
         <Route path="/services/category/:category" element={<CategoryPage />} />
         <Route path="/services/:id" element={<ServicePage />} />
