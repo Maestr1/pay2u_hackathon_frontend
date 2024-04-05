@@ -1,6 +1,6 @@
 import React from 'react';
 import { IServiceExtended, ISubscription } from '../../utils/interfaces/interfaces';
-import UserCard from '../UserCard/UserCard';
+import UserCard from '../SubscriptionCard/SubscriptionCard';
 import { styled } from 'styled-components';
 
 interface IUserCardListProps {

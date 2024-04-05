@@ -8,6 +8,8 @@ interface ICardProps {
   cardType: 'square' | 'big';
 }
 
+
+
 function ServiceCard(props: ICardProps): ReactElement {
   return (
     <Link className={`card card_type_${props.cardType}`} to={`/services/${props.card.id}`}>

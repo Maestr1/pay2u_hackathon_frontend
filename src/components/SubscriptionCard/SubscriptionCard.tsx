@@ -1,4 +1,3 @@
-import React from 'react';
 import { IServiceExtended } from '../../utils/interfaces/interfaces';
 import { styled } from 'styled-components';
 

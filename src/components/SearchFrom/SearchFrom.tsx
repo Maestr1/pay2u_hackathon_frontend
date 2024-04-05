@@ -1,10 +1,14 @@
 import { ReactElement, useEffect, useState } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import searchIcon from '../../images/icons/search_icon.svg';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import api from '../../utils/api/Api';
 import _ from 'lodash';
-import { Button } from '@mui/material';
+import { IServiceExtended } from '../../utils/interfaces/interfaces';
+import ServiceListCard from '../ServiceListCard/ServiceListCard';
+import { useDispatchTyped } from '../../hooks/store';
+import { setSearchIsOpen } from '../../services/pageStatesSlice';
+import Loader from '../../pages/Loader/Loader';
 
 interface IFormInput {
   query: string;
@@ -56,13 +60,35 @@ const ResetButton = styled.button`
   color: var(--navy-blue-2);
 `;
 
+const SearchResult = styled.ul<{ $active: boolean }>`
+  position: absolute;
+  z-index: 10;
+  left: 0;
+  padding-inline: 16px;
+  padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  width: 100%;
+  background-color: var(--white);
+  height: 0;
+  transition: height 0.5s ease-in-out;
+  overflow-y: scroll;
+  ${({ $active }) =>
+    $active &&
+    `
+    height: 100vh; /* 100% от высоты видимой части экрана */
+  `}
+`;
+
 function SearchFrom(): ReactElement {
   const [debouncedQuery, setDebouncedQuery] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [result, setResult] = useState([] as IServiceExtended[]);
+  const dispatch = useDispatchTyped();
 
   const {
     register,
-    handleSubmit,
-    formState: { errors },
     reset,
     watch,
   } = useForm<IFormInput>({
@@ -72,7 +98,15 @@ function SearchFrom(): ReactElement {
   useEffect(() => {
     // Создание дебаунс функции
     const debouncedSearch = _.debounce((query: string) => {
-      api.searchServicesByQuery(query);
+      setIsLoading(true);
+      api
+        .searchServicesByQuery(query)
+        .then((res: IServiceExtended[]) => {
+          dispatch(setSearchIsOpen(true));
+          setResult(res);
+          setIsLoading(false);
+        })
+        .catch(console.error);
     }, 1000);
 
     if (debouncedQuery) {
@@ -92,21 +126,37 @@ function SearchFrom(): ReactElement {
     return () => subscription.unsubscribe();
   }, [watch]);
 
-  const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    console.log(data);
-    console.log(errors);
-    // reset()
-  };
-
   return (
-    <SearchForm onSubmit={handleSubmit(onSubmit)}>
-      <Input
-        {...register('query')}
-        type="text"
-        placeholder="Кино, музыка и другие сервисы"
-      />
-      <ResetButton onClick={() => reset()} type="reset">Отменить</ResetButton>
-    </SearchForm>
+    <section>
+      <SearchForm>
+        <Input
+          {...register('query')}
+          type="text"
+          placeholder="Кино, музыка и другие сервисы"
+        />
+        <ResetButton
+          onClick={() => {
+            reset();
+            dispatch(setSearchIsOpen(false));
+            setResult([]);
+          }}
+          type="reset"
+        >
+          Отменить
+        </ResetButton>
+      </SearchForm>
+      <SearchResult $active={result.length > 0}>
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <>
+            {result.map((service, index) => (
+              <ServiceListCard key={`card-${index}`} service={service} />
+            ))}
+          </>
+        )}
+      </SearchResult>
+    </section>
   );
 }
 
