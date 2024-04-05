@@ -29,6 +29,7 @@ export interface ISubscription {
   tariff: ITariffExtended;
   updated_at: string;
   user: number;
+  payment: IPayment
 }
 
 export interface ITariff {

@@ -40,7 +40,7 @@ function ServicePage(): ReactElement {
 
   const tariffInfo = (tariff: ITariff) => {
     //TODO исправить, если промо-цена будет необязательной
-    if (tariff.tariff_promo_price !== 0) {
+    if (tariff.tariff_promo_price || tariff.tariff_promo_price !== 0) {
       if (tariff.services_duration === '1') {
         return (
           <>

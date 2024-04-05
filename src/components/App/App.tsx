@@ -14,7 +14,7 @@ import {
   addPopularServices,
 } from '../../services/servicesSlice.ts';
 import CategoryPage from '../../pages/CategoryPage/CategoryPage.tsx';
-import UserSubscriptionsPage from '../../pages/UserServicesPage/UserSubscriptionsPage.tsx';
+import UserSubscriptionsPage from '../../pages/UserSubscriptionsPage/UserSubscriptionsPage.tsx';
 import { addServicesCategories } from '../../services/servicesCategoriesSlice.ts';
 import {
   addCurrentUser,

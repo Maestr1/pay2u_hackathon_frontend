@@ -24,7 +24,7 @@ function UserSubscriptionsPage(): ReactElement {
 
   //TODO переделать на подписки пользователя
   const userSubscriptions = useSelectorTyped(
-    (store) => store.servicesReducer.popularServices
+    (store) => store.currentUserReducer.userSubscriptions
   );
   const categories = useSelectorTyped(
     (store) => store.servicesCategoriesReducer.servicesCategories

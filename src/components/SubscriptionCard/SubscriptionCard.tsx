@@ -1,8 +1,8 @@
-import { IServiceExtended } from '../../utils/interfaces/interfaces';
+import { ISubscription } from '../../utils/interfaces/interfaces';
 import { styled } from 'styled-components';
 
 interface IUserCardProps {
-  card: IServiceExtended;
+  card: ISubscription;
 }
 
 const Card = styled.div`
@@ -45,17 +45,32 @@ const DescriptionWrapper = styled.div`
   text-align: left;
 `;
 
+
+
 export default function UserCard(props: IUserCardProps) {
+
+  // const price = () => {
+  //   if (props.card.tariff.tariff_promo_price || props.card.tariff.tariff_promo_price !== 0) {
+  //     if (props.card.tariff.services_duration === '1') {
+  //       return props.card.tariff.tariff_promo_price
+  //     } else {
+  //       return Math.trunc(props.card.tariff.tariff_promo_price / Number(props.card.tariff.services_duration))
+  //     }
+  //   } else {
+  //     return Math.trunc(props.card.tariff.tariff_full_price / Number(props.card.tariff.services_duration))
+  //   }
+  // }
+//TODO Ждем данные об оплате в подписке
   return (
     <Card>
-      <CardImg src={props.card.icon_small} alt={props.card.name} />
+      <CardImg src={props.card.tariff.services.icon_small} alt={props.card.tariff.services.name} />
       <DescriptionWrapper>
         <TitleWrapper>
-          <Title>{props.card.name}</Title>
-          <span>{props.card.payment?.cost || 'цена'} ₽</span>
+          <Title>{props.card.tariff.services.name}</Title>
+          <span>{props.card.tariff.tariff_full_price} ₽</span>
         </TitleWrapper>
         <NextPayment>
-          {props.card.payment?.nextPayment || 'Следующая оплата'}
+          {'Следующая оплата'}
         </NextPayment>
       </DescriptionWrapper>
     </Card>

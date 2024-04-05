@@ -1,10 +1,10 @@
 import React from 'react';
-import { IServiceExtended, ISubscription } from '../../utils/interfaces/interfaces';
+import { IService, IServiceExtended, ISubscription } from '../../utils/interfaces/interfaces';
 import UserCard from '../SubscriptionCard/SubscriptionCard';
 import { styled } from 'styled-components';
 
 interface IUserCardListProps {
-  cardsList: IServiceExtended[];
+  cardsList: ISubscription[];
 }
 
 const Section = styled.section`
