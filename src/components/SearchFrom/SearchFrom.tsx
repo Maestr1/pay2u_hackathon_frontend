@@ -64,6 +64,7 @@ const SearchResult = styled.ul<{ $active: boolean }>`
   position: absolute;
   z-index: 10;
   left: 0;
+  margin: 0;
   padding-inline: 16px;
   padding-bottom: 20px;
   display: flex;

@@ -84,19 +84,56 @@ const theme = createTheme({
         },
       },
     },
+    MuiAccordion: {
+      styleOverrides: {
+        root: () => ({
+          borderRadius: '12px',
+          boxShadow:
+            '0 4px 90px 0 rgba(95, 105, 131, 0.16), 0 5px 4px 0 rgba(95, 105, 131, 0.08), 0 0 4px 0 rgba(95, 105, 131, 0.06)',
+          '&.Mui-expanded': {
+            margin: 0,
+          },
+          ':last-of-type': {
+            borderRadius: '12px',
+          },
+          ':first-of-type': {
+            borderRadius: '12px',
+          },
+          "&.MuiAccordion-root:before": {
+            backgroundColor: "transparent"
+        }
+        }),
+      },
+    },
+    MuiAccordionSummary: {
+      styleOverrides: {
+        root: () => ({
+          margin: '0',
+          paddingBlock: '16px 8px',
+          paddingInline: '12px',
+        }),
+        content: () => ({
+          margin: 0,
+          paddingRight: '8px',
+          '&.Mui-expanded': {
+            margin: 0,
+          },
+        }),
+      },
+    },
   },
 });
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   // <React.StrictMode>
-    <Provider store={store}>
-      <CssBaseline>
-        <ThemeProvider theme={theme}>
-          <BrowserRouter basename={import.meta.env.BASE_URL}>
-            <App />
-          </BrowserRouter>
-        </ThemeProvider>
-      </CssBaseline>
-    </Provider>
+  <Provider store={store}>
+    <CssBaseline>
+      <ThemeProvider theme={theme}>
+        <BrowserRouter basename={import.meta.env.BASE_URL}>
+          <App />
+        </BrowserRouter>
+      </ThemeProvider>
+    </CssBaseline>
+  </Provider>
   // </React.StrictMode>
 );

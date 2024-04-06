@@ -91,6 +91,15 @@ class Api {
       })
       .then(({ data }) => data);
 
+  getFaq = () =>
+    this.requester()
+      .get(`/v1/faqs`, {
+        headers: {
+          Authorization: `Token ${localStorage.getItem('apiToken')}`,
+        },
+      })
+      .then(({ data }) => data);
+
   searchServicesByQuery = (query: string) =>
     this.requester()
       .get(`/v1/services?name=${query}`, {

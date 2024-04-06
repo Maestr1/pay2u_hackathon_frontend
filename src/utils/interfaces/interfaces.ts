@@ -29,7 +29,7 @@ export interface ISubscription {
   tariff: ITariffExtended;
   updated_at: string;
   user: number;
-  payment: IPayment
+  payment: IPayment;
 }
 
 export interface ITariff {
@@ -113,4 +113,13 @@ export interface IPayment {
   expiredDate: string;
   status: string;
   cashback: ICashbackSubscription;
+}
+
+export interface IFaq {
+  id: number;
+  topic_question: string;
+  question: string;
+  answer: string;
+  created: string;
+  updated: string;
 }
