@@ -30,7 +30,7 @@ function ServicePage(): ReactElement {
     api
       .getService(Number(id))
       .then((res: IServiceExtended) => {
-        //Сортируем массив объектов по продолжительности подписки
+        //Сортируем массив объектов по продолжительности
         res.tariff = res.tariff.sort(function (a, b) {
           if (Number(a.services_duration) < Number(b.services_duration)) {
             return -1;
@@ -47,6 +47,12 @@ function ServicePage(): ReactElement {
       .finally(() => dispatch(setIsLoadingState(false)));
   }, []);
 
+  useEffect(() => {
+    if (selectSubscription.tariff) {
+      setSelectedTariff(selectSubscription.tariff[0]);
+    }
+  }, [selectSubscription]);
+
   const tabs = () => {
     return selectSubscription.tariff.map((item, index) => (
       <Tab key={`tariff-tab-${index}`} label={item.name} value={`${index}`} />
@@ -54,7 +60,8 @@ function ServicePage(): ReactElement {
   };
 
   const tariffInfo = (tariff: ITariff) => {
-    if (tariff.tariff_promo_price || tariff.tariff_promo_price !== 0) {
+    if (tariff.tariff_promo_price || tariff.tariff_promo_price !== null) {
+      console.log(tariff.tariff_promo_price);
       if (tariff.services_duration === '1') {
         return (
           <>
@@ -73,8 +80,9 @@ function ServicePage(): ReactElement {
         return (
           <>
             <p className="service-page__costs">
-              <span className="service-page__cost service-page__cost_accent">{`${tariff.tariff_full_price} ₽`}</span>{' '}
-              <span className="service-page__cost">{`${tariff.tariff_promo_price}`}</span>{' '}
+              <span className="service-page__cost">{`${Math.trunc(
+                tariff.tariff_promo_price / Number(tariff.services_duration)
+              )}`}</span>{' '}
               ₽ за месяц
             </p>
             <p className="service-page__tariff-description">
@@ -86,12 +94,18 @@ function ServicePage(): ReactElement {
       }
     } else {
       return (
-        <p className="service-page__costs">
-          <span className="service-page__cost">{`${Math.trunc(
-            tariff.tariff_full_price / Number(tariff.services_duration)
-          )} ₽`}</span>{' '}
-          за месяц
-        </p>
+        <>
+          <p className="service-page__costs">
+            <span className="service-page__cost">{`${Math.trunc(
+              tariff.tariff_full_price / Number(tariff.services_duration)
+            )} ₽`}</span>{' '}
+            за месяц
+          </p>
+          <p className="service-page__tariff-description">
+            Всего за {tariff.services_duration} месяцев{' '}
+            {tariff.tariff_full_price} ₽
+          </p>
+        </>
       );
     }
   };

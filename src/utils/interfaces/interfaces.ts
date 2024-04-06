@@ -86,15 +86,14 @@ export interface IUser {
 
 export interface IPaymentMethod {
   id: number;
+  payment_method: string;
   methodName: string;
-  methodToken: string;
   priorityMethod: boolean;
-  methodIcon: string;
+  icon: string;
 }
 
 export interface IPurchseShippingFields {
-  userId: number;
-  phoneNumber: string;
+  tariffId: number;
   paymentMethodId: number;
   subscriptionId: number;
   autopayment: boolean;

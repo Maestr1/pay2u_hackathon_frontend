@@ -1,55 +1,93 @@
-import { ReactElement } from 'react';
+import { ReactElement, useEffect } from 'react';
 import './PurchasePage.scss';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import ServiceHeader from '../../components/ServiceHeader/ServiceHeader.tsx';
 import {
-  IPaymentMethod,
   IPurchseShippingFields,
   ITariff,
 } from '../../utils/interfaces/interfaces.ts';
-// import { useBeforeunload } from 'react-beforeunload';
 import { SubmitHandler, useForm, Controller } from 'react-hook-form';
 import {
   Button,
+  Checkbox,
   FormControlLabel,
-  InputAdornment,
+  FormGroup,
   Radio,
   RadioGroup,
-  TextField,
-  styled,
 } from '@mui/material';
 import { SwitchLovely } from '../../components/uxComponents/switch.ts';
-import { useSelectorTyped } from '../../hooks/store.ts';
+import { useDispatchTyped, useSelectorTyped } from '../../hooks/store.ts';
+import styled from 'styled-components';
+import api from '../../utils/api/Api.ts';
+import { addUserSubscriptions } from '../../services/currentUserSlice.ts';
 
-const PhoneNubmerInput = styled(TextField)(() => ({
-  '& legend': { display: 'none' },
-  '& label': { transform: 'translate(0, -26px) scale(0.75)' },
-  '& fieldset': {
-    transition: 'border-color 200ms cubic-bezier(0.0, 0, 0.2, 1)',
-  },
-  '.MuiOutlinedInput-notchedOutline': { top: '0' },
-}));
+const Section = styled.section`
+  padding-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: calc(100svh - 72px);
+`;
 
-const RadioButton = styled(FormControlLabel)(() => ({
-  justifyContent: 'space-between',
-  margin: '0',
-  '& img': { height: '39px' },
-  '& .MuiTypography-root': {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '12px',
-  },
-}));
+const MainWrapper = styled.div`
+  flex: 1 0 auto;
+`;
 
-const AutopaymentSwitch = styled(FormControlLabel)(() => ({
-  gap: '12px',
-  flexDirection: 'row',
-  margin: '0',
-}));
+const StyledServiceHeader = styled(ServiceHeader)`
+  padding-block: 20px 8px;
+`;
+
+const SectionTitle = styled.h2`
+  margin: 0;
+  padding-bottom: 16px;
+  font-size: 20px;
+  font-weight: 600;
+`;
+
+const SmallText = styled.span`
+  margin: 0;
+  font-size: 12px;
+  font-weight: 400;
+`;
+
+const AcceptSmallText = styled.span`
+  font-size: 14px;
+  font-weight: 600;
+`;
+
+const RadioButton = styled(FormControlLabel)`
+  && {
+    margin: 0;
+    padding-inline: 12px;
+    justify-content: space-between;
+    & img {
+      height: 39px;
+    }
+    & .MuiTypography-root {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+  }
+`;
+
+const AutopaymentSwitch = styled(FormControlLabel)`
+  && {
+    margin: 0;
+    padding-block: 20px 24px;
+    gap: 12px;
+    justify-content: flex-end;
+    & input {
+      width: auto;
+    }
+  }
+`;
 
 function PurchasePage(): ReactElement {
-  const currentUser = useSelectorTyped(
-    (store) => store.currentUserReducer.currentUser
+  const dispatch = useDispatchTyped();
+  const navigate = useNavigate();
+  const paymentMethods = useSelectorTyped(
+    (store) => store.currentUserReducer.paymentMethods
   );
   const subscription = useLocation().state.subscription;
   const tariff: ITariff = useLocation().state.selectTariff;
@@ -58,96 +96,144 @@ function PurchasePage(): ReactElement {
     handleSubmit,
     formState: { errors },
     reset,
+    setValue,
   } = useForm<IPurchseShippingFields>({
     defaultValues: {
-      phoneNumber: currentUser?.phone.slice(2) || '',
-      userId: currentUser.userId,
       subscriptionId: subscription.id,
       autopayment: true,
-      paymentMethodId: currentUser.paymentMethods.find(
-        (item: IPaymentMethod) => item.priorityMethod
-      )?.id,
+      paymentMethodId: 1,
     },
     mode: 'onTouched',
   });
 
-  function calculateDeclension() {
-    if (tariff.services_duration > 1 && tariff.services_duration < 5) {
-      return 'месяца';
+  useEffect(() => {
+    if (paymentMethods.length > 0) {
+      setValue('paymentMethodId', paymentMethods[0].id);
     }
-    if (tariff.services_duration > 4) {
-      return 'месяцев';
-    }
-    return 'месяц';
-  }
+  }, [paymentMethods, setValue]);
 
   const onSubmit: SubmitHandler<IPurchseShippingFields> = (data) => {
-    console.log(currentUser);
-    console.log(data);
-    console.log(errors);
-    // reset()
+    data.tariffId = tariff.id;
+    data.paymentMethodId = Number(data.paymentMethodId);
+    api
+      .purchase(data)
+      .then((res) => {
+        api
+          .getUserSubscriptions()
+          .then((subscriptions) =>
+            dispatch(addUserSubscriptions(subscriptions))
+          )
+          .catch(console.error);
+        navigate('/successful-purchase', { state: { data: res } });
+      })
+      .catch(console.error);
   };
 
+  function calculatePrice() {
+    if (tariff.tariff_promo_price || tariff.tariff_promo_price !== null) {
+      if (tariff.services_duration === '1') {
+        return (
+          <AcceptSmallText>
+            {tariff.tariff_promo_price / Number(tariff.services_duration)} ₽{' '}
+            <SmallText>за месяц, далее {tariff.tariff_full_price} ₽</SmallText>
+          </AcceptSmallText>
+        );
+      } else {
+        return (
+          <AcceptSmallText>
+            {Math.trunc(
+              tariff.tariff_promo_price / Number(tariff.services_duration)
+            )}{' '}
+            ₽ <SmallText>за месяц</SmallText>
+          </AcceptSmallText>
+        );
+      }
+    } else {
+      return (
+        <AcceptSmallText>
+          {Math.trunc(
+            tariff.tariff_full_price / Number(tariff.services_duration)
+          )}{' '}
+          ₽ <SmallText>за месяц</SmallText>
+        </AcceptSmallText>
+      );
+    }
+  }
+
   return (
-    <section className="purchase-page">
-      <ServiceHeader selectSubscription={subscription} />
-      <div className="purchase-page__tariff-title-wrap">
-        <h2>{tariff.name}</h2>
-      </div>
-      <p className="">
-        {tariff.tariff_full_price / tariff.services_duration} ₽ за один месяц
-      </p>
+    <Section className="purchase-page">
+      <MainWrapper>
+        <StyledServiceHeader selectSubscription={subscription} />
+        <div className="purchase-page__tariff-title-wrap">
+          <h2>{tariff.name}</h2>
+        </div>
+        {calculatePrice()}
+        <p className="purchase-page__total">
+          <span>Итого:</span>
+          <span>{tariff.tariff_promo_price || tariff.tariff_full_price} ₽</span>
+        </p>
 
-      <p className="purchase-page__total">
-        <span>Итого:</span>
-        <span>{tariff.tariff_full_price} ₽</span>
-      </p>
-
-      {/* FORM */}
-      <form className="purchase-page__form" onSubmit={handleSubmit(onSubmit)}>
-        <p>Способ оплаты</p>
-        <Controller
-          control={control}
-          name="paymentMethodId"
-          render={({ field }) => (
-            <RadioGroup name="paymentMethodId" value={field.value}>
-              {currentUser?.paymentMethods.map((method, index) => (
-                <RadioButton
-                  label={
-                    <>
-                      <img src={method.methodIcon} alt={method.methodName} />
-                      <p>{method.methodName}</p>
-                    </>
-                  }
-                  labelPlacement="start"
-                  key={`payment-method-${index}`}
-                  control={<Radio />}
-                  onChange={(e) => field.onChange(e)}
-                  value={method.id}
-                />
-              ))}
-            </RadioGroup>
-          )}
-        />
-        <Controller
-          control={control}
-          name="autopayment"
-          render={({ field }) => (
-            <AutopaymentSwitch
-              checked={field.value}
-              control={<SwitchLovely color="primary" />}
-              label="Подключить автоплатеж"
-              labelPlacement="start"
-              onChange={(e) => field.onChange(e)}
-              value={field.value}
+        {/* FORM */}
+        <form className="purchase-page__form" onSubmit={handleSubmit(onSubmit)}>
+          <SectionTitle>Способ оплаты</SectionTitle>
+          <Controller
+            control={control}
+            name="paymentMethodId"
+            render={({ field }) => (
+              <RadioGroup name="paymentMethodId" value={field.value}>
+                {paymentMethods.map((method, index) => (
+                  <RadioButton
+                    label={
+                      <>
+                        <img src={method.icon} alt={method.methodName} />
+                        <SmallText>{method.payment_method}</SmallText>
+                      </>
+                    }
+                    labelPlacement="start"
+                    key={`payment-method-${index}`}
+                    control={<Radio />}
+                    onChange={(e) => field.onChange(e)}
+                    value={method.id}
+                  />
+                ))}
+              </RadioGroup>
+            )}
+          />
+          <Controller
+            control={control}
+            name="autopayment"
+            render={({ field }) => (
+              <AutopaymentSwitch
+                checked={field.value}
+                control={<SwitchLovely color="primary" />}
+                label="Подключить автоплатеж"
+                labelPlacement="start"
+                onChange={(e) => field.onChange(e)}
+                value={field.value}
+              />
+            )}
+          />
+          <FormGroup>
+            <FormControlLabel
+              control={<Checkbox />}
+              label="Принимаю условия сервиса "
             />
-          )}
-        />
-        <Button type="submit" variant="contained">
-          Оплатить
-        </Button>
-      </form>
-    </section>
+            <FormControlLabel
+              required
+              control={<Checkbox />}
+              label="Принимаю политику обработки данных"
+            />
+          </FormGroup>
+        </form>
+      </MainWrapper>
+      <Button
+        onClick={handleSubmit(onSubmit)}
+        type="submit"
+        variant="contained"
+      >
+        Оплатить
+      </Button>
+    </Section>
   );
 }
 

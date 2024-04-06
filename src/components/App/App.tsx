@@ -18,6 +18,7 @@ import UserSubscriptionsPage from '../../pages/UserSubscriptionsPage/UserSubscri
 import { addServicesCategories } from '../../services/servicesCategoriesSlice.ts';
 import {
   addCurrentUser,
+  addPaymentMethods,
   addUserSubscriptions,
 } from '../../services/currentUserSlice.ts';
 import OnboardingPage from '../../pages/OnboardingPage/OnboardingPage.tsx';
@@ -45,13 +46,17 @@ function App(): ReactElement {
         api.getUserSubscriptions(),
         api.getCategoriesList(),
         api.getPopularServices(),
+        api.getPaymentMethods(),
       ])
-        .then(([subscriptions, categories, popularServices]) => {
-          dispatch(addUserSubscriptions(subscriptions));
-          dispatch(addServicesCategories(categories));
-          dispatch(addPopularServices(popularServices));
-          getAllServicesList(categories);
-        })
+        .then(
+          ([subscriptions, categories, popularServices, paymentsMethods]) => {
+            dispatch(addUserSubscriptions(subscriptions));
+            dispatch(addServicesCategories(categories));
+            dispatch(addPopularServices(popularServices));
+            dispatch(addPaymentMethods(paymentsMethods));
+            getAllServicesList(categories);
+          }
+        )
         .catch(console.error)
         .finally(() => dispatch(setIsLoadingState(false)));
     } else {

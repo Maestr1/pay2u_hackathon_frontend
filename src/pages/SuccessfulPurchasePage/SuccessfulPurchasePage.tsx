@@ -4,10 +4,10 @@ import succesfullPurchaseImg from '../../images/other_images/succefullPurchaseIm
 import styled from 'styled-components';
 import { IServiceExtended, ITariff } from '../../utils/interfaces/interfaces';
 import { Button } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Section = styled.section`
-padding-bottom: 12px;
+  padding-bottom: 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -89,42 +89,35 @@ const OnbordingLink = styled(Link)`
   }
 `;
 
-interface ISuccessfulPurchasePageProps {
-  service: IServiceExtended;
-  tariff: ITariff;
-  payment: any;
-}
-
-function SuccessfulPurchasePage(
-  props: ISuccessfulPurchasePageProps
-): ReactElement {
-  //TODO добавить сивол валюты
-  //TODO исправить под бэк
+function SuccessfulPurchasePage(): ReactElement {
+  const { data } = useLocation().state;
+  console.log(data);
   return (
     <Section>
-      
       <MainWrapper>
         <Image src={succesfullPurchaseImg} alt="Успешная оплата" />
         <Title>Оплата прошла</Title>
-        <SubTitle>Вы подписались на {props.service?.name || 'Яндекс'}</SubTitle>
+        <SubTitle>
+          Вы подписались на {data.subscription.tariff.services.name}
+        </SubTitle>
         <Line>
           <LineName>Тариф</LineName>
-          <LineInfo>{props.tariff?.name || 'Выгодный'}</LineInfo>
+          <LineInfo>{data.subscription.tariff.name || 'Выгодный'}</LineInfo>
         </Line>
         <Line>
           <LineName>Списано</LineName>
-          <LineInfo>{props.payment?.cost || '1998 ₽'}</LineInfo>
+          <LineInfo>{data.cost.slice(0, -3)} ₽</LineInfo>
         </Line>
         <Line>
           <LineName>Автоплатеж</LineName>
-          <LineStatus $succesfull={props.payment?.autopayment}>
-            {props.payment?.autopayment ? 'Подключен' : 'Не подключен'}
+          <LineStatus $succesfull={data.subscription.auto_payment}>
+            {data.subscription.auto_payment ? 'Подключен' : 'Не подключен'}
           </LineStatus>
         </Line>
-        {props.payment?.autopayment && (
+        {data.subscription.auto_payment && (
           <Line>
             <LineName>Следующее списание</LineName>
-            <LineInfo>{props.payment?.expiredDate || 'Выгодный'}</LineInfo>
+            <LineInfo>{data.expired_date}</LineInfo>
           </Line>
         )}
         <ToolTip>Управлять подпиской можно через «Мои подписки»</ToolTip>{' '}

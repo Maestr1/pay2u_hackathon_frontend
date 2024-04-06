@@ -33,7 +33,6 @@ function UserSubscriptionsPage(): ReactElement {
   function handleTabChange(_event: React.SyntheticEvent, newValue: string) {
     setTabValue(newValue);
   }
-  console.log(categories);
   const tabs = () => {
     return categories.map((item, index) => (
       <Tab

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { IPurchseShippingFields } from '../interfaces/interfaces';
 
 class Api {
   private apiToken: string;
@@ -29,6 +30,15 @@ class Api {
   getUserData = () =>
     this.requester()
       .get('/v1/users/me', {
+        headers: {
+          Authorization: `Token ${localStorage.getItem('apiToken')}`,
+        },
+      })
+      .then(({ data }) => data);
+
+  getPaymentMethods = () =>
+    this.requester()
+      .get('/v1/payment_methods', {
         headers: {
           Authorization: `Token ${localStorage.getItem('apiToken')}`,
         },
@@ -107,6 +117,23 @@ class Api {
           Authorization: `Token ${localStorage.getItem('apiToken')}`,
         },
       })
+      .then(({ data }) => data);
+
+  purchase = (data: IPurchseShippingFields) =>
+    this.requester()
+      .post(
+        `/v1/services/${data.subscriptionId}/add/`,
+        {
+          tariff_id: data.tariffId,
+          payment_methods: data.paymentMethodId,
+          auto_payment: data.autopayment,
+        },
+        {
+          headers: {
+            Authorization: `Token ${localStorage.getItem('apiToken')}`,
+          },
+        }
+      )
       .then(({ data }) => data);
 }
 
