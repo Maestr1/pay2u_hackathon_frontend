@@ -1,7 +1,10 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import './ServicePage.scss';
 import { Link, useParams } from 'react-router-dom';
-import { IServiceExtended, ITariff } from '../../utils/interfaces/interfaces.ts';
+import {
+  IServiceExtended,
+  ITariff,
+} from '../../utils/interfaces/interfaces.ts';
 import { Button, Tab } from '@mui/material';
 import TabPanel from '@mui/lab/TabPanel';
 import { TabContext, TabList } from '@mui/lab';
@@ -13,9 +16,8 @@ import Loader from '../Loader/Loader.tsx';
 
 function ServicePage(): ReactElement {
   const { id } = useParams();
-  const [selectSubscription, setSelectSubscription] = useState<IServiceExtended>(
-    {} as IServiceExtended
-  );
+  const [selectSubscription, setSelectSubscription] =
+    useState<IServiceExtended>({} as IServiceExtended);
   const [tabValue, setTabValue] = useState('0');
   const [selectedTariff, setSelectedTariff] = useState({} as ITariff);
   const dispatch = useDispatchTyped();
@@ -27,6 +29,19 @@ function ServicePage(): ReactElement {
     dispatch(setIsLoadingState(true));
     api
       .getService(Number(id))
+      .then((res: IServiceExtended) => {
+        //Сортируем массив объектов по продолжительности подписки
+        res.tariff = res.tariff.sort(function (a, b) {
+          if (Number(a.services_duration) < Number(b.services_duration)) {
+            return -1;
+          }
+          if (Number(a.services_duration) > Number(b.services_duration)) {
+            return 1;
+          }
+          return 0;
+        });
+        return res;
+      })
       .then((res) => setSelectSubscription(res))
       .catch((err) => console.log(err))
       .finally(() => dispatch(setIsLoadingState(false)));
@@ -39,7 +54,6 @@ function ServicePage(): ReactElement {
   };
 
   const tariffInfo = (tariff: ITariff) => {
-    //TODO исправить, если промо-цена будет необязательной
     if (tariff.tariff_promo_price || tariff.tariff_promo_price !== 0) {
       if (tariff.services_duration === '1') {
         return (
