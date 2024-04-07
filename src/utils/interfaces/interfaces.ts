@@ -23,13 +23,14 @@ export interface IServiceCategory {
 }
 
 export interface ISubscription {
-  created_at: string;
   id: number;
-  is_active: boolean;
-  tariff: ITariffExtended;
-  updated_at: string;
   user: number;
-  payment: IPayment;
+  tariff: ITariffExtended;
+  is_active: boolean;
+  expired_date: string;
+  auto_payment: boolean;
+  created_at: string;
+  updated_at: string;
 }
 
 export interface ITariff {

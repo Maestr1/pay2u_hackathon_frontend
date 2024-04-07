@@ -21,7 +21,7 @@ import styled from 'styled-components';
 import api from '../../utils/api/Api.ts';
 import { addUserSubscriptions } from '../../services/currentUserSlice.ts';
 
-const Section = styled.section`
+const Form = styled.form`
   padding-bottom: 12px;
   display: flex;
   flex-direction: column;
@@ -30,6 +30,7 @@ const Section = styled.section`
 `;
 
 const MainWrapper = styled.div`
+  width: 100%;
   flex: 1 0 auto;
 `;
 
@@ -94,8 +95,6 @@ function PurchasePage(): ReactElement {
   const {
     control,
     handleSubmit,
-    formState: { errors },
-    reset,
     setValue,
   } = useForm<IPurchseShippingFields>({
     defaultValues: {
@@ -111,23 +110,6 @@ function PurchasePage(): ReactElement {
       setValue('paymentMethodId', paymentMethods[0].id);
     }
   }, [paymentMethods, setValue]);
-
-  const onSubmit: SubmitHandler<IPurchseShippingFields> = (data) => {
-    data.tariffId = tariff.id;
-    data.paymentMethodId = Number(data.paymentMethodId);
-    api
-      .purchase(data)
-      .then((res) => {
-        api
-          .getUserSubscriptions()
-          .then((subscriptions) =>
-            dispatch(addUserSubscriptions(subscriptions))
-          )
-          .catch(console.error);
-        navigate('/successful-purchase', { state: { data: res } });
-      })
-      .catch(console.error);
-  };
 
   function calculatePrice() {
     if (tariff.tariff_promo_price || tariff.tariff_promo_price !== null) {
@@ -160,21 +142,41 @@ function PurchasePage(): ReactElement {
     }
   }
 
-  return (
-    <Section className="purchase-page">
-      <MainWrapper>
-        <StyledServiceHeader selectSubscription={subscription} />
-        <div className="purchase-page__tariff-title-wrap">
-          <h2>{tariff.name}</h2>
-        </div>
-        {calculatePrice()}
-        <p className="purchase-page__total">
-          <span>Итого:</span>
-          <span>{tariff.tariff_promo_price || tariff.tariff_full_price} ₽</span>
-        </p>
+  const onSubmit: SubmitHandler<IPurchseShippingFields> = (data) => {
+    data.tariffId = tariff.id;
+    data.paymentMethodId = Number(data.paymentMethodId);
+    api
+      .purchase(data)
+      .then((res) => {
+        api
+          .getUserSubscriptions()
+          .then((subscriptions) =>
+            dispatch(addUserSubscriptions(subscriptions))
+          )
+          .catch(console.error);
+        navigate('/successful-purchase', {
+          state: { data: res },
+          replace: true,
+        });
+      })
+      .catch(console.error);
+  };
 
-        {/* FORM */}
-        <form className="purchase-page__form" onSubmit={handleSubmit(onSubmit)}>
+  return (
+    <section className="purchase-page">
+      <Form className="purchase-page__form" onSubmit={handleSubmit(onSubmit)}>
+        <MainWrapper>
+          <StyledServiceHeader selectSubscription={subscription} />
+          <div className="purchase-page__tariff-title-wrap">
+            <h2>{tariff.name}</h2>
+          </div>
+          {calculatePrice()}
+          <p className="purchase-page__total">
+            <span>Итого:</span>
+            <span>
+              {tariff.tariff_promo_price || tariff.tariff_full_price} ₽
+            </span>
+          </p>
           <SectionTitle>Способ оплаты</SectionTitle>
           <Controller
             control={control}
@@ -215,6 +217,7 @@ function PurchasePage(): ReactElement {
           />
           <FormGroup>
             <FormControlLabel
+              required
               control={<Checkbox />}
               label="Принимаю условия сервиса "
             />
@@ -224,16 +227,16 @@ function PurchasePage(): ReactElement {
               label="Принимаю политику обработки данных"
             />
           </FormGroup>
-        </form>
-      </MainWrapper>
-      <Button
-        onClick={handleSubmit(onSubmit)}
-        type="submit"
-        variant="contained"
-      >
-        Оплатить
-      </Button>
-    </Section>
+        </MainWrapper>
+        <Button
+          // onClick={handleSubmit(onSubmit)}
+          type="submit"
+          variant="contained"
+        >
+          Оплатить
+        </Button>
+      </Form>
+    </section>
   );
 }
 

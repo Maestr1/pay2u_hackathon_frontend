@@ -1,7 +1,7 @@
 import { ReactElement, useEffect, useState } from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import searchIcon from '../../images/icons/search_icon.svg';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import api from '../../utils/api/Api';
 import _ from 'lodash';
 import { IServiceExtended } from '../../utils/interfaces/interfaces';

@@ -1,9 +1,7 @@
 import { ReactElement } from 'react';
 import './SuccessfulPurchasePage.scss';
-import succesfullPurchaseImg from '../../images/other_images/succefullPurchaseImg.png';
+import successfulPurchaseImg from '../../images/other_images/succefullPurchaseImg.png';
 import styled from 'styled-components';
-import { IServiceExtended, ITariff } from '../../utils/interfaces/interfaces';
-import { Button } from '@mui/material';
 import { Link, useLocation } from 'react-router-dom';
 
 const Section = styled.section`
@@ -95,7 +93,7 @@ function SuccessfulPurchasePage(): ReactElement {
   return (
     <Section>
       <MainWrapper>
-        <Image src={succesfullPurchaseImg} alt="Успешная оплата" />
+        <Image src={successfulPurchaseImg} alt="Успешная оплата" />
         <Title>Оплата прошла</Title>
         <SubTitle>
           Вы подписались на {data.subscription.tariff.services.name}
@@ -123,9 +121,6 @@ function SuccessfulPurchasePage(): ReactElement {
         <ToolTip>Управлять подпиской можно через «Мои подписки»</ToolTip>{' '}
       </MainWrapper>
       <LinkWrapper>
-        <Button component={Link} to={'/guide'} variant="contained">
-          Подробнее
-        </Button>
         <OnbordingLink to={'/'}>Перейти на главный экран</OnbordingLink>
       </LinkWrapper>
     </Section>
