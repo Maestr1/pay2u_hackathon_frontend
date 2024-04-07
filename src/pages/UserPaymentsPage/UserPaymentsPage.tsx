@@ -1,6 +1,5 @@
 import { ReactElement } from 'react';
 import styled from 'styled-components';
-import UserCardList from '../../components/UserCardList/UserCardList';
 import { useSelectorTyped } from '../../hooks/store';
 import PaymentCard from '../../components/PaymentCard/PaymentCard';
 

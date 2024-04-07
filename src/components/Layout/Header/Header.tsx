@@ -5,7 +5,7 @@ import NavBurger from './NavBurger/NavBurger.tsx';
 import styled from 'styled-components';
 import { IconButton } from '@mui/material';
 import backButtonIcon from '../../../images/icons_png/arrow-left.png';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 interface HeaderProps {
   handleMenuOpen: () => void;

@@ -1,5 +1,4 @@
-import { Link } from 'react-router-dom';
-import { IPayment, ISubscription } from '../../utils/interfaces/interfaces';
+import { IPayment } from '../../utils/interfaces/interfaces';
 import { styled } from 'styled-components';
 
 interface IUserCardProps {
@@ -49,13 +48,11 @@ const DescriptionWrapper = styled.div`
 `;
 
 export default function UserCard(props: IUserCardProps) {
-
   function formatDate(date: string) {
     const parts = date.split('-');
     return `${parts[2]}.${parts[1]}.${parts[0]}`;
   }
-  const parts = props.card.expired_date.split('-');
-  const newDate = `${parts[2]}.${parts[1]}.${parts[0]}`;
+
   const formatedPrice = new Intl.NumberFormat('ru-RU').format(
     props.card.subscription.tariff.tariff_full_price
   );

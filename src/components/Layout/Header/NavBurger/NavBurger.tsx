@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import homeIcon from '../../../../images/icons/home.svg';
 import subscribesLogo from '../../../../images/icons/subscribes.svg';
 import walletIcon from '../../../../images/icons/wallet.svg';
-import calendarIcon from '../../../../images/icons/calendar.svg';
 import faqIcon from '../../../../images/icons/faq.svg';
 import Overlay from '../../../Overlay/Overlay.tsx';
 

@@ -21,16 +21,19 @@ function CategoryCatalogPage(): ReactElement {
       <section className="category-catalog">
         <h1 className="title">Все сервисы</h1>
         <SearchFrom />
-        {categorizedSubscriptions.map((item, index) => (
-          <CardsSlider
-            key={`category-${index}`}
-            title={`${item.category.name}`}
-            cardType="big"
-            link={`/services/category/${item.category.slug}/`}
-            items={item.services}
-            slidesPerView={1.8}
-          />
-        ))}
+        {categorizedSubscriptions.map(
+          (item, index) =>
+            item.category && (
+              <CardsSlider
+                key={`category-${index}`}
+                title={`${item.category.name}`}
+                cardType="big"
+                link={`/services/category/${item.category.slug}/`}
+                items={item.services}
+                slidesPerView={1.8}
+              />
+            )
+        )}
       </section>
     );
   }
