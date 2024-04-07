@@ -89,6 +89,13 @@ function App(): ReactElement {
       });
   }
 
+  // function getPopularServices() {
+  //   api.getPopularServices()
+  //   .then(res => {
+  //     res.category
+  //   })
+  // };
+
   function getAllServicesList(categories: ICategory[]) {
     Promise.all(
       categories.map(({ name }) => api.getCategorizedServicesList(name))
@@ -116,7 +123,7 @@ function App(): ReactElement {
           element={<UserSubscriptionsPage />}
         />
         <Route path="/user/my-payments" element={<UserPaymentsPage />} />
-        <Route path="/services/category/popular" element={<CategoryPage />} />
+        {/* <Route path="/services/category/popular" element={<CategoryPage />} /> */}
         <Route path="/services/category/:category" element={<CategoryPage />} />
         <Route path="/services/:id" element={<ServicePage />} />
         <Route path="/purchase" element={<PurchasePage />} />

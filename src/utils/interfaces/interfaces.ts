@@ -18,7 +18,7 @@ export interface IServiceExtended extends IService {
 }
 
 export interface IServiceCategory {
-  category: ICategory;
+  category?: ICategory;
   services: IServiceExtended[];
 }
 

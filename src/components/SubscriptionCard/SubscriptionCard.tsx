@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { ISubscription } from '../../utils/interfaces/interfaces';
 import { styled } from 'styled-components';
 
@@ -5,13 +6,15 @@ interface IUserCardProps {
   card: ISubscription;
 }
 
-const Card = styled.div`
+const Card = styled(Link)`
   padding: 16px;
   display: flex;
   align-items: center;
   gap: 16px;
   border-radius: 12px;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.05);
+  text-decoration: none;
+  color: var(--black);
 `;
 
 const CardImg = styled.img`
@@ -45,34 +48,30 @@ const DescriptionWrapper = styled.div`
   text-align: left;
 `;
 
-
-
 export default function UserCard(props: IUserCardProps) {
+  const parts = props.card.expired_date.split('-');
+  const newDate = `${parts[2]}.${parts[1]}.${parts[0]}`;
 
-  // const price = () => {
-  //   if (props.card.tariff.tariff_promo_price || props.card.tariff.tariff_promo_price !== 0) {
-  //     if (props.card.tariff.services_duration === '1') {
-  //       return props.card.tariff.tariff_promo_price
-  //     } else {
-  //       return Math.trunc(props.card.tariff.tariff_promo_price / Number(props.card.tariff.services_duration))
-  //     }
-  //   } else {
-  //     return Math.trunc(props.card.tariff.tariff_full_price / Number(props.card.tariff.services_duration))
-  //   }
-  // }
-//TODO Ждем данные об оплате в подписке
   return (
-    <Card>
-      <CardImg src={props.card.tariff.services.icon_small} alt={props.card.tariff.services.name} />
-      <DescriptionWrapper>
-        <TitleWrapper>
-          <Title>{props.card.tariff.services.name}</Title>
-          <span>{props.card.tariff.tariff_full_price} ₽</span>
-        </TitleWrapper>
-        <NextPayment>
-          {'Следующая оплата'}
-        </NextPayment>
-      </DescriptionWrapper>
-    </Card>
+    <li>
+      <Card to={`/services/${props.card.tariff.services.id}`}>
+        <CardImg
+          src={props.card.tariff.services.icon_small}
+          alt={props.card.tariff.services.name}
+        />
+        <DescriptionWrapper>
+          <TitleWrapper>
+            <Title>{props.card.tariff.services.name}</Title>
+            <span>{props.card.tariff.tariff_full_price} ₽</span>
+          </TitleWrapper>
+          <NextPayment>
+            <span>
+              {props.card.auto_payment ? `Спишется ` : 'Действует до '}
+              {newDate}
+            </span>
+          </NextPayment>
+        </DescriptionWrapper>
+      </Card>
+    </li>
   );
 }
