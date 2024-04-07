@@ -77,6 +77,7 @@ const SearchResult = styled.ul<{ $active: boolean }>`
   background-color: var(--white);
   box-shadow: ${({ $active }) =>
     $active ? '0px 12px 11px 12px rgba(0, 0, 0, 0.05)' : 'none'};
+  transition: all 0.5s ease-in-out;
   ${({ $active }) => $active && `height: 100vh;`}
 `;
 
