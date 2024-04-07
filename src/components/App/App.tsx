@@ -89,13 +89,6 @@ function App(): ReactElement {
       });
   }
 
-  // function getPopularServices() {
-  //   api.getPopularServices()
-  //   .then(res => {
-  //     res.category
-  //   })
-  // };
-
   function getAllServicesList(categories: ICategory[]) {
     Promise.all(
       categories.map(({ name }) => api.getCategorizedServicesList(name))

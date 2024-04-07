@@ -31,11 +31,12 @@ const BackButton = styled(IconButton)`
 function Header(props: HeaderProps): ReactElement {
   const location = useLocation();
   const navigate = useNavigate();
+  const backIsActive = location.pathname !== '/' && location.pathname !== '/successful-purchase' && location.pathname !== '/onboarding';
 
   return (
     <header className="header">
-      <NavWrapper $backIsActive={location.pathname !== '/'}>
-        {location.pathname !== '/' && (
+      <NavWrapper $backIsActive={backIsActive}>
+        {backIsActive && (
           <BackButton onClick={() => navigate(-1)}>
             <img src={backButtonIcon} alt="" />
           </BackButton>
