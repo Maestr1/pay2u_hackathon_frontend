@@ -5,6 +5,7 @@ import {} from '../../utils/api/Api.ts';
 import { IServiceExtended } from '../../utils/interfaces/interfaces.ts';
 import './CategoryPage.scss';
 import { useSelectorTyped } from '../../hooks/store.ts';
+import Tag from '../../components/uxComponents/Tag.tsx';
 
 function CategoryPage(): ReactElement {
   const categoryName = useParams<{ category: string }>().category;
@@ -29,6 +30,7 @@ function CategoryPage(): ReactElement {
         return (
           <li key={`subscription-${index}`}>
             <Link className="link" to={`/services/${service.id}`}>
+              <Tag/>
               <img src={service.icon_small} alt="" />
               <div className="category-page__decription">
                 <h3>{service.name}</h3>

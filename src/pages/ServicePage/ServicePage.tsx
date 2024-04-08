@@ -15,6 +15,7 @@ import { setIsLoadingState } from '../../services/pageStatesSlice.ts';
 import { useDispatchTyped, useSelectorTyped } from '../../hooks/store.ts';
 import Loader from '../Loader/Loader.tsx';
 import styled from 'styled-components';
+import ServiceTag from '../../components/uxComponents/ServiceTag.tsx';
 
 const AutopaymentButton = styled(Button)<{ $active: boolean }>`
   && {
@@ -148,7 +149,8 @@ function ServicePage(): ReactElement {
 
   const tabPanels = () => {
     return selectService.tariff.map((item, index) => (
-      <TabPanel sx={{ p: 0 }} key={`tariff-panel-${index}`} value={`${index}`}>
+      <TabPanel sx={{ p: 0, position: 'relative' }} key={`tariff-panel-${index}`} value={`${index}`}>
+        <ServiceTag/>
         <h3 className="service-page__tariff-heading">{item.name}</h3>
         {tariffInfo(item)}
       </TabPanel>

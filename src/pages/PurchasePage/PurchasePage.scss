@@ -1,6 +1,7 @@
 .purchase-page {
   text-align: left;
   &__tariff-title-wrap {
+    position: relative;
     padding-block: 16px 8px;
     display: flex;
     gap: 16px;

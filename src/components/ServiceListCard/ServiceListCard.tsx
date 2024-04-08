@@ -2,12 +2,14 @@ import { ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 import { IServiceExtended } from '../../utils/interfaces/interfaces';
 import styled from 'styled-components';
+import Tag from '../uxComponents/Tag';
 
 interface IServiceListCardProps {
   service: IServiceExtended;
 }
 
 const CardLink = styled(Link)`
+  position: relative;
   border-radius: 12px;
   padding: 16px;
   max-height: 74px;
@@ -58,6 +60,7 @@ export default function ServiceListCard(
   return (
     <li>
       <CardLink to={`/services/${props.service.id}`}>
+        <Tag/>
         <img src={props.service.icon_small} alt="" />
         <DescrtiptionWrapper>
           <h3>{props.service.name}</h3>

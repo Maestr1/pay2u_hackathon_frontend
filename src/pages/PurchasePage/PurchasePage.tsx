@@ -20,6 +20,7 @@ import { useDispatchTyped, useSelectorTyped } from '../../hooks/store.ts';
 import styled from 'styled-components';
 import api from '../../utils/api/Api.ts';
 import { addPaymentHistory, addUserSubscriptions } from '../../services/currentUserSlice.ts';
+import ServiceTag from '../../components/uxComponents/ServiceTag.tsx';
 
 const Form = styled.form`
   padding-bottom: 12px;
@@ -93,6 +94,16 @@ const StyledCheckbox = styled(FormControlLabel)`
     color: var(--navy-blue-2);
   }
 `;
+
+const StyledTag = styled.div`
+    position: absolute;
+  top: 13px;
+  right: 0;
+  padding: 4px 12px;
+  border-radius: 30px;
+  background: var(--navy-blue-2);
+  color: var(--white);
+`
 
 function PurchasePage(): ReactElement {
   const dispatch = useDispatchTyped();
@@ -185,6 +196,7 @@ function PurchasePage(): ReactElement {
         <MainWrapper>
           <StyledServiceHeader selectSubscription={subscription} />
           <div className="purchase-page__tariff-title-wrap">
+            <StyledTag>кэшбек 5%</StyledTag>
             <h2>{tariff.name}</h2>
           </div>
           {calculatePrice()}
