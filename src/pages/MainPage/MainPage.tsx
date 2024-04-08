@@ -5,6 +5,13 @@ import { useSelectorTyped } from '../../hooks/store.ts';
 import CategoriesList from '../../components/CategoriesList/CategoriesList.tsx';
 import Loader from '../Loader/Loader.tsx';
 import MainPageUserCards from '../../components/MainPageUserCards/MainPageUserCards.tsx';
+import dashboard from '../../images/other_images/Info.png'
+import styled from 'styled-components';
+
+const Img = styled.img`
+  width: 100%;
+  margin-top: 25px;
+`
 
 function MainPage(): ReactElement {
   const popularServices = useSelectorTyped(
@@ -21,6 +28,7 @@ function MainPage(): ReactElement {
     return (
       <>
         <SearchFrom />
+        <Img src={dashboard} alt="" />
         <MainPageUserCards />
         <CardsSlider
           slidesPerView={1.8}
