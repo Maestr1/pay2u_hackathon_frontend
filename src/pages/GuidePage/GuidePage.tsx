@@ -84,7 +84,7 @@ export default function GuidePage() {
           </GuideSwiperSlide>
         </Swiper>
         <Title>
-          {activeSlide === 0 ? 'Управляйте подписками' : 'Все в одном месте'}
+          {activeSlide === 0 ? 'Управляйте подписками' : 'Все в одном сервисе'}
         </Title>
         <SubTitle>
           {activeSlide === 0

@@ -79,7 +79,7 @@ export default function OnboardingPage() {
           <li>
             <SmallFullWidthCard
               card={{
-                name: 'Хранить подписки в одном месте',
+                name: 'Хранить подписки в одном сервисе',
                 icon: folderIcon,
               }}
             />
